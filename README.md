@@ -2,19 +2,19 @@
  171 Project
 
 Programmers:
- Kevin Lewis
- Adam Carter
- Jalen Pastor
+ Kevin Lewis,
+ Adam Carter,
+ Jalen Pastor,
  Maxwell Mollison
  
 Artists:
  Allison Pham
 
 Music:
- Chuanyu Xiao
- Ben Ryu
+ Chuanyu Xiao,
+ Ben Ryu,
  Max Jacobson
  
 Narrative:
- Jalen Pastor
+ Jalen Pastor,
  Ben Ryu
