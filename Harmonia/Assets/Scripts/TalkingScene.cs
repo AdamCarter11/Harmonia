@@ -5,17 +5,13 @@ using UnityEngine.UI;
 
 public class TalkingScene : MonoBehaviour
 {
-    [SerializeField]
-    private Text nameText, talkingText;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool finished {get; private set;}
+    protected IEnumerator WriteText(string input, Text textHolder, float delay){
+        for(int i = 0; i < input.Length; i++){
+            textHolder.text += input[i];
+            yield return new WaitForSeconds(delay);
 
-    // Update is called once per frame
-    void Update()
-    {
-        nameText.text = Variables.NPCName;
+        }
+        finished = true;
     }
 }
