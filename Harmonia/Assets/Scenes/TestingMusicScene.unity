@@ -339,10 +339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24462b2a7e8966d4ebf5bd73ffdcc825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bias: 0.1
+  bias: 0.25
   timeStep: 0.15
   timeToBeat: 0.05
   restSmoothTime: 2
+  maxVal: 0
   beatScale: {x: 2, y: 2, z: 2}
   restScale: {x: 1, y: 1, z: 1}
 --- !u!114 &1478203809
@@ -423,7 +424,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 863de86fb761c2a45a99443e0c54c2ab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 72d435fb94433fc409e33af8a3b16e39, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
