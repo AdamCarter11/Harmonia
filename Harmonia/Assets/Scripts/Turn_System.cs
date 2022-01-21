@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
-public class turn_system : MonoBehaviour
+public class Turn_System : MonoBehaviour
 {
     // vars
     private BattleState state;
@@ -19,8 +19,8 @@ public class turn_system : MonoBehaviour
     // character playerChara
     // character enemyChara
 
-    public static turn_system instance;
-
+    public static Turn_System instance;
+    public GameObject Menu_UI;
     void Start()
     {
         instance = this;
@@ -39,7 +39,9 @@ public class turn_system : MonoBehaviour
 
     void PlayerTurn()
     {
+        print("Player Turn");
         // enable player to make choices for turn
+        Menu_UI.SetActive(true);
     }
 
     // when an option is picked
@@ -49,7 +51,7 @@ public class turn_system : MonoBehaviour
         {
             return;
         }
-
+        Menu_UI.SetActive(false);
         StartCoroutine(PlayerPerform());
     }
 
@@ -76,6 +78,7 @@ public class turn_system : MonoBehaviour
 
     IEnumerator EnemyTurn()
     {
+        print("Enemy Turn");
         state = BattleState.PLAYERTURN;
         // enemy performs
         yield return new WaitForSeconds(2f);
