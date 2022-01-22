@@ -729,6 +729,7 @@ namespace MidiPlayerTK
             for (int indexEvent = 0; indexEvent < tmEvents.Count; indexEvent++)
             {
                 TrackMidiEvent midievent = tmEvents[indexEvent];
+                //Debug.Log(midievent.Event);
                 midievent.IndexEvent = indexEvent;
                 if (MPTK_TrackCount <= midievent.IndexTrack)
                     MPTK_TrackCount = midievent.IndexTrack + 1;

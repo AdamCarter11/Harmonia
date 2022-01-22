@@ -110,11 +110,13 @@ namespace MPTK.NAudio.Midi
                 {
                     // both bytes are used for command code in this case
                     commandCode = (MidiCommandCode)b;
+                    
                 }
                 else
                 {
                     commandCode = (MidiCommandCode)(b & 0xF0);
                     channel = (b & 0x0F) + 1;
+                    
                 }
             }
 
@@ -124,11 +126,13 @@ namespace MPTK.NAudio.Midi
                 case MidiCommandCode.NoteOn:
                     me = new NoteOnEvent(br);
                     //Debug.Log($"NoteOn {me.absoluteTime} {me.channel} {me.deltaTime} {((NoteOnEvent)me).NoteNumber} {((NoteOnEvent)me).Velocity}");
+                    Debug.Log("HERE: " + ((NoteEvent)me).NoteNumber);
                     break;
                 case MidiCommandCode.NoteOff:
                 case MidiCommandCode.KeyAfterTouch:
                     me = new NoteEvent(br);
                     //Debug.Log($"NoteOff {me.absoluteTime} {me.channel} {me.deltaTime} {((NoteEvent)me).NoteNumber} {((NoteEvent)me).Velocity}");
+                    Debug.Log("HERE: " + ((NoteEvent)me).NoteNumber);
                     break;
                 case MidiCommandCode.ControlChange:
                     me = new ControlChangeEvent(br);
@@ -160,6 +164,7 @@ namespace MPTK.NAudio.Midi
             me.channel = channel;
             me.deltaTime = deltaTime;
             me.commandCode = commandCode;
+            //Debug.Log("HERE: " + ((NoteEvent)me).NoteNumber);
             return me;
         }
 

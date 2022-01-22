@@ -354,7 +354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1427537027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   midiNameToPlay: Animal Crossing
   midiIndexToPlay: 3
-  MPTK_LogEvents: 0
+  MPTK_LogEvents: 1
   MPTK_KeepNoteOff: 0
   MPTK_KeepEndTrack: 0
   MPTK_InitialTempo: 120
