@@ -189,6 +189,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &189960445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 189960446}
+  - component: {fileID: 189960447}
+  m_Layer: 0
+  m_Name: MidiPlayerGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &189960446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189960445}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1427537028}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &189960447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189960445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9c988817455d24c89d4616bc3be894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PathToResources: 
+  LoadSoundFontAtStartup: 1
+  LoadWaveAtStartup: 0
+  InstanceOnEventPresetLoaded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1124811480
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1124811481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +338,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1427537026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 1685529907430606, guid: 4dfa1f09b1c6b5d47966d1a4296fd412, type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427537028}
+  - component: {fileID: 1427537027}
+  m_Layer: 0
+  m_Name: MidiFileLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1427537027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427537026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6547f6e31ed08374eb7cd93604c78711, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  midiNameToPlay: Animal Crossing
+  midiIndexToPlay: 3
+  MPTK_LogEvents: 0
+  MPTK_KeepNoteOff: 0
+  MPTK_KeepEndTrack: 0
+  MPTK_InitialTempo: 120
+  MPTK_TickLast: 8940
+  MPTK_NumberBeatsMeasure: 0
+  MPTK_NumberQuarterBeat: 0
+  MPTK_TimeSigNumerator: 0
+  MPTK_TimeSigDenominator: 0
+  MPTK_KeySigSharpsFlats: 0
+  MPTK_KeySigMajorMinor: 0
+  MPTK_TicksInMetronomeClick: 0
+  MPTK_No32ndNotesInQuarterNote: 0
+  MPTK_MicrosecondsPerQuarterNote: 500000
+  MPTK_DeltaTicksPerQuarterNote: 108
+  MPTK_TrackCount: 4
+--- !u!4 &1427537028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427537026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 189960446}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478203806
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +512,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1794470359
 MonoBehaviour:
   m_ObjectHideFlags: 0
