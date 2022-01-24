@@ -15,6 +15,11 @@ public class Turn_System : MonoBehaviour
     public Transform playerSpawn;
     public Transform enemySpawn;
 
+    public GameObject SongItem1;
+    public Text InfoText;
+
+    public AudioSource audio_player;
+
     // player objects
     // character playerChara
     // character enemyChara
@@ -39,9 +44,22 @@ public class Turn_System : MonoBehaviour
 
     void PlayerTurn()
     {
+        SongItem1.GetComponentInChildren<Text>().text =  SongItem1.GetComponent<SongItem>().getName();
         print("Player Turn");
         // enable player to make choices for turn
         Menu_UI.SetActive(true);
+    }
+
+    public void playPreview(int song)
+    {
+        audio_player.Stop();
+        if (song == 1)
+        {
+            InfoText.text = "Name: " + SongItem1.GetComponent<SongItem>().getName() + "\nBPM:" + SongItem1.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            + SongItem1.GetComponent<SongItem>().getGenre() + "\nLength: " + SongItem1.GetComponent<SongItem>().getAudio().length + "s\n" + "info";
+            audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
+            audio_player.Play();
+        }
     }
 
     // when an option is picked
