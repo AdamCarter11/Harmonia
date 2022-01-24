@@ -69,6 +69,7 @@ public class Turn_System : MonoBehaviour
         {
             return;
         }
+        audio_player.Stop();
         Menu_UI.SetActive(false);
         StartCoroutine(PlayerPerform());
     }
