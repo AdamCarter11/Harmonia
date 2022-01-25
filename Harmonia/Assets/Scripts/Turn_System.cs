@@ -15,6 +15,14 @@ public class Turn_System : MonoBehaviour
     public Transform playerSpawn;
     public Transform enemySpawn;
 
+    public GameObject SongItem1;
+    public GameObject SongItem2;
+    public GameObject SongItem3;
+    public GameObject SongItem4;
+    public Text InfoText;
+
+    public AudioSource audio_player;
+
     // player objects
     // character playerChara
     // character enemyChara
@@ -39,9 +47,46 @@ public class Turn_System : MonoBehaviour
 
     void PlayerTurn()
     {
+        SongItem1.GetComponentInChildren<Text>().text = SongItem1.GetComponent<SongItem>().getName();
+        SongItem2.GetComponentInChildren<Text>().text = SongItem2.GetComponent<SongItem>().getName();
+        SongItem3.GetComponentInChildren<Text>().text = SongItem3.GetComponent<SongItem>().getName();
+        SongItem4.GetComponentInChildren<Text>().text = SongItem4.GetComponent<SongItem>().getName();
         print("Player Turn");
         // enable player to make choices for turn
         Menu_UI.SetActive(true);
+    }
+
+    public void playPreview(int song)
+    {
+        audio_player.Stop();
+        if (song == 1)
+        {
+            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem1.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            + SongItem1.GetComponent<SongItem>().getGenre() + "\nLength: " + SongItem1.GetComponent<SongItem>().getAudio().length + "s\n" + "Info";
+            audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
+            audio_player.Play();
+        }
+        else if (song == 2)
+        {
+            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem2.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            + SongItem2.GetComponent<SongItem>().getGenre() + "\nLength: " + SongItem2.GetComponent<SongItem>().getAudio().length + "s\n" + "Info";
+            audio_player.clip = SongItem2.GetComponent<SongItem>().getAudio();
+            audio_player.Play();
+        }
+        else if (song == 3)
+        {
+            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem3.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            + SongItem3.GetComponent<SongItem>().getGenre() + "\nLength: " + SongItem3.GetComponent<SongItem>().getAudio().length + "s\n" + "Info";
+            audio_player.clip = SongItem3.GetComponent<SongItem>().getAudio();
+            audio_player.Play();
+        }
+        else if (song == 4)
+        {
+            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem4.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            + SongItem4.GetComponent<SongItem>().getGenre() + "\nLength: " + SongItem4.GetComponent<SongItem>().getAudio().length + "s\n" + "Info";
+            audio_player.clip = SongItem4.GetComponent<SongItem>().getAudio();
+            audio_player.Play();
+        }
     }
 
     // when an option is picked
@@ -51,6 +96,7 @@ public class Turn_System : MonoBehaviour
         {
             return;
         }
+        audio_player.Stop();
         Menu_UI.SetActive(false);
         StartCoroutine(PlayerPerform());
     }
