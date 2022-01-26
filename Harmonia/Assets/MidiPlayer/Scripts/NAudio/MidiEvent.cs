@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using System.IO;
 
 namespace MPTK.NAudio.Midi
 {
@@ -85,6 +86,14 @@ namespace MPTK.NAudio.Midi
 
         }
 
+        static void WriteToFile(string whatToWrite){
+            string path = "Assets/test.txt";
+
+            //Write some text to the test.txt file
+            StreamWriter writer = new StreamWriter(path, true);
+            writer.WriteLine(whatToWrite);
+            writer.Close();
+        }
         /// <summary>
         /// Constructs a MidiEvent from a BinaryStream
         /// </summary>
@@ -127,6 +136,7 @@ namespace MPTK.NAudio.Midi
                     me = new NoteOnEvent(br);
                     //Debug.Log($"NoteOn {me.absoluteTime} {me.channel} {me.deltaTime} {((NoteOnEvent)me).NoteNumber} {((NoteOnEvent)me).Velocity}");
                     Debug.Log("HERE 1: " + ((NoteEvent)me).NoteNumber);
+                    WriteToFile((((NoteEvent)me).NoteNumber).ToString());
                     break;
                 case MidiCommandCode.NoteOff:
                 case MidiCommandCode.KeyAfterTouch:
