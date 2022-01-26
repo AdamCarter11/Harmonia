@@ -9,8 +9,8 @@ public class Turn_System : MonoBehaviour
 {
     // vars
     private BattleState state;
-    private GameObject player;
-    private GameObject enemy;
+    public Image player;
+    public Image enemy;
 
     public Transform playerSpawn;
     public Transform enemySpawn;

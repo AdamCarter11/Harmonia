@@ -5,14 +5,16 @@ public class CharacterSO : ScriptableObject
 {
     public string character_name = "Character";
     public Sprite icon = null;
+    public Sprite normal_sprite;
+    public Sprite hit_sprite;
 
     public bool isUsable;
 
     public float heatlth;
 
-    public GameObject Song1;
-    public GameObject Song2;
-    public GameObject Song3;
-    public GameObject Song4;
+    public ScriptableObject Song1;
+    public ScriptableObject Song2;
+    public ScriptableObject Song3;
+    public ScriptableObject Song4;
 
 }
