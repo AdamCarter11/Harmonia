@@ -5,10 +5,12 @@ using System.IO;
 
 public class writingReading : MonoBehaviour
 {
+    [SerializeField]
+    private TextAsset testSong;
     // Start is called before the first frame update
     void Start()
     {
-        
+        string[] newNotesList = ReadFromFile(testSong);
     }
 
     // Update is called once per frame
@@ -26,11 +28,19 @@ public class writingReading : MonoBehaviour
             writer.WriteLine(whatToWrite);
             writer.Close();
     }
-    public static void ReadFromFile(string path){
+    public static string[] ReadFromFile(TextAsset path){
+        /*
         print("Called reader function");
         StreamReader reader = new StreamReader(path); 
         Debug.Log(reader.ReadToEnd());
         reader.Close();
+        */
+        //print(path.text);
+        string[] notes = path.text.Split('\n');
+        print("notes length: " + notes.Length);
+        print("First note: " + notes[0]);
+        print("BPM: " + notes[notes.Length-2]); //-2 cause there is an extra newline at the end of the file
+        return notes;
     }
 
 }

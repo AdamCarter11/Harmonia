@@ -763,6 +763,7 @@ namespace MidiPlayerTK
                 Debug.Log($"MPTK_DeltaTicksPerQuarterNote:\t{MPTK_DeltaTicksPerQuarterNote} ticks");
                 Debug.Log($"MPTK_TrackCount:\t\t{MPTK_TrackCount}");
                 Debug.Log($"MPTK_InitialTempo:\t\t{MPTK_InitialTempo} bpm\t\tTempo change:\t\t{tempoMap.Count}");
+                writingReading.WriteToFile(MPTK_InitialTempo.ToString());
                 Debug.Log($"MPTK_DurationMS:\t\t{MPTK_DurationMS / 1000f} seconds \tMPTK_Duration:\t\t{MPTK_Duration}");
                 Debug.Log($"MPTK_TickFirstNote:\t\t{MPTK_TickFirstNote} ticks \t\tMPTK_PositionFirstNote:\t{MPTK_PositionFirstNote / 1000f:F2} second {TimeSpan.FromMilliseconds(MPTK_PositionFirstNote)} ");
                 Debug.Log($"MPTK_TickLastNote:\t\t{MPTK_TickLastNote} ticks \t\tMPTK_PositionLastNote:\t{MPTK_PositionLastNote / 1000f:F2} second {TimeSpan.FromMilliseconds(MPTK_PositionLastNote)}");
