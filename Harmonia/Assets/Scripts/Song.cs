@@ -7,4 +7,5 @@ public class Song : ScriptableObject
     public float BPM;
     public string genre = "Genre";
     public AudioClip audio;
+    public TextAsset notes;
 }
