@@ -7,16 +7,47 @@ public class writingReading : MonoBehaviour
 {
     [SerializeField]
     private TextAsset testSong;
+    [SerializeField]
+    private GameObject testSpawnObject;
+    private int whichNote = 0;
+    private string[] newNotesList;
+    private int whereToSpawnX;
     // Start is called before the first frame update
     void Start()
     {
-        string[] newNotesList = ReadFromFile(testSong);
+        newNotesList = ReadFromFile(testSong);
+        StartCoroutine(spawnNote());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(whichNote >= newNotesList.Length){
+            StopCoroutine(spawnNote());
+        }
+    }
+    IEnumerator spawnNote(){
+        while(true){
+            yield return new WaitForSeconds(1f);
+            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 30){
+                whereToSpawnX = -5;
+            }
+            else if(int.Parse(newNotesList[whichNote]) >= 31 && int.Parse(newNotesList[whichNote]) <= 60){
+                whereToSpawnX = -3;
+            }
+            else if(int.Parse(newNotesList[whichNote]) >= 61 && int.Parse(newNotesList[whichNote]) <= 90){
+                whereToSpawnX = -1;
+            }
+            else if(int.Parse(newNotesList[whichNote]) >= 91 && int.Parse(newNotesList[whichNote]) <= 120){
+                whereToSpawnX = 1;
+            }
+            else{
+                whereToSpawnX = 3;
+            }
+            Instantiate(testSpawnObject, new Vector3(whereToSpawnX, 5, 0), Quaternion.identity);
+            whichNote++;
+            print(whichNote);
+        }
     }
 
     public static void WriteToFile(string whatToWrite){

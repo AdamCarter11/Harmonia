@@ -684,7 +684,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.9339623, g: 0.9339623, b: 0.9339623, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -761,6 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testSong: {fileID: 4900000, guid: cf7e532f64ea65545aa4237c10e51c39, type: 3}
+  testSpawnObject: {fileID: 8254633105903193344, guid: e64a4be6e4991124e955ba86dec4c11c, type: 3}
 --- !u!4 &2019889250
 Transform:
   m_ObjectHideFlags: 0
