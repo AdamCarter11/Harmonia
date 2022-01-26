@@ -26,4 +26,11 @@ public class writingReading : MonoBehaviour
             writer.WriteLine(whatToWrite);
             writer.Close();
     }
+    public static void ReadFromFile(string path){
+        print("Called reader function");
+        StreamReader reader = new StreamReader(path); 
+        Debug.Log(reader.ReadToEnd());
+        reader.Close();
+    }
+
 }
