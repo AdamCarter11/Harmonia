@@ -78,7 +78,7 @@ namespace MidiPlayerTK
         /// More info here https://paxstellar.fr/2020/09/11/midi-timing/
         /// </summary>
         public long MPTK_TickCurrent;
-
+        public static long currentTick;
         /// <summary>
         /// Current MIDI event read when the MIDI sequencer is playing the MIDI. See #MPTK_TickCurrent.
         /// </summary>
@@ -450,8 +450,10 @@ namespace MidiPlayerTK
                             if (mptkEvent != null)
                                 midievents.Add(mptkEvent);
                         }
+
                         MPTK_TickCurrent = trackEvent.AbsoluteQuantize;
                         MPTK_TickLast = trackEvent.AbsoluteQuantize;
+                        
 
                         if (trackEvent.AbsoluteQuantize > toTicks)
                             break;
@@ -766,9 +768,11 @@ namespace MidiPlayerTK
                 writingReading.WriteToFile(MPTK_InitialTempo.ToString());
                 Debug.Log($"MPTK_DurationMS:\t\t{MPTK_DurationMS / 1000f} seconds \tMPTK_Duration:\t\t{MPTK_Duration}");
                 Debug.Log($"MPTK_TickFirstNote:\t\t{MPTK_TickFirstNote} ticks \t\tMPTK_PositionFirstNote:\t{MPTK_PositionFirstNote / 1000f:F2} second {TimeSpan.FromMilliseconds(MPTK_PositionFirstNote)} ");
+                //pretty sure this line above, TimeSpan.FromMilliseconds(MPTK_PositionFirstNote) returns the time that note was played
                 Debug.Log($"MPTK_TickLastNote:\t\t{MPTK_TickLastNote} ticks \t\tMPTK_PositionLastNote:\t{MPTK_PositionLastNote / 1000f:F2} second {TimeSpan.FromMilliseconds(MPTK_PositionLastNote)}");
                 Debug.Log($"MPTK_TickLast:\t\t{MPTK_TickLast} ticks");
                 Debug.Log($"MPTK_MidiEvents:\t\t{tmEvents.Count} events");
+                Debug.Log("CurrentTick: " + MPTK_TickCurrent);
             }
 
         }
