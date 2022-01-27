@@ -6,16 +6,29 @@ using System.IO;
 public class writingReading : MonoBehaviour
 {
     [SerializeField]
-    private TextAsset testSong;
-    [SerializeField] private GameObject testSpawnObject; //if you don't want to test spawning, comment this out
+    private TextAsset songText;
+    [SerializeField] //private GameObject testSpawnObject; //if you don't want to test spawning, comment this out
     private int whichNote = 0;
     private string[] newNotesList;
-    private int whereToSpawnX;
+    private float whereToSpawnX;
+    public Transform whereToSpawnX1;
+    public Transform whereToSpawnX2;
+    public Transform whereToSpawnX3;
+    public Transform whereToSpawnX4;
+    public Transform whereToSpawnX5;
+    private GameObject whatToSpawn;
+    public GameObject Note1;
+    public GameObject Note2;
+    public GameObject Note3;
+    public GameObject Note4;
+    public GameObject Note5;
     public static int bpm;
+    private float BPM;
     // Start is called before the first frame update
-    void Start()
+    public void setUp(TextAsset text, float val)
     {
-        newNotesList = ReadFromFile(testSong);
+        newNotesList = ReadFromFile(text);
+        BPM = val;
         StartCoroutine(spawnNote());
     }
 
@@ -29,22 +42,28 @@ public class writingReading : MonoBehaviour
     IEnumerator spawnNote(){
         while(true){
             yield return new WaitForSeconds(.5f);
-            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 50){
-                whereToSpawnX = -5;
+            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 62){
+                whereToSpawnX = whereToSpawnX1.position.x;
+                whatToSpawn = Note1;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 51 && int.Parse(newNotesList[whichNote]) <= 60){
-                whereToSpawnX = -3;
+            else if(int.Parse(newNotesList[whichNote]) >= 63 && int.Parse(newNotesList[whichNote]) <= 68){
+                whereToSpawnX = whereToSpawnX2.position.x;
+                whatToSpawn = Note2;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 61 && int.Parse(newNotesList[whichNote]) <= 70){
-                whereToSpawnX = -1;
+            else if(int.Parse(newNotesList[whichNote]) >= 69 && int.Parse(newNotesList[whichNote]) <= 74){
+                whereToSpawnX = whereToSpawnX3.position.x;
+                whatToSpawn = Note3;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 71 && int.Parse(newNotesList[whichNote]) <= 80){
-                whereToSpawnX = 1;
+            else if(int.Parse(newNotesList[whichNote]) >= 75 && int.Parse(newNotesList[whichNote]) <= 80){
+                whereToSpawnX = whereToSpawnX4.position.x;
+                whatToSpawn = Note4;
             }
             else{
-                whereToSpawnX = 3;
+                whereToSpawnX = whereToSpawnX5.position.x;
+                whatToSpawn = Note5;
             }
-            Instantiate(testSpawnObject, new Vector3(whereToSpawnX, 5, 0), Quaternion.identity);
+            GameObject newObject = Instantiate(whatToSpawn, new Vector3(whereToSpawnX, 6, 0), Quaternion.identity);
+            newObject.GetComponent<HitNotes>().setBPM(BPM);
             whichNote++;
             print(whichNote);
         }

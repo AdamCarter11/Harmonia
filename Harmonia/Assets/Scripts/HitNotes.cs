@@ -7,15 +7,14 @@ public class HitNotes : MonoBehaviour
     private bool obtained = false;
     public bool canBePressed;
     public KeyCode pressKey;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public float bpm;
+    private float speed;
 
     // Update is called once per frame
     void Update()
     {
+        speed = bpm / 60;
+        transform.position -= new Vector3(0f, speed * Time.deltaTime, 0f);
         if (Input.GetKeyDown(pressKey))
         {
             if (canBePressed)
@@ -24,6 +23,10 @@ public class HitNotes : MonoBehaviour
                 obtained = true;
                 gameObject.SetActive(false);
             }
+        }
+        if (transform.position.y <= -3.4)
+        {
+            Destroy(this.gameObject);
         }
     }
 
@@ -43,5 +46,10 @@ public class HitNotes : MonoBehaviour
             if (!obtained)
                 GameManager.instance.NoteMiss();
         }
+    }
+
+    public void setBPM(float val)
+    {
+        bpm = val;
     }
 }

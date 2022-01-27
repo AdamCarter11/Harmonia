@@ -30,4 +30,9 @@ public class SongItem : MonoBehaviour
     {
         return song.audio;
     }
+
+    public TextAsset getText()
+    {
+        return song.notes;
+    }
 }

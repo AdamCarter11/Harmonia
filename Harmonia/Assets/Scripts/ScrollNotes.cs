@@ -13,18 +13,6 @@ public class ScrollNotes : MonoBehaviour
     }
     void Update()   //update is called once per frame
     {
-        /*
-        if (!started)
-        {
-            if (Input.anyKeyDown)
-            {
-                started = true;
-            }
-            else
-            {*/
-        transform.position -= new Vector3(0f, bpm * Time.deltaTime, 0f);    // transform function moves only on y-axis
-        /*                                                                       // (x, y, z) parameters
-       }
-   }*/
+        transform.position -= new Vector3(0f, bpm * Time.deltaTime, 0f);
     }
 }
