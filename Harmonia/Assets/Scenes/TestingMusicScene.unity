@@ -367,13 +367,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6547f6e31ed08374eb7cd93604c78711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  midiNameToPlay: Requiem_ Agnus Dei Midi
-  midiIndexToPlay: 74
+  midiNameToPlay: Serenade13_Readable
+  nameOfMidi: 
+  midiIndexToPlay: 81
   MPTK_LogEvents: 1
   MPTK_KeepNoteOff: 0
   MPTK_KeepEndTrack: 0
   MPTK_InitialTempo: 120
-  MPTK_TickLast: 5193
+  MPTK_TickLast: 106368
   MPTK_NumberBeatsMeasure: 0
   MPTK_NumberQuarterBeat: 0
   MPTK_TimeSigNumerator: 0
@@ -383,7 +384,7 @@ MonoBehaviour:
   MPTK_TicksInMetronomeClick: 0
   MPTK_No32ndNotesInQuarterNote: 0
   MPTK_MicrosecondsPerQuarterNote: 500000
-  MPTK_DeltaTicksPerQuarterNote: 43
+  MPTK_DeltaTicksPerQuarterNote: 960
   MPTK_TrackCount: 1
 --- !u!4 &1427537028
 Transform:

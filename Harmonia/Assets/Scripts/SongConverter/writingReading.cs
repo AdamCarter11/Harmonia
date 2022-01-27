@@ -52,7 +52,9 @@ public class writingReading : MonoBehaviour
     }
 
     public static void WriteToFile(string whatToWrite){
-        //print(MidiPlayerTK.MidiFileLoader.midiNameToPlay);
+        //string nameOfMidi = MidiPlayerTK.MidiFileLoader.MPTK_MidiName.midiNameToPlay;
+        //print(MidiPlayerTK.MidiFileLoader.MPTK_MidiName);
+        //string nameToWriteTo = MidiPlayerTK.MidiFileLoader.nameOfMidi;
         //print("Ran write to file function");
             string path = "Assets/test.txt";
 
