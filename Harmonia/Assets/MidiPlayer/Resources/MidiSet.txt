@@ -85,6 +85,7 @@
     <string>Patti Smith - Because the Night</string>
     <string>Pergolesi - Stabat Mater</string>
     <string>Reayo - Amor de Hombre</string>
+    <string>Requiem_ Agnus Dei Midi</string>
     <string>Salvador Henri - Jardin D'hiver</string>
     <string>Satie - Gnossienne 4</string>
     <string>Satie - Gnossienne 5</string>

@@ -29,17 +29,17 @@ public class writingReading : MonoBehaviour
     }
     IEnumerator spawnNote(){
         while(true){
-            yield return new WaitForSeconds(1f);
-            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 30){
+            yield return new WaitForSeconds(.5f);
+            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 50){
                 whereToSpawnX = -5;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 31 && int.Parse(newNotesList[whichNote]) <= 60){
+            else if(int.Parse(newNotesList[whichNote]) >= 51 && int.Parse(newNotesList[whichNote]) <= 60){
                 whereToSpawnX = -3;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 61 && int.Parse(newNotesList[whichNote]) <= 90){
+            else if(int.Parse(newNotesList[whichNote]) >= 61 && int.Parse(newNotesList[whichNote]) <= 70){
                 whereToSpawnX = -1;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 91 && int.Parse(newNotesList[whichNote]) <= 120){
+            else if(int.Parse(newNotesList[whichNote]) >= 71 && int.Parse(newNotesList[whichNote]) <= 80){
                 whereToSpawnX = 1;
             }
             else{
