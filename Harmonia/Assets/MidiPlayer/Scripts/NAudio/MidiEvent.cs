@@ -139,7 +139,8 @@ namespace MPTK.NAudio.Midi
                     me = new NoteOnEvent(br);
                     //Debug.Log($"NoteOn {me.absoluteTime} {me.channel} {me.deltaTime} {((NoteOnEvent)me).NoteNumber} {((NoteOnEvent)me).Velocity}");
                     Debug.Log("HERE 1: " + ((NoteEvent)me).NoteNumber);
-                    writingReading.WriteToFile((((NoteEvent)me).NoteNumber).ToString());
+                    
+                    //writingReading.WriteToFile((((NoteEvent)me).NoteNumber).ToString());
                     break;
                 case MidiCommandCode.NoteOff:
                 case MidiCommandCode.KeyAfterTouch:

@@ -35,4 +35,9 @@ public class SongItem : MonoBehaviour
     {
         return song.notes;
     }
+
+    public TextAsset getText2()
+    {
+        return song.sequence;
+    }
 }

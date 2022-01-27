@@ -8,4 +8,5 @@ public class Song : ScriptableObject
     public string genre = "Genre";
     public AudioClip audio;
     public TextAsset notes;
+    public TextAsset sequence;
 }

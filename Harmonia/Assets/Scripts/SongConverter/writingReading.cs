@@ -7,9 +7,13 @@ public class writingReading : MonoBehaviour
 {
     [SerializeField]
     private TextAsset songText;
+    private TextAsset sequenceText;
     [SerializeField] //private GameObject testSpawnObject; //if you don't want to test spawning, comment this out
     private int whichNote = 0;
     private string[] newNotesList;
+    private float[] sequence;
+    private float prev;
+    private float current;
     private float whereToSpawnX;
     public Transform whereToSpawnX1;
     public Transform whereToSpawnX2;
@@ -24,10 +28,13 @@ public class writingReading : MonoBehaviour
     public GameObject Note5;
     public static int bpm;
     private float BPM;
+    private bool dontSpawn;
+    private float prevVal;
     // Start is called before the first frame update
-    public void setUp(TextAsset text, float val)
+    public void setUp(TextAsset text, TextAsset seq, float val)
     {
         newNotesList = ReadFromFile(text);
+        sequence = ReadFromFile2(seq);
         BPM = val;
         StartCoroutine(spawnNote());
     }
@@ -41,29 +48,54 @@ public class writingReading : MonoBehaviour
     }
     IEnumerator spawnNote(){
         while(true){
-            yield return new WaitForSeconds(.5f);
-            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 62){
+            if (whichNote == 0)
+            {
+                dontSpawn = false;
+                prevVal = sequence[whichNote];
+                yield return new WaitForSeconds(sequence[whichNote]);
+            }
+            else
+            {
+                if (sequence[whichNote] == sequence[whichNote-1])
+                {
+                    dontSpawn = true;
+                }
+                else
+                {
+                    dontSpawn = false;
+                    yield return new WaitForSeconds(sequence[whichNote] - prevVal);
+                    prevVal = sequence[whichNote];
+                }
+            }
+            
+            if(int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 62 && !dontSpawn){
                 whereToSpawnX = whereToSpawnX1.position.x;
                 whatToSpawn = Note1;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 63 && int.Parse(newNotesList[whichNote]) <= 68){
+            else if(int.Parse(newNotesList[whichNote]) >= 63 && int.Parse(newNotesList[whichNote]) <= 68 && !dontSpawn)
+            {
                 whereToSpawnX = whereToSpawnX2.position.x;
                 whatToSpawn = Note2;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 69 && int.Parse(newNotesList[whichNote]) <= 74){
+            else if(int.Parse(newNotesList[whichNote]) >= 69 && int.Parse(newNotesList[whichNote]) <= 74 && !dontSpawn)
+            {
                 whereToSpawnX = whereToSpawnX3.position.x;
                 whatToSpawn = Note3;
             }
-            else if(int.Parse(newNotesList[whichNote]) >= 75 && int.Parse(newNotesList[whichNote]) <= 80){
+            else if(int.Parse(newNotesList[whichNote]) >= 75 && int.Parse(newNotesList[whichNote]) <= 80 && !dontSpawn)
+            {
                 whereToSpawnX = whereToSpawnX4.position.x;
                 whatToSpawn = Note4;
             }
-            else{
+            else if (!dontSpawn){
                 whereToSpawnX = whereToSpawnX5.position.x;
                 whatToSpawn = Note5;
             }
-            GameObject newObject = Instantiate(whatToSpawn, new Vector3(whereToSpawnX, 6, 0), Quaternion.identity);
-            newObject.GetComponent<HitNotes>().setBPM(BPM);
+            if (!dontSpawn)
+            {
+                GameObject newObject = Instantiate(whatToSpawn, new Vector3(whereToSpawnX, 6, 0), Quaternion.identity);
+                newObject.GetComponent<HitNotes>().setBPM(BPM);
+            }
             whichNote++;
             print(whichNote);
         }
@@ -97,4 +129,15 @@ public class writingReading : MonoBehaviour
         return notes;
     }
 
+    public static float[] ReadFromFile2(TextAsset path)
+    {
+        string[] seq1 = path.text.Split('\n');
+        float[] seq = new float[seq1.Length];
+        for (int i = 0; i < seq1.Length; i++)
+        {
+            Debug.Log(float.Parse(seq1[i]));
+            seq[i] = float.Parse(seq1[i]);
+        }
+        return seq;
+    }
 }

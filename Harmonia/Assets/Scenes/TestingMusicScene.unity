@@ -888,8 +888,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9aefe3394c5134fad0bbdd6dbcd90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testSong: {fileID: 4900000, guid: cf7e532f64ea65545aa4237c10e51c39, type: 3}
-  testSpawnObject: {fileID: 8254633105903193344, guid: e64a4be6e4991124e955ba86dec4c11c, type: 3}
+  songText: {fileID: 0}
+  whichNote: 0
+  whereToSpawnX1: {fileID: 0}
+  whereToSpawnX2: {fileID: 0}
+  whereToSpawnX3: {fileID: 0}
+  whereToSpawnX4: {fileID: 0}
+  whereToSpawnX5: {fileID: 0}
+  Note1: {fileID: 0}
+  Note2: {fileID: 0}
+  Note3: {fileID: 0}
+  Note4: {fileID: 0}
+  Note5: {fileID: 0}
 --- !u!4 &2019889250
 Transform:
   m_ObjectHideFlags: 0
