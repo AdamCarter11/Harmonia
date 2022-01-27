@@ -39,7 +39,8 @@ namespace MidiPlayerTK
         [SerializeField]
         [HideInInspector]
         private string midiNameToPlay;
-
+        [HideInInspector]
+        public string nameOfMidi;
         /// <summary>
         /// Index Midi. Find the Index of Midi file from the popup in MidiFileLoader inspector.\n
         /// Tips: Add Midi files to your project with the Unity menu MPTK or add it directly in the ressource folder and open Midi File Setup to automatically integrate Midi in MPTK.\n
