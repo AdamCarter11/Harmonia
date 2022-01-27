@@ -13,6 +13,6 @@ public class moveObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + (new Vector3(0,-3,0) * Time.deltaTime);
+        transform.position = transform.position + (new Vector3(0,-1,0) * (writingReading.bpm/60) * Time.deltaTime);
     }
 }

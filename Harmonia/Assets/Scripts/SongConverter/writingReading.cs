@@ -12,6 +12,7 @@ public class writingReading : MonoBehaviour
     private int whichNote = 0;
     private string[] newNotesList;
     private int whereToSpawnX;
+    public static int bpm;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +71,8 @@ public class writingReading : MonoBehaviour
         string[] notes = path.text.Split('\n');
         print("notes length: " + notes.Length);
         print("First note: " + notes[0]);
-        print("BPM: " + notes[notes.Length-2]); //-2 cause there is an extra newline at the end of the file
+        bpm = int.Parse(notes[notes.Length-2]);
+        print("BPM: " + bpm); //-2 cause there is an extra newline at the end of the file
         return notes;
     }
 
