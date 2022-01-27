@@ -7,8 +7,7 @@ public class writingReading : MonoBehaviour
 {
     [SerializeField]
     private TextAsset testSong;
-    [SerializeField]
-    private GameObject testSpawnObject;
+    [SerializeField] private GameObject testSpawnObject; //if you don't want to test spawning, comment this out
     private int whichNote = 0;
     private string[] newNotesList;
     private int whereToSpawnX;
