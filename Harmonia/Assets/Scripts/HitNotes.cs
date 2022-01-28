@@ -24,10 +24,6 @@ public class HitNotes : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        if (transform.position.y <= -3.4)
-        {
-            Destroy(this.gameObject);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -44,7 +40,7 @@ public class HitNotes : MonoBehaviour
         {
             canBePressed = false;
             if (!obtained)
-                GameManager.instance.NoteMiss();
+                GameManager.instance.NoteMiss(this.gameObject);
         }
     }
 

@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             player.health += 10;
     }
 
-    public void NoteMiss()
+    public void NoteMiss(GameObject note)
     {
         judgementText.text = "Miss!";
         judgementText.color = Color.red;
@@ -43,5 +43,6 @@ public class GameManager : MonoBehaviour
         comboText.text = combo.ToString();
         if (player.health >= 10)
             player.health -= 10;
+        Destroy(note);
     }
 }
