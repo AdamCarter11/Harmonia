@@ -25,7 +25,8 @@ namespace MidiPlayerTK
         {
             get
             {
-                //Debug.Log("MPTK_MidiName get " + midiNameToPlay);
+                Debug.Log("MPTK_MidiName get " + midiNameToPlay);
+                nameOfMidi = midiNameToPlay;
                 return midiNameToPlay;
             }
             set
@@ -40,7 +41,7 @@ namespace MidiPlayerTK
         [HideInInspector]
         private string midiNameToPlay;
         [HideInInspector]
-        public string nameOfMidi;
+        public static string nameOfMidi;
         /// <summary>
         /// Index Midi. Find the Index of Midi file from the popup in MidiFileLoader inspector.\n
         /// Tips: Add Midi files to your project with the Unity menu MPTK or add it directly in the ressource folder and open Midi File Setup to automatically integrate Midi in MPTK.\n

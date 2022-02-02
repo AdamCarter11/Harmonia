@@ -72,9 +72,10 @@ public class writingReading : MonoBehaviour
     public static void WriteToFile(string whatToWrite){
         //string nameOfMidi = MidiPlayerTK.MidiFileLoader.MPTK_MidiName.midiNameToPlay;
         //print(MidiPlayerTK.MidiFileLoader.MPTK_MidiName);
-        //string nameToWriteTo = MidiPlayerTK.MidiFileLoader.nameOfMidi;
-        //print("Ran write to file function");
-            string path = "Assets/test.txt";
+        string nameToWriteTo = MidiPlayerTK.MidiFileLoader.nameOfMidi;
+        //print(nameToWriteTo);
+        string nameToWrite = "firstFile";
+            string path = "Assets/" + nameToWriteTo + ".txt";
 
             //Write some text to the test.txt file
             StreamWriter writer = new StreamWriter(path, true);
