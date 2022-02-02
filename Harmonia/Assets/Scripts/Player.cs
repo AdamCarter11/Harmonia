@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private Vector2 moveDir;
     private GameObject whichToInteractWith;
 
+    public Inventory inventory;
+
     public float checkRadius;
 
     void Start()
@@ -40,7 +42,14 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
+        if (!inventory.getActive())
+        {
+            rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, 0);
+        }
     }
 
     void GetInputs(){

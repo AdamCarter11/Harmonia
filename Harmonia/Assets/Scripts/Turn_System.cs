@@ -126,7 +126,7 @@ public class Turn_System : MonoBehaviour
         PlayerPlayUI.SetActive(true);
         // perform song
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
-        yield return new WaitForSeconds(5.5f);
+        yield return new WaitForSeconds(2.5f);
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         audio_player.Play();
         yield return new WaitForSeconds(SongItem3.GetComponent<SongItem>().getAudio().length + 2f);
