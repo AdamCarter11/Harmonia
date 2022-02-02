@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class textBaseClass : TalkingScene
 {
@@ -29,12 +30,17 @@ public class textBaseClass : TalkingScene
             talkingText.text = "";
             if(whichText >= scriptableObjs[0].dialogue.Length){
                 panel.SetActive(false);
+                isThereStillText = false;
             }
             else{
                 StartCoroutine(WriteText(scriptableObjs[0].dialogue[whichText], talkingText, timeDelay));   
             }
             whichText++;
             
+        }
+        if (!isThereStillText)
+        {
+            SceneManager.LoadScene("Jalen's Scene");
         }
     }
 }
