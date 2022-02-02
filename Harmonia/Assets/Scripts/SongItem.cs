@@ -5,7 +5,7 @@ using UnityEngine;
 public class SongItem : MonoBehaviour
 {
     public Song song;
-    
+
     public void Set(Song incoming_song)
     {
         song = incoming_song;
@@ -34,5 +34,10 @@ public class SongItem : MonoBehaviour
     public TextAsset getText()
     {
         return song.notes;
+    }
+
+    public TextAsset getText2()
+    {
+        return song.sequence;
     }
 }
