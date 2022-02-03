@@ -906,7 +906,6 @@ RectTransform:
   - {fileID: 236529153}
   - {fileID: 1012493771}
   - {fileID: 1159225418}
-  - {fileID: 747331544}
   - {fileID: 2099067939}
   - {fileID: 2122711286}
   - {fileID: 511225452}
@@ -1474,7 +1473,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1387051697}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: EffectsSlider
         m_Mode: 0
@@ -1615,7 +1614,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 167792692}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2086,7 +2085,7 @@ RectTransform:
   m_LocalScale: {x: 0.79, y: 0.65, z: 0.8}
   m_Children: []
   m_Father: {fileID: 167792692}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2818,7 +2817,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
-  m_Father: {fileID: 167792692}
+  m_Father: {fileID: 1159225418}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3035,7 +3034,8 @@ MonoBehaviour:
   SongItem3: {fileID: 1241975797}
   SongItem4: {fileID: 1499609188}
   InfoText: {fileID: 320696635}
-  audio_player: {fileID: 1208404561}
+  reader: {fileID: 1176113328}
+  audio_player: {fileID: 638531509}
   TextReader: {fileID: 1176113328}
   Menu_UI: {fileID: 1097649024}
   PlayerPlayUI: {fileID: 1159225417}
@@ -3084,7 +3084,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 167792692}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4512,6 +4512,7 @@ RectTransform:
   - {fileID: 1886156103}
   - {fileID: 1513881951}
   - {fileID: 6153104100231667909}
+  - {fileID: 747331544}
   m_Father: {fileID: 167792692}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4588,7 +4589,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1387051697}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: VolumeSlider
         m_Mode: 0
@@ -4841,7 +4842,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1208404561
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6209,7 +6210,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 167792692}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6762,7 +6763,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1387051697}
         m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
         m_MethodName: TextSlider
         m_Mode: 0
@@ -8040,7 +8041,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 167792692}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8325,7 +8326,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 167792692}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

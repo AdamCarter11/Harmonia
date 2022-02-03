@@ -16,6 +16,7 @@ public class Turn_System : MonoBehaviour
     public GameObject SongItem4;
     private GameObject SongToPlay;
     public Text InfoText;
+    public writingReading reader;
 
     private int whichSong;
 
@@ -129,7 +130,9 @@ public class Turn_System : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         audio_player.Play();
-        yield return new WaitForSeconds(SongItem3.GetComponent<SongItem>().getAudio().length + 2f);
+        yield return new WaitForSeconds(SongItem3.GetComponent<SongItem>().getAudio().length);
+        reader.endCoroutine();
+        yield return new WaitForSeconds(2f);
 
         // enemy take damage
         // bool isDead = enemyChara.TakeDamage(damage);

@@ -38,11 +38,6 @@ public class writingReading : MonoBehaviour
         StartCoroutine(spawnNote());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     IEnumerator spawnNote()
     {
         while (whichNote <= newNotesList.Length - 2)
@@ -51,7 +46,8 @@ public class writingReading : MonoBehaviour
             {
                 dontSpawn = false;
                 prevVal = sequence[whichNote];
-                yield return new WaitForSeconds(sequence[whichNote]);
+                //yield return new WaitForSeconds(sequence[whichNote]);
+                yield return new WaitForSeconds(0.5f);
             }
             else if (whichNote < newNotesList.Length - 2)
             {
@@ -62,7 +58,8 @@ public class writingReading : MonoBehaviour
                 else
                 {
                     dontSpawn = false;
-                    yield return new WaitForSeconds(sequence[whichNote] - prevVal);
+                    //yield return new WaitForSeconds(sequence[whichNote] - prevVal);
+                    yield return new WaitForSeconds(0.5f);
                     prevVal = sequence[whichNote];
                 }
             }
@@ -146,5 +143,10 @@ public class writingReading : MonoBehaviour
             seq[i] = float.Parse(seq1[i]);
         }
         return seq;
+    }
+
+    public void endCoroutine()
+    {
+        StopAllCoroutines();
     }
 }

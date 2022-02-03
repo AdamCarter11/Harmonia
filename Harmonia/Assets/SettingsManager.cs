@@ -13,7 +13,7 @@ public class SettingsManager : MonoBehaviour
 
     public Slider volumeSlider;
     public Slider effectsSlider;
-     public Slider textSlider;
+    public Slider textSlider;
 
     private void Start()
     {
@@ -66,11 +66,11 @@ public class SettingsManager : MonoBehaviour
     {
         float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
         volumeSlider.value = volumeValue;
-        Volume.volume = volumeValue;
+        Volume.volume = volumeValue * .25f;
 
         float effectsValue = PlayerPrefs.GetFloat("EffectsValue");
         effectsSlider.value = effectsValue;
-        SFX.volume = effectsValue;
+        SFX.volume = effectsValue * .25f;
 
         float textValue = PlayerPrefs.GetFloat("TextValue");
         textSlider.value = textValue;
