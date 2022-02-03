@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public int combo;
-    public int notesHit;
-    public int totalNotes;
-    public int accuracy;
+    public float notesHit;
+    public float totalNotes;
+    public float accuracy;
     public Text judgementText;
     public Text comboText;
     public Text accText;
@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
         combo++;
         notesHit++;
         totalNotes++;
-        accuracy = notesHit / totalNotes;
+        accuracy = (notesHit / totalNotes) * 100;
         comboText.text = combo.ToString();
-        accText.text = accuracy.ToString() + " %";
+        accText.text = accuracy.ToString("F2") + " %";
         if (player.health <= 190)
             player.health += 10;
     }
@@ -50,9 +50,9 @@ public class GameManager : MonoBehaviour
         judgementText.color = Color.red;
         combo = 0;
         totalNotes++;
-        accuracy = notesHit / totalNotes;
+        accuracy = (notesHit / totalNotes) * 100;
         comboText.text = combo.ToString();
-        accText.text = accuracy.ToString() + " %";
+        accText.text = accuracy.ToString("F2") + " %";
         if (player.health >= 10)
             player.health -= 10;
     }
