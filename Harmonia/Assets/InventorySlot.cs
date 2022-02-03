@@ -5,6 +5,7 @@ public class InventorySlot : MonoBehaviour
 {
     public Image icon;
     CharacterSO character;
+    public Button thisButton;
 
     public void AddCharacter (CharacterSO newCharacter)
     {
@@ -12,6 +13,7 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = character.icon;
         icon.enabled = true;
+        thisButton.enabled = true;
     }
 
     public void ClearSlot()
@@ -20,5 +22,6 @@ public class InventorySlot : MonoBehaviour
 
         icon.sprite = null;
         icon.enabled = false;
+        thisButton.enabled = false;
     }
 }

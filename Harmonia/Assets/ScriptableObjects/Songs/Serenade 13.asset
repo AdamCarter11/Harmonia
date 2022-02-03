@@ -18,3 +18,4 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: 240ca9f2a78718c4da33d7ceb71f3574, type: 3}
   notes: {fileID: 4900000, guid: cf7e532f64ea65545aa4237c10e51c39, type: 3}
   sequence: {fileID: 4900000, guid: 87ba0a9e3bcf78f449a0fe2d4211da8d, type: 3}
+  info: info

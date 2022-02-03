@@ -17,26 +17,40 @@ public class textBaseClass : TalkingScene
     private int whichText = 1;
     private bool isThereStillText = true;
 
+    public SettingsManager settings;
+
     private void Awake() {
         nameText.text = scriptableObjs[0].NPCName;
         talkingText.text = "";
     }
     private void Start() {
-        StartCoroutine(WriteText(scriptableObjs[0].dialogue[0], talkingText, timeDelay));
+        settings.LoadValues();
+        StartCoroutine(WriteText(scriptableObjs[0].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.E) && isThereStillText){
+        if (!settings.settingsActive())
+        {
+            updateText();
+        }
+    }
+
+    void updateText()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && isThereStillText)
+        {
             StopAllCoroutines();
             talkingText.text = "";
-            if(whichText >= scriptableObjs[0].dialogue.Length){
+            if (whichText >= scriptableObjs[0].dialogue.Length)
+            {
                 panel.SetActive(false);
                 isThereStillText = false;
             }
-            else{
-                StartCoroutine(WriteText(scriptableObjs[0].dialogue[whichText], talkingText, timeDelay));   
+            else
+            {
+                StartCoroutine(WriteText(scriptableObjs[0].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
             }
             whichText++;
-            
+
         }
         if (!isThereStillText)
         {

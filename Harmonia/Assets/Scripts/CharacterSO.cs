@@ -17,4 +17,5 @@ public class CharacterSO : ScriptableObject
     public ScriptableObject Song3;
     public ScriptableObject Song4;
 
+    public string description;
 }

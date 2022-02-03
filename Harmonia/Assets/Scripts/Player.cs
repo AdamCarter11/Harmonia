@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private GameObject whichToInteractWith;
 
     public Inventory inventory;
+    public SettingsManager settings;
 
     public float checkRadius;
 
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
     }
 
     private void FixedUpdate() {
-        if (!inventory.getActive())
+        if (!inventory.getActive() && !settings.settingsActive())
         {
             rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
         }

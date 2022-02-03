@@ -9,4 +9,5 @@ public class Song : ScriptableObject
     public AudioClip audio;
     public TextAsset notes;
     public TextAsset sequence;
+    public string info;
 }

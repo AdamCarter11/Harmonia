@@ -44,4 +44,9 @@ public class GameManager : MonoBehaviour
         if (player.health >= 10)
             player.health -= 10;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

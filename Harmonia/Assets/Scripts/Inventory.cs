@@ -12,6 +12,9 @@ public class Inventory : MonoBehaviour
 
     public GameObject InventoryUI;
     private bool inventoryActive = false;
+    public GameObject InfoDisplay;
+
+    public InfoDisplay info;
 
     private void Awake()
     {
@@ -23,7 +26,9 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             inventoryActive = !inventoryActive;
+            info.disableUI();
             InventoryUI.SetActive(inventoryActive);
+            InfoDisplay.SetActive(false);
         }
     }
 
@@ -51,5 +56,13 @@ public class Inventory : MonoBehaviour
     public bool getActive()
     {
         return inventoryActive;
+    }
+
+    public void exitInventory()
+    {
+        inventoryActive = !inventoryActive;
+        info.disableUI();
+        InventoryUI.SetActive(inventoryActive);
+        InfoDisplay.SetActive(false);
     }
 }
