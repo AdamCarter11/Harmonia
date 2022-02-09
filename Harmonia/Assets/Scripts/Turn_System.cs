@@ -130,9 +130,13 @@ public class Turn_System : MonoBehaviour
         state = BattleState.ENEMYTURN;
         PlayerPlayUI.SetActive(true);
         // perform song
-        TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
-        yield return new WaitForSeconds(2.5f);
+        
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
+        
+        
+        
+        TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
+        yield return new WaitForSeconds(0.75f);
         audio_player.Play();
         yield return new WaitForSeconds(SongItem3.GetComponent<SongItem>().getAudio().length);
         reader.endCoroutine();
