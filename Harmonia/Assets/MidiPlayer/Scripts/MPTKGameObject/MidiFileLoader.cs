@@ -25,7 +25,7 @@ namespace MidiPlayerTK
         {
             get
             {
-                Debug.Log("MPTK_MidiName get " + midiNameToPlay);
+                //Debug.Log("MPTK_MidiName get " + midiNameToPlay);
                 nameOfMidi = midiNameToPlay;
                 return midiNameToPlay;
             }

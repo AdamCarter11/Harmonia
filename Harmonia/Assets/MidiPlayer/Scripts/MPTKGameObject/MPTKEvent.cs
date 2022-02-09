@@ -694,6 +694,7 @@ namespace MidiPlayerTK
                     string sDuration = Duration == long.MaxValue ? "Inf." : Duration.ToString();
                     result = string.Format("NoteOn\tTrk:{0:00} Ch:{1:00}\tTick:{2}\tNote:{3}\tDuration:{4,-8}\tVelocity:{5}",
                       Track, Channel, Tick, Value, sDuration, Velocity);
+                    Debug.Log(result);
                     break;
                 case MPTKCommand.NoteOff:
                     sDuration = Duration == long.MaxValue ? "Inf." : Duration.ToString();

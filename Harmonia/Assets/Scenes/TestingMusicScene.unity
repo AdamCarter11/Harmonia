@@ -677,7 +677,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 240ca9f2a78718c4da33d7ceb71f3574, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.523
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -887,8 +887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9aefe3394c5134fad0bbdd6dbcd90b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  songText: {fileID: 0}
-  whichNote: 0
   whereToSpawnX1: {fileID: 0}
   whereToSpawnX2: {fileID: 0}
   whereToSpawnX3: {fileID: 0}

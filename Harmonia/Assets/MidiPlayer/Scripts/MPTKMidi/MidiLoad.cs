@@ -453,7 +453,7 @@ namespace MidiPlayerTK
 
                         MPTK_TickCurrent = trackEvent.AbsoluteQuantize;
                         MPTK_TickLast = trackEvent.AbsoluteQuantize;
-                        
+                        Debug.Log(MPTK_TickCurrent);
 
                         if (trackEvent.AbsoluteQuantize > toTicks)
                             break;
