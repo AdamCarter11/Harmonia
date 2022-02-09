@@ -86,6 +86,7 @@
     <string>Pergolesi - Stabat Mater</string>
     <string>Reayo - Amor de Hombre</string>
     <string>Requiem_ Agnus Dei Midi</string>
+    <string>Requiem_AgnusDei_Full</string>
     <string>Salvador Henri - Jardin D'hiver</string>
     <string>Satie - Gnossienne 4</string>
     <string>Satie - Gnossienne 5</string>
@@ -95,6 +96,7 @@
     <string>Serenade13_Readable</string>
     <string>Sibelius - Finlandia</string>
     <string>Sibelius - Romance</string>
+    <string>Symphony41_Jupiter_Read</string>
     <string>Take 5 - by Paul Desmond</string>
     <string>Tchaikovsky - Flower Waltz</string>
     <string>Tetris2</string>

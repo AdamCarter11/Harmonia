@@ -136,7 +136,7 @@ public class Turn_System : MonoBehaviour
         
         
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
-        yield return new WaitForSeconds(2.7f);
+        yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
         yield return new WaitForSeconds(SongItem3.GetComponent<SongItem>().getAudio().length);
         reader.endCoroutine();
