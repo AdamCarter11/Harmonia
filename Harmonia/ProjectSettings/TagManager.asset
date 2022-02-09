@@ -7,7 +7,6 @@ TagManager:
   - NPC
   - Activator
   - GreatWindow
-  - GreatWindow2
   layers:
   - Default
   - TransparentFX

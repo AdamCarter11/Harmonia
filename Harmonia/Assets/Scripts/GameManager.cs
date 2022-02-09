@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
     public Text judgementText;
     public Text comboText;
     public Text accText;
+    public Animator judgeTextAnim;
     PlayerHealth player;
     EnemyHealth enemy;
 
     // Start is called before the first frame update
     void Start()
     {
+        judgeTextAnim = judgementText.GetComponent<Animator>();
         instance = this;
         judgementText.text = " ";
         comboText.text = " ";
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void NoteHitPerfect()
     {
+        judgeTextAnim.Play("JudgementText", -1, 0);
         judgementText.text = "Perfect!!";
         judgementText.color = Color.yellow;
         combo++;
@@ -48,7 +51,8 @@ public class GameManager : MonoBehaviour
 
     public void NoteHitGreat()
     {
-        judgementText.text = "Great!!";
+        judgeTextAnim.Play("JudgementText", -1, 0);
+        judgementText.text = "Great!";
         judgementText.color = Color.green;
         combo++;
         notesHit++;
@@ -62,7 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void NoteMiss()
     {
-        judgementText.text = "Miss!";
+        judgementText.text = "Miss";
         judgementText.color = Color.red;
         combo = 0;
         totalNotes++;

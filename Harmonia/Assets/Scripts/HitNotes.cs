@@ -32,7 +32,7 @@ public class HitNotes : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        if (transform.position.y <= -6)
+        if (transform.position.y <= -3.4)
         {
             Destroy(this.gameObject);
         }
@@ -50,18 +50,18 @@ public class HitNotes : MonoBehaviour
             canBePressed = true;
             perfect = true;
         }
-        else if (other.tag == "GreatWindow2")
-        {
-            canBePressed = true;
-            great = true;
-        }
         
         print(other.tag);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "GreatWindow2")
+        if (other.tag == "Activator")
+        {
+            canBePressed = true;
+            great = true;
+        }
+        if (other.tag == "GreatWindow")
         {
             canBePressed = false;
             if (!obtained)
