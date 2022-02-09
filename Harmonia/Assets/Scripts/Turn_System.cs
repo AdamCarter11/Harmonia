@@ -32,6 +32,10 @@ public class Turn_System : MonoBehaviour
     public GameObject Menu_UI;
     public GameObject PlayerPlayUI;
     public GameObject EnemyPlayUI;
+
+    public Animator player_animator;
+    public Animator enemy_animator;
+
     void Start()
     {
         instance = this;
@@ -137,6 +141,8 @@ public class Turn_System : MonoBehaviour
         // enemy take damage
         // bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = false;
+        enemy_animator.Play("Mozart_Hit");
+
         // update HUDs
         if (isDead)
         {
@@ -160,6 +166,7 @@ public class Turn_System : MonoBehaviour
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = false;
+        enemy_animator.Play("Player_Hit");
 
         if (isDead)
         {
