@@ -15,8 +15,8 @@ MonoBehaviour:
   song_name: 'Symphony 41: Jupier'
   BPM: 600
   genre: Classic
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: d1b42095984e08a4fb65b4b4b6a8e2e6, type: 3}
   notes: {fileID: 4900000, guid: a57b64715161f6c4bb269c6226f26330, type: 3}
-  sequence: {fileID: 0}
+  sequence: {fileID: 4900000, guid: f424abfa882a28f4dae8328aaa2df49f, type: 3}
   info: info
-  buffer: 0
+  buffer: 0.7
