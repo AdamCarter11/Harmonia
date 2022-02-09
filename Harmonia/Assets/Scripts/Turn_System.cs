@@ -141,7 +141,7 @@ public class Turn_System : MonoBehaviour
         // enemy take damage
         // bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = false;
-        enemy_animator.Play("Mozart_Hit");
+        //enemy_animator.Play("Mozart_Hit");
 
         // update HUDs
         if (isDead)
@@ -166,7 +166,7 @@ public class Turn_System : MonoBehaviour
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = false;
-        enemy_animator.Play("Player_Hit");
+        //enemy_animator.Play("Player_Hit");
 
         if (isDead)
         {
