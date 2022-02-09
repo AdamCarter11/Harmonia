@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         judgeTextAnim.Play("JudgementText", -1, 0);
         judgementText.text = "Perfect!!";
-        judgementText.color = Color.yellow;
+        judgementText.color = Color.green;
         combo++;
         notesHit++;
         totalNotes++;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     {
         judgeTextAnim.Play("JudgementText", -1, 0);
         judgementText.text = "Great!";
-        judgementText.color = Color.green;
+        judgementText.color = Color.yellow;
         combo++;
         notesHit++;
         totalNotes++;
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
 
     public void NoteMiss()
     {
+        judgeTextAnim.Play("JudgementText", -1, 0);
         judgementText.text = "Miss";
         judgementText.color = Color.red;
         combo = 0;
