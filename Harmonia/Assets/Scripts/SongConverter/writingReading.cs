@@ -46,8 +46,7 @@ public class writingReading : MonoBehaviour
             {
                 dontSpawn = false;
                 prevVal = sequence[whichNote];
-                //yield return new WaitForSeconds(sequence[whichNote]);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(sequence[whichNote]);
             }
             else if (whichNote < newNotesList.Length - 2)
             {
@@ -55,11 +54,14 @@ public class writingReading : MonoBehaviour
                 {
                     dontSpawn = true;
                 }
+                else if (sequence[whichNote] - sequence[whichNote - 1] < 0.1 && dontSpawn == false)
+                {
+                    dontSpawn = true;
+                }
                 else
                 {
                     dontSpawn = false;
-                    //yield return new WaitForSeconds(sequence[whichNote] - prevVal);
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(sequence[whichNote] - prevVal);
                     prevVal = sequence[whichNote];
                 }
             }

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Text comboText;
     public Text accText;
     PlayerHealth player;
+    EnemyHealth enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         judgementText.text = " ";
         comboText.text = " ";
         player = FindObjectOfType<PlayerHealth>();
+        enemy = FindObjectOfType<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -40,8 +42,8 @@ public class GameManager : MonoBehaviour
         accuracy = (notesHit / totalNotes) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
-        if (player.health <= 190)
-            player.health += 10;
+        if (enemy.health >= 10)
+            enemy.health -= 10;
     }
 
     public void NoteMiss()
