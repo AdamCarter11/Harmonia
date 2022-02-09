@@ -32,10 +32,24 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void NoteHit()
+    public void NoteHitPerfect()
     {
         judgementText.text = "Perfect!!";
         judgementText.color = Color.yellow;
+        combo++;
+        notesHit++;
+        totalNotes++;
+        accuracy = (notesHit / totalNotes) * 100;
+        comboText.text = combo.ToString();
+        accText.text = accuracy.ToString("F2") + " %";
+        if (enemy.health >= 10)
+            enemy.health -= 10;
+    }
+
+    public void NoteHitGreat()
+    {
+        judgementText.text = "Great!!";
+        judgementText.color = Color.green;
         combo++;
         notesHit++;
         totalNotes++;
