@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
 
     public float checkRadius;
 
+    bool Started = false;
+    bool Ended = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,12 +42,23 @@ public class Player : MonoBehaviour
         GetInputs();
         walkingSound();
         CheckCollision();
+        //
         if(whichToInteractWith != null && Input.GetKeyDown(KeyCode.E)){
             print("Interacted with: " + whichToInteractWith.name);
             //where we want to put the interact logic (open scene, open UI, whatever)
             startBattle.Play();
-            SceneManager.LoadScene("TalkingScene1");
+            Started = true;  //sfx started when pressing E
         }
+        //it is not playing and started -> sfx ended
+        if(startBattle.isPlaying == false && Started == true){
+            Ended = true;
+        }
+        //if both, then load the scene
+        if(Started == true && Ended == true){
+           SceneManager.LoadScene("TalkingScene1");
+           Debug.Log("talking scene");
+        }
+        
     }
 
     private void FixedUpdate() {
@@ -56,6 +70,10 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
+    }
+
+    private void loadScene(string scene){
+        SceneManager.LoadScene(scene);
     }
 
     void GetInputs(){
