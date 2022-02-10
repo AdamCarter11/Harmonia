@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6237696d5929a034babeddb69333c6e2, type: 3}
   m_Name: MC
   m_EditorClassIdentifier: 
-  NPCName: 
+  NPCName: Player
   dialogue:
   - Hello sir! May I have your soul?
   - Well in that case, how about a little music battle. Whoever wins gets to keep

@@ -55,10 +55,12 @@ public class textBaseClass : TalkingScene
             if (npcIndex == 0)
             {
                 npcIndex = 1;
+                nameText.text = scriptableObjs[0].NPCName;
             }
             else
             {
                 npcIndex = 0;
+                nameText.text = scriptableObjs[1].NPCName;
                 whichText++;
             }
         }
