@@ -767,6 +767,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee347f334b0befb4ea72a7071feec371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx_s: {fileID: 1308600080}
+  music_s: {fileID: 1799537727}
+  clearThroat: {fileID: 8300000, guid: f01e1652cabc08945926f87a791a9fe9, type: 3}
+  mozartBGM: {fileID: 8300000, guid: 72d435fb94433fc409e33af8a3b16e39, type: 3}
 --- !u!58 &196415939
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2247,6 +2251,9 @@ MonoBehaviour:
   InventoryUI: {fileID: 1622553384}
   InfoDisplay: {fileID: 1954118558}
   info: {fileID: 1954118559}
+  sfx_s: {fileID: 1308600080}
+  openBag: {fileID: 8300000, guid: 395b029670ac4dc4b8bef404bb9783ce, type: 3}
+  closeBag: {fileID: 8300000, guid: 20da30367609c6345b5226b638628e6b, type: 3}
   characters:
   - {fileID: 11400000, guid: b5cdc1e18541aec48b7bcc0aed501046, type: 2}
 --- !u!4 &572755086
@@ -3210,6 +3217,9 @@ MonoBehaviour:
     m_Bits: 64
   inventory: {fileID: 572755085}
   settings: {fileID: 572755087}
+  audio_s: {fileID: 1308600080}
+  walking: {fileID: 8300000, guid: fc151d80465108045b1ecbd8f43010f5, type: 3}
+  startBattle: {fileID: 8300000, guid: 6fcb7397d69379640b600d38f69f6e1b, type: 3}
   checkRadius: 1
 --- !u!50 &966894150
 Rigidbody2D:

@@ -135,6 +135,10 @@ public class Player : MonoBehaviour
                 audio_s.Play();
             }
         }
+        else if (audio_s.isPlaying && audio_s.clip == walking)
+        {
+            audio_s.Stop();
+        }
     }
 
 }

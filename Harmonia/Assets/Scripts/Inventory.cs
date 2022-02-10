@@ -81,5 +81,8 @@ public class Inventory : MonoBehaviour
         info.disableUI();
         InventoryUI.SetActive(inventoryActive);
         InfoDisplay.SetActive(false);
+        sfx_s.Stop();
+        sfx_s.clip = closeBag;
+        sfx_s.Play();
     }
 }
