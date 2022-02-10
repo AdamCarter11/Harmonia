@@ -54,7 +54,7 @@ public class writingReading : MonoBehaviour
                 {
                     dontSpawn = true;
                 }
-                else if (sequence[whichNote] - sequence[whichNote - 1] < 0.1 && dontSpawn == false)
+                else if (sequence[whichNote] - sequence[whichNote - 1] < 0.15 && dontSpawn == false)
                 {
                     dontSpawn = true;
                 }
