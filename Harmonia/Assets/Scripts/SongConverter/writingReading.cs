@@ -28,6 +28,9 @@ public class writingReading : MonoBehaviour
     private float BPM;
     private bool dontSpawn;
     private float prevVal;
+    private float max;
+    private float min;
+    private float interval;
     // Start is called before the first frame update
     public void setUp(TextAsset text, TextAsset seq, float val)
     {
@@ -35,12 +38,41 @@ public class writingReading : MonoBehaviour
         newNotesList = ReadFromFile(text);
         sequence = ReadFromFile2(seq);
         BPM = val;
+        max = getMax(newNotesList);
+        min = getMin(newNotesList);
+        interval = (max - min) / 5;
         StartCoroutine(spawnNote());
+    }
+    
+    public float getMax(string[] seq)
+    {
+        float maxVal = float.Parse(seq[0]);
+        for (int i = 0; i < seq.Length; i++)
+        {
+            if (float.Parse(seq[i]) > maxVal)
+            {
+                maxVal = float.Parse(seq[i]);
+            }
+        }
+        return maxVal;
+    }
+
+    public float getMin(string[] seq)
+    {
+        float minVal = float.Parse(seq[0]);
+        for (int i = 0; i < seq.Length; i++)
+        {
+            if (float.Parse(seq[i]) < minVal)
+            {
+                minVal = float.Parse(seq[i]);
+            }
+        }
+        return minVal;
     }
 
     IEnumerator spawnNote()
     {
-        while (whichNote <= newNotesList.Length - 2)
+        while (whichNote <= newNotesList.Length)
         {
             if (whichNote == 0)
             {
@@ -48,15 +80,22 @@ public class writingReading : MonoBehaviour
                 prevVal = sequence[whichNote];
                 yield return new WaitForSeconds(sequence[whichNote]);
             }
-            else if (whichNote < newNotesList.Length - 2)
+            else if (whichNote < newNotesList.Length)
             {
                 if (sequence[whichNote] == sequence[whichNote - 1])
                 {
                     dontSpawn = true;
                 }
-                else if (sequence[whichNote] - sequence[whichNote - 1] < 0.15 && dontSpawn == false)
+                else if (sequence[whichNote] - sequence[whichNote - 1] < 0.1 && dontSpawn == false)
                 {
-                    dontSpawn = true;
+                    if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) < interval)
+                    {
+                        dontSpawn = true;
+                    }
+                    else
+                    {
+                        dontSpawn = false;
+                    }
                 }
                 else
                 {
@@ -65,29 +104,29 @@ public class writingReading : MonoBehaviour
                     prevVal = sequence[whichNote];
                 }
             }
-            else if (whichNote >= newNotesList.Length - 2)
+            else if (whichNote >= newNotesList.Length)
             {
                 dontSpawn = true;
             }
 
             if (!dontSpawn)
             {
-                if (int.Parse(newNotesList[whichNote]) >= 0 && int.Parse(newNotesList[whichNote]) <= 62)
+                if (int.Parse(newNotesList[whichNote]) >= min && int.Parse(newNotesList[whichNote]) < min + interval)
                 {
                     whereToSpawnX = whereToSpawnX1.position.x;
                     whatToSpawn = Note1;
                 }
-                else if (int.Parse(newNotesList[whichNote]) >= 63 && int.Parse(newNotesList[whichNote]) <= 68)
+                else if (int.Parse(newNotesList[whichNote]) >= min + interval && int.Parse(newNotesList[whichNote]) < min + (interval * 2))
                 {
                     whereToSpawnX = whereToSpawnX2.position.x;
                     whatToSpawn = Note2;
                 }
-                else if (int.Parse(newNotesList[whichNote]) >= 69 && int.Parse(newNotesList[whichNote]) <= 74)
+                else if (int.Parse(newNotesList[whichNote]) >= min + (interval * 2) && int.Parse(newNotesList[whichNote]) < min + (interval * 3))
                 {
                     whereToSpawnX = whereToSpawnX3.position.x;
                     whatToSpawn = Note3;
                 }
-                else if (int.Parse(newNotesList[whichNote]) >= 75 && int.Parse(newNotesList[whichNote]) <= 80)
+                else if (int.Parse(newNotesList[whichNote]) >= min + (interval * 3) && int.Parse(newNotesList[whichNote]) < min + (interval * 4))
                 {
                     whereToSpawnX = whereToSpawnX4.position.x;
                     whatToSpawn = Note4;
