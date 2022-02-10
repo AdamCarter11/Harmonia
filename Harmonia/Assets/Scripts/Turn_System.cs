@@ -132,13 +132,13 @@ public class Turn_System : MonoBehaviour
         // perform song
         
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
-        
-        
-        
+
+
+        yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
-        yield return new WaitForSeconds(SongItem3.GetComponent<SongItem>().getAudio().length);
+        yield return new WaitForSeconds(song.GetComponent<SongItem>().getAudio().length);
         reader.endCoroutine();
         yield return new WaitForSeconds(2f);
 

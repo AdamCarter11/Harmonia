@@ -40,4 +40,9 @@ public class SongItem : MonoBehaviour
     {
         return song.sequence;
     }
+
+    public float getBuffer()
+    {
+        return song.buffer;
+    }
 }

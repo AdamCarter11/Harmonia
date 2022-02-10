@@ -10,4 +10,5 @@ public class Song : ScriptableObject
     public TextAsset notes;
     public TextAsset sequence;
     public string info;
+    public float buffer;
 }
