@@ -17,12 +17,15 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask npcLayer;
 
-    private Rigidbody2D rb;   
+    private Rigidbody2D rb;
     private Vector2 moveDir;
     private GameObject whichToInteractWith;
 
     public Inventory inventory;
     public SettingsManager settings;
+    
+    public AudioSource walking;
+    public AudioSource startBattle;
 
     public float checkRadius;
 
@@ -34,10 +37,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         GetInputs();
+        walkingSound();
         CheckCollision();
         if(whichToInteractWith != null && Input.GetKeyDown(KeyCode.E)){
             print("Interacted with: " + whichToInteractWith.name);
             //where we want to put the interact logic (open scene, open UI, whatever)
+            startBattle.Play();
             SceneManager.LoadScene("TalkingScene1");
         }
     }
@@ -58,6 +63,7 @@ public class Player : MonoBehaviour
         float yMovement = Input.GetAxisRaw("Vertical");
         //print("x movement: " + xMovement + "y Movement: " + yMovement);
         moveDir = new Vector2(xMovement, yMovement);
+        
         /*
         if(moveDir.x != 0 || moveDir.y != 0){
             facingDir = moveDir;
@@ -104,4 +110,17 @@ public class Player : MonoBehaviour
             Variables.NPCName = null;
         }
     }
+
+    private void walkingSound(){
+        if(rb.velocity.magnitude > 0){
+            if(walking.isPlaying){
+                //do nothing here
+            } else {
+                walking.Play();
+            }
+        } else {
+            walking.Stop();
+        }
+    }
+
 }

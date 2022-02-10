@@ -16,6 +16,9 @@ public class Inventory : MonoBehaviour
 
     public InfoDisplay info;
 
+    public AudioSource openBag;
+    public AudioSource closeBag;
+
     private void Awake()
     {
         instance = this;
@@ -29,6 +32,12 @@ public class Inventory : MonoBehaviour
             info.disableUI();
             InventoryUI.SetActive(inventoryActive);
             InfoDisplay.SetActive(false);
+
+            if(inventoryActive == true){
+                openBag.Play();
+            } else if(inventoryActive == false){
+                closeBag.Play();
+            }
         }
     }
 
