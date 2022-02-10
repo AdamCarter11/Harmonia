@@ -377,7 +377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44867526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3581,7 +3581,7 @@ MonoBehaviour:
   audio_player: {fileID: 638531509}
   TextReader: {fileID: 1176113328}
   Menu_UI: {fileID: 1097649024}
-  PlayerPlayUI: {fileID: 0}
+  PlayerPlayUI: {fileID: 44867525}
   EnemyPlayUI: {fileID: 1683622625}
   player_animator: {fileID: 1012493774}
   enemy_animator: {fileID: 1735870516}
@@ -6626,9 +6626,10 @@ MonoBehaviour:
   notesHit: 0
   totalNotes: 0
   accuracy: 0
-  judgementText: {fileID: 0}
+  judgementText: {fileID: 89789715}
   comboText: {fileID: 2099067940}
-  accText: {fileID: 0}
+  accText: {fileID: 911351653}
+  judgeTextAnim: {fileID: 89789714}
 --- !u!114 &1387051697
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,12 +13,14 @@ public class GameManager : MonoBehaviour
     public Text judgementText;
     public Text comboText;
     public Text accText;
+    public Animator judgeTextAnim;
     PlayerHealth player;
     EnemyHealth enemy;
 
     // Start is called before the first frame update
     void Start()
     {
+        judgeTextAnim = judgementText.GetComponent<Animator>();
         instance = this;
         judgementText.text = " ";
         comboText.text = " ";
@@ -26,15 +28,25 @@ public class GameManager : MonoBehaviour
         enemy = FindObjectOfType<EnemyHealth>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void NoteHitPerfect()
     {
-
+        judgeTextAnim.Play("JudgementText", -1, 0);
+        judgementText.text = "Perfect!!";
+        judgementText.color = Color.green;
+        combo++;
+        notesHit++;
+        totalNotes++;
+        accuracy = (notesHit / totalNotes) * 100;
+        comboText.text = combo.ToString();
+        accText.text = accuracy.ToString("F2") + " %";
+        if (enemy.health >= 10)
+            enemy.health -= 10;
     }
 
-    public void NoteHit()
+    public void NoteHitGreat()
     {
-        judgementText.text = "Perfect!!";
+        judgeTextAnim.Play("JudgementText", -1, 0);
+        judgementText.text = "Great!";
         judgementText.color = Color.yellow;
         combo++;
         notesHit++;
@@ -48,7 +60,8 @@ public class GameManager : MonoBehaviour
 
     public void NoteMiss()
     {
-        judgementText.text = "Miss!";
+        judgeTextAnim.Play("JudgementText", -1, 0);
+        judgementText.text = "Miss";
         judgementText.color = Color.red;
         combo = 0;
         totalNotes++;
