@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TalkingScene1.unity
     guid: fff4d35f2ace20b4696ff99bea16fe61
   - enabled: 1
-    path: Assets/Scenes/Jalen's Scene.unity
+    path: Assets/Scenes/NewerScene.unity
     guid: eeb52e9dd672c4b4a89753a1953c8bcd
   m_configObjects: {}
