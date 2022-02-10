@@ -22,11 +22,8 @@ public class HitNotes : MonoBehaviour
                 GameManager.instance.NoteHit();
                 obtained = true;
                 gameObject.SetActive(false);
+                Destroy(this.gameObject);
             }
-        }
-        if (transform.position.y <= -3.4)
-        {
-            Destroy(this.gameObject);
         }
     }
 
@@ -44,7 +41,10 @@ public class HitNotes : MonoBehaviour
         {
             canBePressed = false;
             if (!obtained)
+            {
                 GameManager.instance.NoteMiss();
+                Destroy(this.gameObject);
+            }
         }
     }
 
