@@ -88,11 +88,7 @@ public class writingReading : MonoBehaviour
                 }
                 else if (sequence[whichNote] - sequence[whichNote - 1] < 0.1 && dontSpawn == false)
                 {
-                    if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) < interval)
-                    {
-                        dontSpawn = true;
-                    }
-                    else
+                    if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) > interval)
                     {
                         dontSpawn = false;
                     }
