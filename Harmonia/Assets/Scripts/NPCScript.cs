@@ -7,11 +7,18 @@ public class NPCScript : MonoBehaviour
     private SpriteRenderer sr;
     private Color startingColor;
     private GameObject playerObject;
+    public AudioSource sfx_s;
+    public AudioSource music_s;
+    public AudioClip clearThroat;
+    public AudioClip mozartBGM;
+
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         startingColor = sr.color;
+        music_s.clip = mozartBGM;
+        music_s.Play();
         //playerObject = GameObject.Find("Player");
         //GetComponent<CircleCollider2D>().radius = playerObject.GetComponent<Player>().checkRadius + 2.5f;
         //print(GetComponent<CircleCollider2D>().radius);
@@ -20,18 +27,31 @@ public class NPCScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")){
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             sr.color = Color.green;
+            if (clearThroat != null)
+            {
+                sfx_s.Stop();
+                sfx_s.clip = clearThroat;
+                sfx_s.Play();
+            }
+            music_s.Pause();
         }
     }
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("Player")){
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             sr.color = startingColor;
+            music_s.UnPause();
         }
+
     }
-    
+
 }

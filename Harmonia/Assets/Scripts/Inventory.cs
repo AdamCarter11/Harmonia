@@ -16,6 +16,10 @@ public class Inventory : MonoBehaviour
 
     public InfoDisplay info;
 
+    public AudioSource sfx_s;
+    public AudioClip openBag;
+    public AudioClip closeBag;
+
     private void Awake()
     {
         instance = this;
@@ -29,11 +33,24 @@ public class Inventory : MonoBehaviour
             info.disableUI();
             InventoryUI.SetActive(inventoryActive);
             InfoDisplay.SetActive(false);
+
+            if (inventoryActive == true)
+            {
+                sfx_s.Stop();
+                sfx_s.clip = openBag;
+                sfx_s.Play();
+            }
+            else if (inventoryActive == false)
+            {
+                sfx_s.Stop();
+                sfx_s.clip = closeBag;
+                sfx_s.Play();
+            }
         }
     }
 
     public List<CharacterSO> characters;
-    public bool Add (CharacterSO character)
+    public bool Add(CharacterSO character)
     {
         if (characters.Count >= space)
         {
@@ -44,11 +61,11 @@ public class Inventory : MonoBehaviour
         {
             onCharacterChangedCallback.Invoke();
         }
-        
+
         return true;
     }
 
-    public void Remove (CharacterSO character)
+    public void Remove(CharacterSO character)
     {
         characters.Remove(character);
     }

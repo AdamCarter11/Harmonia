@@ -17,12 +17,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask npcLayer;
 
-    private Rigidbody2D rb;   
+    private Rigidbody2D rb;
     private Vector2 moveDir;
     private GameObject whichToInteractWith;
 
     public Inventory inventory;
     public SettingsManager settings;
+
+    public AudioSource audio_s;
+    public AudioClip walking;
+    public AudioClip startBattle;
 
     public float checkRadius;
 
@@ -34,15 +38,20 @@ public class Player : MonoBehaviour
     void Update()
     {
         GetInputs();
+        walkingSound();
         CheckCollision();
-        if(whichToInteractWith != null && Input.GetKeyDown(KeyCode.E)){
+        if (whichToInteractWith != null && Input.GetKeyDown(KeyCode.E))
+        {
             print("Interacted with: " + whichToInteractWith.name);
             //where we want to put the interact logic (open scene, open UI, whatever)
+            audio_s.clip = startBattle;
+            audio_s.Play();
             SceneManager.LoadScene("TalkingScene1");
         }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (!inventory.getActive() && !settings.settingsActive())
         {
             rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
@@ -53,11 +62,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    void GetInputs(){
+    void GetInputs()
+    {
         float xMovement = Input.GetAxisRaw("Horizontal");
         float yMovement = Input.GetAxisRaw("Vertical");
         //print("x movement: " + xMovement + "y Movement: " + yMovement);
         moveDir = new Vector2(xMovement, yMovement);
+
         /*
         if(moveDir.x != 0 || moveDir.y != 0){
             facingDir = moveDir;
@@ -65,7 +76,8 @@ public class Player : MonoBehaviour
         */
     }
 
-    void CheckCollision(){
+    void CheckCollision()
+    {
         //theres almost definitly a better way of doing this
         /*
         if(Physics2D.Raycast(transform.position + interactLength, facingDir, rayCastLength, npcLayer)){
@@ -90,18 +102,39 @@ public class Player : MonoBehaviour
     }
     */
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.CompareTag("NPC")){
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("NPC"))
+        {
             //other.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
             whichToInteractWith = other.gameObject;
             Variables.NPCName = whichToInteractWith.name;
         }
     }
-    private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.CompareTag("NPC")){
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("NPC"))
+        {
             //other.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
             whichToInteractWith = null;
             Variables.NPCName = null;
         }
     }
+
+    private void walkingSound()
+    {
+        if (rb.velocity.magnitude > 0)
+        {
+            if (audio_s.isPlaying)
+            {
+                //do nothing here
+            }
+            else
+            {
+                audio_s.clip = walking;
+                audio_s.Play();
+            }
+        }
+    }
+
 }
