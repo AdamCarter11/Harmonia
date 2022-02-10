@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7931fc5b3e28d044804d9f6eccab5a0, type: 3}
   m_Name: Symphony41_Jupiter
   m_EditorClassIdentifier: 
-  song_name: 'Symphony 41: Jupier'
+  song_name: 'Symphony 41: Jupiter'
   BPM: 600
   genre: Classic
   audio: {fileID: 8300000, guid: d1b42095984e08a4fb65b4b4b6a8e2e6, type: 3}
