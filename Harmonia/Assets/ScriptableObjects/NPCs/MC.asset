@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6237696d5929a034babeddb69333c6e2, type: 3}
-  m_Name: Mozart
+  m_Name: MC
   m_EditorClassIdentifier: 
-  NPCName: Mozart
+  NPCName: 
   dialogue:
-  - Stand back, foul spirit!
-  - My wha- MY SOUL?! How dare you make such an absurd and utterly outrageous request!
-  - Do you know who you are speaking to? I am Mozart! One of the greatest musicians
-    of all time!
-  - If it means you will leave me alone, then yes. Let the battle commence!
+  - Hello sir! May I have your soul?
+  - Well in that case, how about a little music battle. Whoever wins gets to keep
+    your soul.
+  - Is that a yes?

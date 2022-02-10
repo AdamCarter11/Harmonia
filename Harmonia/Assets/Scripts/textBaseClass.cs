@@ -14,18 +14,21 @@ public class textBaseClass : TalkingScene
     [SerializeField]
     private float timeDelay;
 
-    private int whichText = 1;
+    private int whichText = 0;
     private bool isThereStillText = true;
+
+    int npcIndex = 0;
 
     public SettingsManager settings;
 
     private void Awake() {
-        nameText.text = scriptableObjs[0].NPCName;
+        nameText.text = scriptableObjs[npcIndex].NPCName;
         talkingText.text = "";
     }
     private void Start() {
         settings.LoadValues();
         StartCoroutine(WriteText(scriptableObjs[0].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        npcIndex = 1;
     }
     private void Update() {
         if (!settings.settingsActive())
@@ -40,17 +43,24 @@ public class textBaseClass : TalkingScene
         {
             StopAllCoroutines();
             talkingText.text = "";
-            if (whichText >= scriptableObjs[0].dialogue.Length)
+            if (whichText >= scriptableObjs[npcIndex].dialogue.Length)
             {
                 panel.SetActive(false);
                 isThereStillText = false;
             }
             else
             {
-                StartCoroutine(WriteText(scriptableObjs[0].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
             }
-            whichText++;
-
+            if (npcIndex == 0)
+            {
+                npcIndex = 1;
+            }
+            else
+            {
+                npcIndex = 0;
+                whichText++;
+            }
         }
         if (!isThereStillText)
         {
