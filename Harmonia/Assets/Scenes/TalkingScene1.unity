@@ -412,7 +412,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 20, y: -60}
-  m_SizeDelta: {x: 790, y: 140}
+  m_SizeDelta: {x: 770, y: 140}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &48186282
 MonoBehaviour:
@@ -1199,10 +1199,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1260229812}
   m_HandleRect: {fileID: 1028837393}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 1
+  m_MaxValue: 3
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 3
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1646,7 +1646,8 @@ MonoBehaviour:
   talkingText: {fileID: 48186282}
   panel: {fileID: 856739642}
   scriptableObjs:
-  - {fileID: 11400000, guid: 10c6158570ecea84f8cb105a89b47210, type: 2}
+  - {fileID: 11400000, guid: 7cb401a78a5a1674abadf4ea5bef5714, type: 2}
+  - {fileID: 11400000, guid: 83740be9576a77a4da05529bf8339600, type: 2}
   timeDelay: 0.1
   settings: {fileID: 1310569831}
 --- !u!4 &1021078993
@@ -3241,7 +3242,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 44935646}
   m_HandleRect: {fileID: 1455209957}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.2
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -3501,7 +3502,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1349824802}
   m_HandleRect: {fileID: 1863285832}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.2
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1

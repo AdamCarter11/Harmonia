@@ -18,6 +18,7 @@ public class textBaseClass : TalkingScene
     private bool isThereStillText = true;
 
     public SettingsManager settings;
+    private int npcIndex=0;
 
     private void Awake() {
         nameText.text = scriptableObjs[0].NPCName;
@@ -40,16 +41,25 @@ public class textBaseClass : TalkingScene
         {
             StopAllCoroutines();
             talkingText.text = "";
-            if (whichText >= scriptableObjs[0].dialogue.Length)
+            if (whichText >= scriptableObjs[npcIndex].dialogue.Length)
             {
                 panel.SetActive(false);
                 isThereStillText = false;
             }
             else
             {
-                StartCoroutine(WriteText(scriptableObjs[0].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
             }
-            whichText++;
+            if(npcIndex == 0){
+                npcIndex = 1;
+                nameText.text = scriptableObjs[0].NPCName;
+            }
+            else{
+                npcIndex = 0;
+                nameText.text = scriptableObjs[1].NPCName;
+                whichText++;
+            }
+            //whichText++;
 
         }
         if (!isThereStillText)
