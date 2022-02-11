@@ -38,6 +38,18 @@ public class GameManager : MonoBehaviour
         mozartText = GameObject.Find("MozartText");
     }
 
+    private void Update()
+    {
+        if ((combo == 30 || combo == 50) && panel.activeInHierarchy == false)
+        {
+            randomComment(3, goodComments);
+        }
+        if ((combo == 10 || combo == 20) && panel.activeInHierarchy == false)
+        {
+            randomComment(3, badComments);
+        }
+    }
+
     public void NoteHitPerfect()
     {
         judgeTextAnim.Play("JudgementText", -1, 0);
@@ -100,15 +112,5 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
-    private void Update() {
-        if ((combo == 30 || combo == 50) && panel.activeInHierarchy == false)
-        {
-            randomComment(3, goodComments);
-        }
-        if ((combo == 10 || combo == 20) && panel.activeInHierarchy == false)
-        {
-            randomComment(3, badComments);
-        }
     }
 }

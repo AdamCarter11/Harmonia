@@ -14,7 +14,7 @@ public class textBaseClass : TalkingScene
     [SerializeField]
     private float timeDelay;
 
-    private int whichText = 1;
+    private int whichText = 0;
     private bool isThereStillText = true;
 
     public SettingsManager settings;
@@ -26,7 +26,8 @@ public class textBaseClass : TalkingScene
     }
     private void Start() {
         settings.LoadValues();
-        StartCoroutine(WriteText(scriptableObjs[0].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        npcIndex = 1;
     }
     private void Update() {
         if (!settings.settingsActive())
