@@ -99,6 +99,7 @@
     <string>Symphony41_Jupiter_Read</string>
     <string>Take 5 - by Paul Desmond</string>
     <string>Tchaikovsky - Flower Waltz</string>
+    <string>Tech_Giants</string>
     <string>Tetris2</string>
     <string>The Christmas Song</string>
     <string>To Make the End of Battle</string>
