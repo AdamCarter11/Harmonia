@@ -158,7 +158,7 @@ public class Turn_System : MonoBehaviour
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
-        comboThreshold = TextReader.notesLength/6;
+        comboThreshold = TextReader.notesLength/6;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
         print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
@@ -186,29 +186,58 @@ public class Turn_System : MonoBehaviour
         }
     }
     private void Update() {
-        //print(comboThreshold);
         if(combo >= comboThreshold * 3){
-            star1.sprite = starReplacement;
-            star2.sprite = starReplacement;
-            star3.sprite = starReplacement;
-
+            starCount = 3;
         }
         else if(combo >= comboThreshold*2){
-            star1.sprite = starReplacement;
-            star2.sprite = starReplacement;
-            star3.sprite = originStar;
+            starCount = 2;
         }
         else if(combo >= comboThreshold){
-            star1.sprite = starReplacement;
-            star2.sprite = originStar;
-            star3.sprite = originStar;
+            starCount = 1;
         }
         else{
+            starCount = 0;
+        }
+
+        //I'm splitting it up like this in case we need to access the variable in other scripts
+        if(starCount == 0){
             star1.sprite = originStar;
             star2.sprite = originStar;
             star3.sprite = originStar;
         }
+        if(starCount == 1){
+            star1.sprite = starReplacement;
+            star2.sprite = originStar;
+            star3.sprite = originStar;
+        }
+        if(starCount == 2){
+            star1.sprite = starReplacement;
+            star2.sprite = starReplacement;
+            star3.sprite = originStar;
+        }
+        if(starCount == 3){
+            star1.sprite = starReplacement;
+            star2.sprite = starReplacement;
+            star3.sprite = starReplacement;
+        }
+
+        if(Input.GetKeyDown(KeyCode.V) && starCount > 0){
+            starCount--;
+            combo -= comboThreshold;
+            print("activated star ONE combo ability");
+        }
+        if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
+            starCount-= 2;
+            combo -= comboThreshold * 2;
+            print("activated star TWO combo ability");
+        }
+        if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
+            starCount = 0;
+            combo -= comboThreshold * 3;
+            print("activated star THREE combo ability");
+        }
     }
+
     void finalPerformanceBonus(float accuracy)
     {
         if (0.9 <= accuracy)
