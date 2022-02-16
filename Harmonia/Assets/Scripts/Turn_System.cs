@@ -53,6 +53,7 @@ public class Turn_System : MonoBehaviour
     private int comboThreshold = 1;
     [SerializeField] private Image star1, star2, star3;
     [SerializeField] private Sprite starReplacement, originStar;
+    private float playerStarDamageModifier = 1, enemyStarDamageModifier = 1;
     void Start()
     {
         instance = this;
@@ -225,16 +226,21 @@ public class Turn_System : MonoBehaviour
             starCount--;
             combo -= comboThreshold;
             print("activated star ONE combo ability");
+            //here is where we will SLOW DOWN BPM;
         }
         if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
             starCount-= 2;
             combo -= comboThreshold * 2;
             print("activated star TWO combo ability");
+            //here is where we will SPEED UP BPM;
         }
         if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
             starCount = 0;
             combo -= comboThreshold * 3;
             print("activated star THREE combo ability");
+            //star modifiers, may need to change how they get reset and stuff
+            playerStarDamageModifier = 2;
+            enemyStarDamageModifier = 1.5f;
         }
     }
 
@@ -261,6 +267,8 @@ public class Turn_System : MonoBehaviour
         currentNotesAmt = 0;
         hitNotesAmt = 0;
         highestCombo = 0;
+        playerStarDamageModifier = 1;
+        enemyStarDamageModifier = 1;
 }
 
     public void NoteHitPerfect()
@@ -293,11 +301,11 @@ public class Turn_System : MonoBehaviour
     {
         if (combo < 50)
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier) + ((damagePerNote / 15) * combo));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15) * combo));
         }
         else
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier) + ((damagePerNote / 15) * 50));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15) * 50));
         }
 
         if (combo > highestCombo)
@@ -357,7 +365,7 @@ public class Turn_System : MonoBehaviour
     }
     void damagePlayer(Song song)
     {
-        playerhealth.takeDamage((enemyhealth.getHealth() / enemyhealth.getMaxHealth()) * song.getDamage());
+        playerhealth.takeDamage((enemyhealth.getHealth() / enemyhealth.getMaxHealth()) * song.getDamage() * enemyStarDamageModifier);
     }
     void EndBattle()
     {
