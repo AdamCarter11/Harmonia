@@ -48,6 +48,12 @@ public class GameManager : MonoBehaviour
         {
             randomComment(3, badComments);
         }
+        if(player.health <= 0){
+            print("PLAYER loses");
+        }
+        if(enemy.health <= 0){
+            print("ENEMY loses");
+        }
     }
 
     public void NoteHitPerfect()
