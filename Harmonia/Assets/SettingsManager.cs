@@ -10,6 +10,7 @@ public class SettingsManager : MonoBehaviour
 
     public AudioSource Volume;
     public AudioSource SFX;
+    public AudioSource FigaroBGM;
 
     public Slider volumeSlider;
     public Slider effectsSlider;
@@ -17,6 +18,7 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
+        FigaroBGM.Play();
         LoadValues();
     }
 
@@ -89,4 +91,17 @@ public class SettingsManager : MonoBehaviour
     {
         return settingsOpen;
     }
+
+    public void pauseFigaroBGM(){
+        if(FigaroBGM != null){
+            FigaroBGM.Pause();
+        }
+    }
+
+    public void playFigaroBGM(){
+        if(FigaroBGM != null){
+            FigaroBGM.UnPause();
+        }
+    }
+
 }
