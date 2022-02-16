@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     public AudioSource audio_s;
     public AudioClip walking;
     public AudioClip startBattle;
+    public AudioClip clockFlappingNoise;
 
     public float checkRadius;
 
