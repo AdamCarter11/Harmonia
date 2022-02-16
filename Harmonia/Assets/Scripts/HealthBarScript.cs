@@ -7,7 +7,7 @@ public class HealthBarScript : MonoBehaviour
 {
     private Image healthBar;
     public float currentHealth;
-    private float maxHealth = 200f;
+    private float maxHealth;
     PlayerHealth player;
 
     GameObject mozartText;
@@ -18,20 +18,20 @@ public class HealthBarScript : MonoBehaviour
     {
         healthBar = GetComponent<Image>();
         player = FindObjectOfType<PlayerHealth>();
-
+        maxHealth = player.getMaxHealth();
         panel = GameObject.Find("TextPanel");
     }
 
     void Update()
     {
-        currentHealth = player.health;
+        currentHealth = player.getHealth();
         healthBar.fillAmount = currentHealth / maxHealth;
-        if (player.health == 100)
+        if (player.health == maxHealth/2)
         {
             healthBar.color = Color.yellow;
             textBasedOnHealth(3, "Baha! You are no match for a virtuoso such as myself.");
         }
-        else if (player.health == 30)
+        else if (player.health == maxHealth/5)
             healthBar.color = Color.red;
     }
     

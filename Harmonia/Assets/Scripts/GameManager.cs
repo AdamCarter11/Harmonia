@@ -14,13 +14,14 @@ public class GameManager : MonoBehaviour
     public Text comboText;
     public Text accText;
     public Animator judgeTextAnim;
-    PlayerHealth player;
-    EnemyHealth enemy;
 
     string[] badComments;
     string[] goodComments;
     GameObject panel;
     GameObject mozartText;
+
+    public Turn_System turn_system;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +29,6 @@ public class GameManager : MonoBehaviour
         instance = this;
         judgementText.text = " ";
         comboText.text = " ";
-        player = FindObjectOfType<PlayerHealth>();
-        enemy = FindObjectOfType<EnemyHealth>();
         badComments = new string[]{ "Scoffs This music sickens me!", "My child has written better melodies than this!", "Horrible... HORRIBLE!", "You call this music? This is atrocious!",
             "You really thought you could challenge me? Pathetic.", "I'd rather listen to the clanging of pots and pans.", "Thou are not even holding the instrument properly!" };
         goodComments = new string[]{"My oh my! Perhaps you aren't so talentless after all...", "Stunning! Simply stunning!", "My ears... my ears have been blessed!",
@@ -61,8 +60,7 @@ public class GameManager : MonoBehaviour
         accuracy = (notesHit / totalNotes) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
-        if (enemy.health >= 10)
-            enemy.health -= 10;
+        turn_system.NoteHitPerfect();
     }
 
     public void NoteHitGreat()
@@ -76,8 +74,7 @@ public class GameManager : MonoBehaviour
         accuracy = (notesHit / totalNotes) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
-        if (enemy.health >= 1)
-            enemy.health -= 1;
+        turn_system.NoteHitGreat();
     }
 
     public void NoteMiss()
@@ -90,8 +87,7 @@ public class GameManager : MonoBehaviour
         accuracy = (notesHit / totalNotes) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
-        if (player.health >= 1)
-            player.health -= 1;
+        turn_system.NoteMiss();
     }
     
     public void randomComment(float duration, string[] comments)

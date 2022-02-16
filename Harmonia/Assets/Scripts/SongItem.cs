@@ -45,4 +45,15 @@ public class SongItem : MonoBehaviour
     {
         return song.buffer;
     }
+
+    public float getDamage()
+    {
+        return song.baseDamage;
+    }
+
+    public float getAmountOfNotes()
+    {
+        string[] notes = song.notes.text.Split('\n');
+        return notes.Length;
+    }
 }

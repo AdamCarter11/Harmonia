@@ -10,12 +10,34 @@ public class CharacterSO : ScriptableObject
 
     public bool isUsable;
 
-    public float heatlth;
+    public float health;
 
-    public ScriptableObject Song1;
-    public ScriptableObject Song2;
-    public ScriptableObject Song3;
-    public ScriptableObject Song4;
+    public Song Song1;
+    public Song Song2;
+    public Song Song3;
+    public Song Song4;
 
     public string description;
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public Song getSong1()
+    {
+        return Song1;
+    }
+    public Song getSong2()
+    {
+        return Song2;
+    }
+    public Song getSong3()
+    {
+        return Song3;
+    }
+    public Song getSong4()
+    {
+        return Song4;
+    }
 }

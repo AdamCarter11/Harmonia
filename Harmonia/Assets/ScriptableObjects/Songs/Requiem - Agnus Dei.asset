@@ -20,3 +20,4 @@ MonoBehaviour:
   sequence: {fileID: 0}
   info: info
   buffer: 0
+  baseDamage: 300

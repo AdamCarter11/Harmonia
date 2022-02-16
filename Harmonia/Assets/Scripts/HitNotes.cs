@@ -49,7 +49,7 @@ public class HitNotes : MonoBehaviour
             perfect = true;
         }
 
-        print(other.tag);
+       //print(other.tag);
     }
 
     private void OnTriggerExit2D(Collider2D other)

@@ -11,4 +11,15 @@ public class Song : ScriptableObject
     public TextAsset sequence;
     public string info;
     public float buffer;
+    public float baseDamage;
+
+    public AudioClip getAudio()
+    {
+        return audio;
+    }
+
+    public float getDamage()
+    {
+        return baseDamage;
+    }
 }

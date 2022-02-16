@@ -137,7 +137,7 @@ public class writingReading : MonoBehaviour
                 newObject.GetComponent<HitNotes>().setBPM(BPM);
             }
             whichNote++;
-            print(whichNote);
+            //print(whichNote);
         }
     }
 
@@ -164,10 +164,10 @@ public class writingReading : MonoBehaviour
         */
         //print(path.text);
         string[] notes = path.text.Split('\n');
-        print("notes length: " + notes.Length);
-        print("First note: " + notes[0]);
-        bpm = int.Parse(notes[notes.Length - 2]);
-        print("BPM: " + bpm); //-2 cause there is an extra newline at the end of the file
+        //print("notes length: " + notes.Length);
+        //print("First note: " + notes[0]);
+        /*bpm = int.Parse(notes[notes.Length - 2]);
+        print("BPM: " + bpm); //-2 cause there is an extra newline at the end of the file*/
         return notes;
     }
 

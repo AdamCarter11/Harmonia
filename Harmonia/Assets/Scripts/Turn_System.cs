@@ -24,10 +24,6 @@ public class Turn_System : MonoBehaviour
 
     public writingReading TextReader;
 
-    // player objects
-    // character playerChara
-    // character enemyChara
-
     public static Turn_System instance;
     public GameObject Menu_UI;
     public GameObject PlayerPlayUI;
@@ -35,6 +31,22 @@ public class Turn_System : MonoBehaviour
 
     public Animator player_animator;
     public Animator enemy_animator;
+
+    public CharacterSO PlayerObject;
+    public CharacterSO EnemyObject;
+
+    public EnemyHealth enemyhealth;
+    public PlayerHealth playerhealth;
+
+    // damage calculation
+    private float damagePerNote;
+    private float combo;
+    private float damageModifier;
+    private float amtOfNotes;
+    private float currentNotesAmt;
+    private float hitNotesAmt;
+    private float highestCombo;
+    Song EnemyPlaySong;
 
     void Start()
     {
@@ -47,6 +59,8 @@ public class Turn_System : MonoBehaviour
     {
         // Setup and spawn characters and load whatever needs to be loaded
         yield return new WaitForSeconds(2f);
+        enemyhealth.setHealth(EnemyObject.getHealth());
+        playerhealth.setHealth(PlayerObject.getHealth());
 
         state = BattleState.PLAYERTURN;
         PlayerTurn();
@@ -129,23 +143,28 @@ public class Turn_System : MonoBehaviour
     {
         state = BattleState.ENEMYTURN;
         PlayerPlayUI.SetActive(true);
-        // perform song
-        
+        // damage calculations
+        resetStats();
+        amtOfNotes = song.GetComponent<SongItem>().getAmountOfNotes();
+        damagePerNote = song.GetComponent<SongItem>().getDamage() / amtOfNotes;
+        print(damagePerNote);
+
+        // spawn song notes and perform
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
-
-
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getAudio().length);
         reader.endCoroutine();
+        // final performance bonus
+        float final_accuracy = hitNotesAmt / currentNotesAmt;
+        finalPerformanceBonus(final_accuracy);
         yield return new WaitForSeconds(2f);
+        
 
         // enemy take damage
-        // bool isDead = enemyChara.TakeDamage(damage);
-        bool isDead = false;
-        //enemy_animator.Play("Mozart_Hit");
+        bool isDead = enemyhealth.isDead();
 
         // update HUDs
         if (isDead)
@@ -160,16 +179,111 @@ public class Turn_System : MonoBehaviour
         }
     }
 
+    void finalPerformanceBonus(float accuracy)
+    {
+        if (0.9 <= accuracy)
+        {
+            playerhealth.addHealth(highestCombo * damagePerNote);
+        }
+        else if (0.5 <= accuracy)
+        {
+
+        }
+        else
+        {
+            playerhealth.takeDamage(damagePerNote * (hitNotesAmt - currentNotesAmt));
+        }
+    }
+
+    void resetStats()
+    {
+        combo = 0;
+        damageModifier = 0;
+        currentNotesAmt = 0;
+        hitNotesAmt = 0;
+        highestCombo = 0;
+}
+
+    public void NoteHitPerfect()
+    {
+        combo++;
+        hitNotesAmt++;
+        currentNotesAmt++;
+        damageModifier = 1f;
+        damageEnemy(combo, damageModifier);
+    }
+
+    public void NoteHitGreat()
+    {
+        combo++;
+        hitNotesAmt++;
+        currentNotesAmt++;
+        damageModifier = 0.8f;
+        damageEnemy(combo, damageModifier);
+    }
+
+    public void NoteMiss()
+    {
+        combo = 0;
+        currentNotesAmt++;
+        damageModifier = 0;
+        damageEnemy(combo, damageModifier);
+    }
+
+    void damageEnemy(float combo, float damageModifier)
+    {
+        if (combo < 50)
+        {
+            enemyhealth.takeDamage((damagePerNote * damageModifier) + ((damagePerNote / 15) * combo));
+        }
+        else
+        {
+            enemyhealth.takeDamage((damagePerNote * damageModifier) + ((damagePerNote / 15) * 50));
+        }
+
+        if (combo > highestCombo)
+        {
+            highestCombo = combo;
+        }
+        if (combo % 20 == 0 && damageModifier != 0)
+        {
+            enemy_animator.Play("Mozart_Hit");
+        }
+        //print(enemyhealth.getHealth());
+    }
+
     IEnumerator EnemyTurn()
     {
-        print("Enemy Turn");
         state = BattleState.PLAYERTURN;
         // enemy performs
-        yield return new WaitForSeconds(2f);
+        int song_num = Random.Range(1, 4);
+        if (song_num == 1)
+        {
+            EnemyPlaySong = EnemyObject.getSong1();
+        }
+        else if (song_num == 2)
+        {
+            EnemyPlaySong = EnemyObject.getSong2();
+        }
+        else if (song_num == 3)
+        {
+            EnemyPlaySong = EnemyObject.getSong3();
+        }
+        else if (song_num == 4)
+        {
+            EnemyPlaySong = EnemyObject.getSong4();
+        }
 
+        audio_player.clip = EnemyPlaySong.getAudio();
+        audio_player.Play();
+        yield return new WaitForSeconds(8f);
+        audio_player.Stop();
+        damagePlayer(EnemyPlaySong);
+
+        yield return new WaitForSeconds(2f);
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
-        bool isDead = false;
+        bool isDead = playerhealth.isDead();
         //enemy_animator.Play("Player_Hit");
 
         if (isDead)
@@ -182,7 +296,10 @@ public class Turn_System : MonoBehaviour
             PlayerTurn();
         }
     }
-
+    void damagePlayer(Song song)
+    {
+        playerhealth.takeDamage((enemyhealth.getHealth() / enemyhealth.getMaxHealth()) * song.getDamage());
+    }
     void EndBattle()
     {
         if (state == BattleState.WON)

@@ -7,7 +7,7 @@ public class EnemyHealthBarScript : MonoBehaviour
 {
     private Image healthBar;
     public float currentHealth;
-    private float maxHealth = 200f;
+    private float maxHealth;
     EnemyHealth enemy;
 
     // Start is called before the first frame update
@@ -15,15 +15,17 @@ public class EnemyHealthBarScript : MonoBehaviour
     {
         healthBar = GetComponent<Image>();
         enemy = FindObjectOfType<EnemyHealth>();
+        maxHealth = enemy.getMaxHealth();
+        currentHealth = enemy.getHealth();
     }
 
     void Update()
     {
-        currentHealth = enemy.health;
+        currentHealth = enemy.getHealth();
         healthBar.fillAmount = currentHealth / maxHealth;
-        if (enemy.health == 100)
+        if (currentHealth == maxHealth / 2)
             healthBar.color = Color.yellow;
-        else if (enemy.health == 30)
+        else if (currentHealth == maxHealth / 5)
             healthBar.color = Color.red;
     }
 }
