@@ -31,11 +31,15 @@ public class writingReading : MonoBehaviour
     private float max;
     private float min;
     private float interval;
+    [HideInInspector]
+    public int notesLength = 0;
     // Start is called before the first frame update
     public void setUp(TextAsset text, TextAsset seq, float val)
     {
         whichNote = 0;
         newNotesList = ReadFromFile(text);
+        notesLength = newNotesList.Length;
+        //print(notesLength);
         sequence = ReadFromFile2(seq);
         BPM = val;
         max = getMax(newNotesList);

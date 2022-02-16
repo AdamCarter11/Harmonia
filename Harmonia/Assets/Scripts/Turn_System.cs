@@ -48,6 +48,11 @@ public class Turn_System : MonoBehaviour
     private float highestCombo;
     Song EnemyPlaySong;
 
+    //star abilities stuff
+    private int starCount = 0;
+    private int comboThreshold = 1;
+    [SerializeField] private Image star1, star2, star3;
+    [SerializeField] private Sprite starReplacement, originStar;
     void Start()
     {
         instance = this;
@@ -153,6 +158,8 @@ public class Turn_System : MonoBehaviour
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
+        comboThreshold = TextReader.notesLength/6;
+        print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getAudio().length);
@@ -178,7 +185,30 @@ public class Turn_System : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
     }
+    private void Update() {
+        //print(comboThreshold);
+        if(combo >= comboThreshold * 3){
+            star1.sprite = starReplacement;
+            star2.sprite = starReplacement;
+            star3.sprite = starReplacement;
 
+        }
+        else if(combo >= comboThreshold*2){
+            star1.sprite = starReplacement;
+            star2.sprite = starReplacement;
+            star3.sprite = originStar;
+        }
+        else if(combo >= comboThreshold){
+            star1.sprite = starReplacement;
+            star2.sprite = originStar;
+            star3.sprite = originStar;
+        }
+        else{
+            star1.sprite = originStar;
+            star2.sprite = originStar;
+            star3.sprite = originStar;
+        }
+    }
     void finalPerformanceBonus(float accuracy)
     {
         if (0.9 <= accuracy)
