@@ -30,6 +30,11 @@ public class SettingsManager : MonoBehaviour
         }
     }
 
+    public void SettingsMenu(){
+        settingsOpen = !settingsOpen;
+        settingsUI.SetActive(settingsOpen); 
+    }
+
     public void QuitGame()
     {
         Application.Quit();
