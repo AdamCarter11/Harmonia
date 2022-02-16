@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Tech_Giants
   m_EditorClassIdentifier: 
   song_name: Tech Giants
-  BPM: 600
+  BPM: 400
   genre: Genre
   audio: {fileID: 8300000, guid: 955e4265f9b905142966c638d4f0f6ed, type: 3}
   notes: {fileID: 4900000, guid: 11964e2eaab5aa2429830f7555c12484, type: 3}
   sequence: {fileID: 4900000, guid: 9121325615487604bb7c4bd6a6abd91f, type: 3}
   info: info
-  buffer: 0.7
+  buffer: 1.2
   baseDamage: 200

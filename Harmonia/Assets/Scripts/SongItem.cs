@@ -16,6 +16,16 @@ public class SongItem : MonoBehaviour
         return song.BPM;
     }
 
+    public float getHighBPM()
+    {
+        return song.HIGH_BPM;
+    }
+
+    public float getLowBPM()
+    {
+        return song.LOW_BPM;
+    }
+
     public string getName()
     {
         return song.song_name;
