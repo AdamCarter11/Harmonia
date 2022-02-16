@@ -54,6 +54,10 @@ public class Turn_System : MonoBehaviour
     [SerializeField] private Image star1, star2, star3;
     [SerializeField] private Sprite starReplacement, originStar;
     private float playerStarDamageModifier = 1, enemyStarDamageModifier = 1;
+
+    // stars
+    public string BPM_Speed;
+
     void Start()
     {
         instance = this;
@@ -258,6 +262,19 @@ public class Turn_System : MonoBehaviour
         {
             playerhealth.takeDamage(damagePerNote * (hitNotesAmt - currentNotesAmt));
         }
+    }
+
+    public float getCurrentBPM()
+    {
+        if (BPM_Speed == "fast")
+        {
+            return SongToPlay.GetComponent<SongItem>().getHighBPM();
+        }
+        else if (BPM_Speed == "slow")
+        {
+            return SongToPlay.GetComponent<SongItem>().getLowBPM();
+        }
+        return SongToPlay.GetComponent<SongItem>().getBPM();
     }
 
     void resetStats()

@@ -3595,6 +3595,7 @@ MonoBehaviour:
   star3: {fileID: 399126592}
   starReplacement: {fileID: -2413806693520163455, guid: af472e7fe91e9d748ab5f3e6ec792679, type: 3}
   originStar: {fileID: 21300000, guid: 923058b927197c34db0b5da41ba3d1b8, type: 3}
+  BPM_Speed: 
 --- !u!4 &834344766
 Transform:
   m_ObjectHideFlags: 0
@@ -5745,6 +5746,7 @@ MonoBehaviour:
   Note4: {fileID: 2494724328960759741, guid: da935de4db09e3245bc0bb266d1f4bee, type: 3}
   Note5: {fileID: 4588525861472546588, guid: 78203718349749942bbffa76630a40ef, type: 3}
   notesLength: 0
+  turn_system: {fileID: 834344765}
 --- !u!4 &1176113329
 Transform:
   m_ObjectHideFlags: 0
@@ -6879,6 +6881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494ba888db9a7e64d8dda7faf07fa63a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Pop: {fileID: 0}
 --- !u!114 &1475639355
 MonoBehaviour:
   m_ObjectHideFlags: 0

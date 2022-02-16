@@ -33,6 +33,8 @@ public class writingReading : MonoBehaviour
     private float interval;
     [HideInInspector]
     public int notesLength = 0;
+
+    public Turn_System turn_system;
     // Start is called before the first frame update
     public void setUp(TextAsset text, TextAsset seq, float val)
     {
@@ -138,7 +140,7 @@ public class writingReading : MonoBehaviour
                     whatToSpawn = Note5;
                 }
                 GameObject newObject = Instantiate(whatToSpawn, new Vector3(whereToSpawnX, 6, 0), Quaternion.identity);
-                newObject.GetComponent<HitNotes>().setBPM(BPM);
+                newObject.GetComponent<HitNotes>().setBPM(turn_system.getCurrentBPM());
             }
             whichNote++;
             //print(whichNote);
