@@ -58,6 +58,7 @@ public class Turn_System : MonoBehaviour
     // stars
     public string BPM_Speed;
     private float star_combo;
+    private float drift;
 
     // stats
     public GameManager game_manager;
@@ -271,6 +272,7 @@ public class Turn_System : MonoBehaviour
 
     public float getCurrentBPM()
     {
+        drift += 0.5f;
         if (BPM_Speed == "fast")
         {
             return SongToPlay.GetComponent<SongItem>().getHighBPM();
@@ -279,7 +281,7 @@ public class Turn_System : MonoBehaviour
         {
             return SongToPlay.GetComponent<SongItem>().getLowBPM();
         }
-        return SongToPlay.GetComponent<SongItem>().getBPM();
+        return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
     }
 
     void resetStats()
@@ -291,6 +293,7 @@ public class Turn_System : MonoBehaviour
         currentNotesAmt = 0;
         hitNotesAmt = 0;
         highestCombo = 0;
+        drift = 0;
         playerStarDamageModifier = 1;
         enemyStarDamageModifier = 1;
         BPM_Speed = "normal";
