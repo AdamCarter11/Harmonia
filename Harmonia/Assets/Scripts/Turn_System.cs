@@ -48,6 +48,16 @@ public class Turn_System : MonoBehaviour
     private float highestCombo;
     Song EnemyPlaySong;
 
+    //star abilities stuff
+    private int starCount = 0;
+    private int comboThreshold = 1;
+    [SerializeField] private Image star1, star2, star3;
+    [SerializeField] private Sprite starReplacement, originStar;
+    private float playerStarDamageModifier = 1, enemyStarDamageModifier = 1;
+
+    // stars
+    public string BPM_Speed;
+
     void Start()
     {
         instance = this;
@@ -153,6 +163,8 @@ public class Turn_System : MonoBehaviour
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
+        comboThreshold = TextReader.notesLength/6;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
+        print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getAudio().length);
@@ -178,6 +190,63 @@ public class Turn_System : MonoBehaviour
             StartCoroutine(EnemyTurn());
         }
     }
+    private void Update() {
+        if(combo >= comboThreshold * 3){
+            starCount = 3;
+        }
+        else if(combo >= comboThreshold*2){
+            starCount = 2;
+        }
+        else if(combo >= comboThreshold){
+            starCount = 1;
+        }
+        else{
+            starCount = 0;
+        }
+
+        //I'm splitting it up like this in case we need to access the variable in other scripts
+        if(starCount == 0){
+            star1.sprite = originStar;
+            star2.sprite = originStar;
+            star3.sprite = originStar;
+        }
+        if(starCount == 1){
+            star1.sprite = starReplacement;
+            star2.sprite = originStar;
+            star3.sprite = originStar;
+        }
+        if(starCount == 2){
+            star1.sprite = starReplacement;
+            star2.sprite = starReplacement;
+            star3.sprite = originStar;
+        }
+        if(starCount == 3){
+            star1.sprite = starReplacement;
+            star2.sprite = starReplacement;
+            star3.sprite = starReplacement;
+        }
+
+        if(Input.GetKeyDown(KeyCode.V) && starCount > 0){
+            starCount--;
+            combo -= comboThreshold;
+            print("activated star ONE combo ability");
+            //here is where we will SLOW DOWN BPM;
+        }
+        if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
+            starCount-= 2;
+            combo -= comboThreshold * 2;
+            print("activated star TWO combo ability");
+            //here is where we will SPEED UP BPM;
+        }
+        if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
+            starCount = 0;
+            combo -= comboThreshold * 3;
+            print("activated star THREE combo ability");
+            //star modifiers, may need to change how they get reset and stuff
+            playerStarDamageModifier = 2;
+            enemyStarDamageModifier = 1.5f;
+        }
+    }
 
     void finalPerformanceBonus(float accuracy)
     {
@@ -195,6 +264,19 @@ public class Turn_System : MonoBehaviour
         }
     }
 
+    public float getCurrentBPM()
+    {
+        if (BPM_Speed == "fast")
+        {
+            return SongToPlay.GetComponent<SongItem>().getHighBPM();
+        }
+        else if (BPM_Speed == "slow")
+        {
+            return SongToPlay.GetComponent<SongItem>().getLowBPM();
+        }
+        return SongToPlay.GetComponent<SongItem>().getBPM();
+    }
+
     void resetStats()
     {
         combo = 0;
@@ -202,6 +284,8 @@ public class Turn_System : MonoBehaviour
         currentNotesAmt = 0;
         hitNotesAmt = 0;
         highestCombo = 0;
+        playerStarDamageModifier = 1;
+        enemyStarDamageModifier = 1;
 }
 
     public void NoteHitPerfect()
@@ -234,11 +318,11 @@ public class Turn_System : MonoBehaviour
     {
         if (combo < 50)
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier) + ((damagePerNote / 15) * combo));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15) * combo));
         }
         else
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier) + ((damagePerNote / 15) * 50));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15) * 50));
         }
 
         if (combo > highestCombo)
@@ -298,7 +382,7 @@ public class Turn_System : MonoBehaviour
     }
     void damagePlayer(Song song)
     {
-        playerhealth.takeDamage((enemyhealth.getHealth() / enemyhealth.getMaxHealth()) * song.getDamage());
+        playerhealth.takeDamage((enemyhealth.getHealth() / enemyhealth.getMaxHealth()) * song.getDamage() * enemyStarDamageModifier);
     }
     void EndBattle()
     {
