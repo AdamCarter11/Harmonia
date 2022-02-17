@@ -374,7 +374,7 @@ public class Turn_System : MonoBehaviour
 
         audio_player.clip = EnemyPlaySong.getAudio();
         audio_player.Play();
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(EnemyPlaySong.getAudio().length);
         audio_player.Stop();
         damagePlayer(EnemyPlaySong);
 

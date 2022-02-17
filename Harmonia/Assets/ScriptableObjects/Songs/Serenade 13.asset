@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Serenade 13
   m_EditorClassIdentifier: 
   song_name: Serenade 13
-  BPM: 600
+  BPM: 400
+  HIGH_BPM: 600
+  LOW_BPM: 300
   genre: Classical
   audio: {fileID: 8300000, guid: ab259e0d2da7cf8449ef7abee14d4e93, type: 3}
   notes: {fileID: 4900000, guid: cf7e532f64ea65545aa4237c10e51c39, type: 3}
   sequence: {fileID: 4900000, guid: 87ba0a9e3bcf78f449a0fe2d4211da8d, type: 3}
   info: info
-  buffer: 2.7
-  baseDamage: 300
+  buffer: 3.1
+  baseDamage: 200

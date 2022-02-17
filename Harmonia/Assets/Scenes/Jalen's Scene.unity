@@ -2809,7 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f43b0b2976cc3f4289ba1df9d1414fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song: {fileID: 11400000, guid: 02cbc6c220c589848b773fe04a5ebaca, type: 2}
+  song: {fileID: 11400000, guid: 84267ade3837fc24cbbbe6c66712cbd6, type: 2}
 --- !u!1 &511225451
 GameObject:
   m_ObjectHideFlags: 0
@@ -6768,7 +6768,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f43b0b2976cc3f4289ba1df9d1414fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song: {fileID: 11400000, guid: 02cbc6c220c589848b773fe04a5ebaca, type: 2}
+  song: {fileID: 11400000, guid: f111bb8443bef5f40ad69f09d5068cfc, type: 2}
 --- !u!4 &1245533686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2494724328960759742, guid: da935de4db09e3245bc0bb266d1f4bee, type: 3}
