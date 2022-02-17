@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public float notesHit;
     public float totalNotes;
     public float accuracy;
+    public float weighted_score;
+    public float total_possible_score;
     public Text judgementText;
     public Text comboText;
     public Text accText;
@@ -49,6 +51,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void resetStats()
+    {
+        combo = 0;
+        notesHit = 0;
+        totalNotes = 0;
+        accuracy = 0;
+        weighted_score = 0;
+        total_possible_score = 0;
+    }
+
     public void NoteHitPerfect()
     {
         judgeTextAnim.Play("JudgementText", -1, 0);
@@ -57,7 +69,9 @@ public class GameManager : MonoBehaviour
         combo++;
         notesHit++;
         totalNotes++;
-        accuracy = (notesHit / totalNotes) * 100;
+        weighted_score += 1;
+        total_possible_score += 1;
+        accuracy = (weighted_score / total_possible_score) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
         turn_system.NoteHitPerfect();
@@ -71,7 +85,9 @@ public class GameManager : MonoBehaviour
         combo++;
         notesHit++;
         totalNotes++;
-        accuracy = (notesHit / totalNotes) * 100;
+        weighted_score += 0.8f;
+        total_possible_score += 1;
+        accuracy = (weighted_score / total_possible_score) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
         turn_system.NoteHitGreat();
@@ -84,7 +100,8 @@ public class GameManager : MonoBehaviour
         judgementText.color = Color.red;
         combo = 0;
         totalNotes++;
-        accuracy = (notesHit / totalNotes) * 100;
+        total_possible_score += 1;
+        accuracy = (weighted_score / total_possible_score) * 100;
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
         turn_system.NoteMiss();

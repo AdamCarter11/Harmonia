@@ -4011,6 +4011,7 @@ MonoBehaviour:
   starReplacement: {fileID: -2413806693520163455, guid: af472e7fe91e9d748ab5f3e6ec792679, type: 3}
   originStar: {fileID: 21300000, guid: 923058b927197c34db0b5da41ba3d1b8, type: 3}
   BPM_Speed: 
+  game_manager: {fileID: 1387051696}
 --- !u!4 &834344766
 Transform:
   m_ObjectHideFlags: 0
@@ -7178,6 +7179,8 @@ MonoBehaviour:
   notesHit: 0
   totalNotes: 0
   accuracy: 0
+  weighted_score: 0
+  total_possible_score: 0
   judgementText: {fileID: 89789715}
   comboText: {fileID: 2099067940}
   accText: {fileID: 911351653}

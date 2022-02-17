@@ -57,6 +57,10 @@ public class Turn_System : MonoBehaviour
 
     // stars
     public string BPM_Speed;
+    private float star_combo;
+
+    // stats
+    public GameManager game_manager;
 
     void Start()
     {
@@ -155,6 +159,7 @@ public class Turn_System : MonoBehaviour
         PlayerPlayUI.SetActive(true);
         // damage calculations
         resetStats();
+        game_manager.resetStats();
         amtOfNotes = song.GetComponent<SongItem>().getAmountOfNotes();
         damagePerNote = song.GetComponent<SongItem>().getDamage() / amtOfNotes;
         print(damagePerNote);
@@ -191,16 +196,16 @@ public class Turn_System : MonoBehaviour
         }
     }
     private void Update() {
-        if(combo >= comboThreshold * 3){
+        if(star_combo >= comboThreshold * 3){
             starCount = 3;
         }
-        else if(combo >= comboThreshold*2){
+        else if(star_combo >= comboThreshold*2){
             starCount = 2;
         }
-        else if(combo >= comboThreshold){
+        else if(star_combo >= comboThreshold){
             starCount = 1;
         }
-        else{
+        else if (star_combo == 0 && starCount == 0){
             starCount = 0;
         }
 
@@ -228,19 +233,19 @@ public class Turn_System : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.V) && starCount > 0){
             starCount--;
-            combo -= comboThreshold;
+            star_combo -= comboThreshold;
             print("activated star ONE combo ability");
-            //here is where we will SLOW DOWN BPM;
+            BPM_Speed = "slow";
         }
         if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
             starCount-= 2;
-            combo -= comboThreshold * 2;
+            star_combo -= comboThreshold * 2;
             print("activated star TWO combo ability");
-            //here is where we will SPEED UP BPM;
+            BPM_Speed = "fast";
         }
         if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
             starCount = 0;
-            combo -= comboThreshold * 3;
+            star_combo -= comboThreshold * 3;
             print("activated star THREE combo ability");
             //star modifiers, may need to change how they get reset and stuff
             playerStarDamageModifier = 2;
@@ -280,17 +285,21 @@ public class Turn_System : MonoBehaviour
     void resetStats()
     {
         combo = 0;
+        star_combo = 0;
+        starCount = 0;
         damageModifier = 0;
         currentNotesAmt = 0;
         hitNotesAmt = 0;
         highestCombo = 0;
         playerStarDamageModifier = 1;
         enemyStarDamageModifier = 1;
+        BPM_Speed = "normal";
 }
 
     public void NoteHitPerfect()
     {
         combo++;
+        star_combo++;
         hitNotesAmt++;
         currentNotesAmt++;
         damageModifier = 1f;
@@ -300,6 +309,7 @@ public class Turn_System : MonoBehaviour
     public void NoteHitGreat()
     {
         combo++;
+        star_combo++;
         hitNotesAmt++;
         currentNotesAmt++;
         damageModifier = 0.8f;
@@ -309,6 +319,7 @@ public class Turn_System : MonoBehaviour
     public void NoteMiss()
     {
         combo = 0;
+        star_combo = 0;
         currentNotesAmt++;
         damageModifier = 0;
         damageEnemy(combo, damageModifier);

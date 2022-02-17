@@ -88,17 +88,17 @@ public class writingReading : MonoBehaviour
             }
             else if (whichNote < newNotesList.Length)
             {
-                if (sequence[whichNote] == sequence[whichNote - 1])
+                if (sequence[whichNote] == prevVal)
                 {
                     dontSpawn = true;
                 }
-                else if (sequence[whichNote] - sequence[whichNote - 1] < 0.1 && dontSpawn == false)
+                else if (sequence[whichNote] - prevVal < 0.15)
                 {
                     /*if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) > interval)
                     {
                         dontSpawn = false;
                     }*/
-                    dontSpawn = false;
+                    dontSpawn = true;
                 }
                 else
                 {
