@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
         accuracy = 0;
         weighted_score = 0;
         total_possible_score = 0;
+        judgementText.text = " ";
+        comboText.text = " ";
+        accText.text = accuracy.ToString("F2") + " %";
     }
 
     public void NoteHitPerfect()
