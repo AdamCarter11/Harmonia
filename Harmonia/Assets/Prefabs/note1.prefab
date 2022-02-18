@@ -113,5 +113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canBePressed: 0
-  spawner: 0
+  perfect: 0
+  great: 0
   pressKey: 100
+  bpm: 0
+  perfectNote: {fileID: 1238321669212544647, guid: 23a1c73d284c8a14eabb281d417b23c6, type: 3}

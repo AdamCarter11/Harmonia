@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public Turn_System turn_system;
 
+    public AudioSource perfectNote;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +80,10 @@ public class GameManager : MonoBehaviour
         comboText.text = combo.ToString();
         accText.text = accuracy.ToString("F2") + " %";
         turn_system.NoteHitPerfect();
+        //plays sfx
+        if(perfectNote != null){
+            perfectNote.Play();
+        }
     }
 
     public void NoteHitGreat()

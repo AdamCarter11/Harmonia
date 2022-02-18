@@ -11,6 +11,7 @@ public class HitNotes : MonoBehaviour
     public KeyCode pressKey;
     public float bpm;
     private float speed;
+    private bool notePlayed = false;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +25,8 @@ public class HitNotes : MonoBehaviour
                 GameManager.instance.NoteHitPerfect();
                 obtained = true;
                 gameObject.SetActive(false);
+                notePlayed = true;
+                Debug.Log("noteplayed = true");
                 Destroy(this.gameObject);
             }
             else if (canBePressed && great)
@@ -34,6 +37,7 @@ public class HitNotes : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
