@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
+    //public static SettingsManager Instance;       //if we want to make the settings save across scenes
+
+
     public GameObject settingsUI;
     private bool settingsOpen = false;
 
@@ -15,6 +18,19 @@ public class SettingsManager : MonoBehaviour
     public Slider effectsSlider;
     public Slider textSlider;
 
+    //  if we want to make the settings save across scenes
+    /*
+    private void Awake() {
+       if(Instance != null){
+           Destroy(gameObject);
+           return;
+       } 
+       Instance = this;
+       DontDestroyOnLoad(gameObject);
+    }
+    */
+
+    
     private void Start()
     {
         LoadValues();
