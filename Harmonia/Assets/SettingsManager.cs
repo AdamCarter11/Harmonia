@@ -68,7 +68,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("VolumeValue", volumeValue);
         LoadValues();
     }
-
+ 
     public void EffectsSlider(float volume)
     {
         float effectsValue = volume;

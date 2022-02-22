@@ -7,7 +7,11 @@ public class persistantManager : MonoBehaviour
 {
     public static persistantManager Instance;
     [HideInInspector] public int currentLevel;
+    [HideInInspector] public float volumeVal, effectsVal, textVal;
+
     string currScene;
+
+
     private void Awake() {
        if(Instance != null){
            Destroy(gameObject);
@@ -22,7 +26,7 @@ public class persistantManager : MonoBehaviour
         if(checkScene != "Settings"){
             currScene = SceneManager.GetActiveScene().name;
         }
-
+ 
         //we could also switch to using index, we would just have to be careful with what order we build the levels in
         if(currScene == "RPG_scene"){
             currentLevel = 1;
