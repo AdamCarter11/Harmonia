@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jalen's Scene.unity
     guid: eeb52e9dd672c4b4a89753a1953c8bcd
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 3edbe2d8091298f4b9e81217ee12f34e
   m_configObjects: {}

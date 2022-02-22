@@ -9,7 +9,7 @@ public class SettingsManager : MonoBehaviour
 
 
     public GameObject settingsUI;
-    private bool settingsOpen = false;
+    private bool settingsOpen = true;
 
     public AudioSource Volume;
     public AudioSource SFX;
@@ -17,7 +17,7 @@ public class SettingsManager : MonoBehaviour
     public Slider volumeSlider;
     public Slider effectsSlider;
     public Slider textSlider;
-
+ 
     //  if we want to make the settings save across scenes
     /*
     private void Awake() {
