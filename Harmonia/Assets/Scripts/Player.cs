@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private GameObject whichToInteractWith;
 
     public Inventory inventory;
-    public SettingsManager settings;
+    //public SettingsManager settings;
 
     public AudioSource audio_s;
     public AudioClip walking;
@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!inventory.getActive() && !settings.settingsActive())
+        if (!inventory.getActive()) // && !settings.settingsActive()
         {
             rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
         }

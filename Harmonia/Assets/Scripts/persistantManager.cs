@@ -8,8 +8,7 @@ public class persistantManager : MonoBehaviour
     public static persistantManager Instance;
     [HideInInspector] public int currentLevel;
     [HideInInspector] public float volumeVal, effectsVal, textVal;
-
-    string currScene;
+    [HideInInspector] public string currScene;
 
 
     private void Awake() {
@@ -21,9 +20,22 @@ public class persistantManager : MonoBehaviour
        DontDestroyOnLoad(gameObject);
     }
 
+    private void Start() {
+        currScene = PlayerPrefs.GetString("current scene");
+        print(currScene);
+    }
+
     private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            /*
+            settingsOpen = !settingsOpen;
+            settingsUI.SetActive(settingsOpen);
+            */
+            SceneManager.LoadScene("Settings");
+        }
         string checkScene = SceneManager.GetActiveScene().name;
-        if(checkScene != "Settings"){
+        if(checkScene != "Settings" && checkScene != "Menu"){
             currScene = SceneManager.GetActiveScene().name;
         }
  

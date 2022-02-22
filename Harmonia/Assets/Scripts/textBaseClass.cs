@@ -30,10 +30,10 @@ public class textBaseClass : TalkingScene
         npcIndex = 1;
     }
     private void Update() {
-        if (!settings.settingsActive())
-        {
+        //if (!settings.settingsActive())
+        //{
             updateText();
-        }
+        //}
     }
 
     void updateText()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class SettingsManager : MonoBehaviour
 {
     //public static SettingsManager Instance;       //if we want to make the settings save across scenes
@@ -17,7 +17,7 @@ public class SettingsManager : MonoBehaviour
     public Slider volumeSlider;
     public Slider effectsSlider;
     public Slider textSlider;
- 
+
     //  if we want to make the settings save across scenes
     /*
     private void Awake() {
@@ -30,7 +30,6 @@ public class SettingsManager : MonoBehaviour
     }
     */
 
-    
     private void Start()
     {
         LoadValues();
@@ -39,11 +38,8 @@ public class SettingsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            settingsOpen = !settingsOpen;
-            settingsUI.SetActive(settingsOpen);
-        }
+       
+        
     }
 
     public void SettingsMenu(){
@@ -68,7 +64,7 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("VolumeValue", volumeValue);
         LoadValues();
     }
- 
+  
     public void EffectsSlider(float volume)
     {
         float effectsValue = volume;
@@ -94,6 +90,7 @@ public class SettingsManager : MonoBehaviour
         SFX.volume = effectsValue * .25f;
 
         float textValue = PlayerPrefs.GetFloat("TextValue");
+        print(textValue);
         textSlider.value = textValue;
     }
 
@@ -101,9 +98,9 @@ public class SettingsManager : MonoBehaviour
     {
         if (textSlider.value != 0)
         {
-            return textSlider.value;
+            return textSlider.value * 2f;
         }
-        return 0.01f;
+        return 0.01f * 2f;
     }
 
     public bool settingsActive()

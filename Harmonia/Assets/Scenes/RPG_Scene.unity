@@ -2277,7 +2277,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572755084}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ccfbf724bbedbd409b239b24f26486e, type: 3}
   m_Name: 
@@ -3220,6 +3220,7 @@ MonoBehaviour:
   audio_s: {fileID: 1308600080}
   walking: {fileID: 8300000, guid: fc151d80465108045b1ecbd8f43010f5, type: 3}
   startBattle: {fileID: 8300000, guid: 6fcb7397d69379640b600d38f69f6e1b, type: 3}
+  clockFlappingNoise: {fileID: 0}
   checkRadius: 1
 --- !u!50 &966894150
 Rigidbody2D:
@@ -9686,7 +9687,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
