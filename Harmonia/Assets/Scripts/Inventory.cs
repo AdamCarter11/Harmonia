@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public delegate void OnCharacterAdded();
-    public OnCharacterAdded onCharacterChangedCallback;
-
-    public static Inventory instance;
     public int space = 12;
+    private int amt_of_characters;
 
     public GameObject InventoryUI;
     private bool inventoryActive = false;
@@ -20,25 +17,32 @@ public class Inventory : MonoBehaviour
     public AudioClip openBag;
     public AudioClip closeBag;
 
-    private void Awake()
+    public List<CharacterSO> characters;
+    public Transform charactersParent;
+    InventorySlot[] slots;
+
+    private void Start()
     {
-        instance = this;
+        slots = charactersParent.GetComponentsInChildren<InventorySlot>();
+        characters = persistantManager.Instance.getCharacters();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+            characters = persistantManager.Instance.getCharacters();
+            UpdateUI();
             inventoryActive = !inventoryActive;
             info.disableUI();
             InventoryUI.SetActive(inventoryActive);
             InfoDisplay.SetActive(false);
-
             if (inventoryActive == true)
             {
                 sfx_s.Stop();
                 sfx_s.clip = openBag;
                 sfx_s.Play();
+                
             }
             else if (inventoryActive == false)
             {
@@ -49,32 +53,26 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public List<CharacterSO> characters;
-    public bool Add(CharacterSO character)
+
+    void UpdateUI()
     {
-        if (characters.Count >= space)
+        for (int i = 0; i < slots.Length; i++)
         {
-            return false;
+            if (i < characters.Count)
+            {
+                slots[i].AddCharacter(characters[i]);
+            }
+            else
+            {
+                slots[i].ClearSlot();
+            }
         }
-        characters.Add(character);
-        if (onCharacterChangedCallback != null)
-        {
-            onCharacterChangedCallback.Invoke();
-        }
-
-        return true;
     }
-
-    public void Remove(CharacterSO character)
-    {
-        characters.Remove(character);
-    }
-
     public bool getActive()
     {
         return inventoryActive;
     }
-
+    
     public void exitInventory()
     {
         inventoryActive = !inventoryActive;

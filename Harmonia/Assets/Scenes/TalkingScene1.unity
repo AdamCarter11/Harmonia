@@ -1624,6 +1624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1021078993}
   - component: {fileID: 1021078992}
+  - component: {fileID: 1021078994}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -1652,6 +1653,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 83740be9576a77a4da05529bf8339600, type: 2}
   timeDelay: 0.1
   settings: {fileID: 1310569831}
+  button_script: {fileID: 1021078994}
 --- !u!4 &1021078993
 Transform:
   m_ObjectHideFlags: 0
@@ -1666,6 +1668,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1021078994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021078991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89255a345e8875145b9476b62b66a27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelToOpen: {fileID: 0}
 --- !u!1 &1028837392
 GameObject:
   m_ObjectHideFlags: 0

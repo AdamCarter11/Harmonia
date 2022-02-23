@@ -9,6 +9,8 @@ public class persistantManager : MonoBehaviour
     [HideInInspector] public int currentLevel;
     [HideInInspector] public float volumeVal, effectsVal, textVal;
     [HideInInspector] public string currScene;
+    [HideInInspector] public string whichDialogue;
+    [HideInInspector] public List<CharacterSO> characters;
 
 
     private void Awake() {
@@ -48,6 +50,54 @@ public class persistantManager : MonoBehaviour
         }
         if(currScene == "Jalen's Scene"){
             currentLevel = 3;
+        }
+        if (currScene == "TalkingSceneWin")
+        {
+            currentLevel = 4;
+        }
+        if (currScene == "TalkingSceneLose")
+        {
+            currentLevel = 5;
+        }
+        if (currScene == "RPG_Scene2")
+        {
+            currentLevel = 6;
+        }
+    }
+
+    public void setDialogue(string text)
+    {
+        whichDialogue = text;
+    }
+
+    public string getDialogue()
+    {
+        return whichDialogue;
+    }
+
+    public void setCharacters(List<CharacterSO> chars)
+    {
+        characters = chars;
+    }
+
+    public List<CharacterSO> getCharacters()
+    {
+        return characters;
+    }
+
+    public void AddChara(CharacterSO character)
+    {
+        if (characters.Count < 12)
+        {
+            characters.Add(character);
+        }
+    }
+
+    public void RemoveChara(CharacterSO character)
+    {
+        if (characters.Count > 0)
+        {
+            characters.Remove(character);
         }
     }
 }

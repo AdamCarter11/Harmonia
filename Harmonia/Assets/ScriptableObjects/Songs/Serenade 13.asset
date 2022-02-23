@@ -22,4 +22,4 @@ MonoBehaviour:
   sequence: {fileID: 4900000, guid: 87ba0a9e3bcf78f449a0fe2d4211da8d, type: 3}
   info: info
   buffer: 3.1
-  baseDamage: 200
+  baseDamage: 300

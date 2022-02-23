@@ -92,7 +92,7 @@ public class writingReading : MonoBehaviour
                 {
                     dontSpawn = true;
                 }
-                else if (sequence[whichNote] - prevVal < 0.15)
+                else if (sequence[whichNote] - prevVal < turn_system.getThreshold())
                 {
                     /*if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) > interval)
                     {

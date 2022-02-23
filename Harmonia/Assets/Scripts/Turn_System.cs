@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
 public class Turn_System : MonoBehaviour
@@ -56,7 +56,7 @@ public class Turn_System : MonoBehaviour
     private float playerStarDamageModifier = 1, enemyStarDamageModifier = 1;
 
     // stars
-    public string BPM_Speed;
+    public float threshold;
     private float star_combo;
     private float drift;
 
@@ -98,28 +98,28 @@ public class Turn_System : MonoBehaviour
         audio_player.Stop();
         if (song == 1)
         {
-            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem1.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nGenre: "
             + SongItem1.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
             audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 2)
         {
-            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem2.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nGenre: "
             + SongItem2.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
             audio_player.clip = SongItem2.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 3)
         {
-            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem3.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nGenre: "
             + SongItem3.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
             audio_player.clip = SongItem3.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 4)
         {
-            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nBPM: " + SongItem4.GetComponent<SongItem>().getBPM() + "\nGenre: "
+            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nGenre: "
             + SongItem4.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
             audio_player.clip = SongItem4.GetComponent<SongItem>().getAudio();
             audio_player.Play();
@@ -183,7 +183,7 @@ public class Turn_System : MonoBehaviour
 
         // enemy take damage
         bool isDead = enemyhealth.isDead();
-
+        isDead = true;
         // update HUDs
         if (isDead)
         {
@@ -236,13 +236,13 @@ public class Turn_System : MonoBehaviour
             starCount--;
             star_combo -= comboThreshold;
             print("activated star ONE combo ability");
-            BPM_Speed = "slow";
+            threshold = 0.1f;
         }
         if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
             starCount-= 2;
             star_combo -= comboThreshold * 2;
             print("activated star TWO combo ability");
-            BPM_Speed = "fast";
+            threshold = 0.2f;
         }
         if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
             starCount = 0;
@@ -273,15 +273,12 @@ public class Turn_System : MonoBehaviour
     public float getCurrentBPM()
     {
         drift += 0.5f;
-        if (BPM_Speed == "fast")
-        {
-            return SongToPlay.GetComponent<SongItem>().getHighBPM();
-        }
-        else if (BPM_Speed == "slow")
-        {
-            return SongToPlay.GetComponent<SongItem>().getLowBPM();
-        }
         return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
+    }
+
+    public float getThreshold()
+    {
+        return threshold;
     }
 
     void resetStats()
@@ -296,7 +293,7 @@ public class Turn_System : MonoBehaviour
         drift = 0;
         playerStarDamageModifier = 1;
         enemyStarDamageModifier = 1;
-        BPM_Speed = "normal";
+        threshold = 0.15f;
 }
 
     public void NoteHitPerfect()
@@ -382,6 +379,7 @@ public class Turn_System : MonoBehaviour
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = playerhealth.isDead();
+        
         //enemy_animator.Play("Player_Hit");
 
         if (isDead)
@@ -396,17 +394,19 @@ public class Turn_System : MonoBehaviour
     }
     void damagePlayer(Song song)
     {
-        playerhealth.takeDamage((enemyhealth.getHealth() / enemyhealth.getMaxHealth()) * song.getDamage() * enemyStarDamageModifier);
+        playerhealth.takeDamage(song.getDamage() * enemyStarDamageModifier);
     }
     void EndBattle()
     {
         if (state == BattleState.WON)
         {
-            // win
+            persistantManager.Instance.setDialogue("win");
+            SceneManager.LoadScene("TalkingSceneWin");
         }
         else if (state == BattleState.LOST)
         {
-            // lose
+            persistantManager.Instance.setDialogue("lose");
+            SceneManager.LoadScene("TalkingSceneLose");
         }
     }
 }

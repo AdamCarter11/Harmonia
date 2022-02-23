@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
             //where we want to put the interact logic (open scene, open UI, whatever)
             audio_s.clip = startBattle;
             audio_s.Play();
+            persistantManager.Instance.setDialogue("first encounter");
             SceneManager.LoadScene("TalkingScene1");
         }
     }
