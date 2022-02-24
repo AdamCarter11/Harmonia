@@ -272,7 +272,7 @@ public class Turn_System : MonoBehaviour
 
     public float getCurrentBPM()
     {
-        drift += 0.5f;
+        drift += 0.25f;
         return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
     }
 
