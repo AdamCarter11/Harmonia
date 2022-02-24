@@ -40,7 +40,9 @@ public class persistantManager : MonoBehaviour
         if(checkScene != "Settings" && checkScene != "Menu"){
             currScene = SceneManager.GetActiveScene().name;
         }
- 
+        if(currScene == ""){
+            currScene = "Menu";
+        }
         //we could also switch to using index, we would just have to be careful with what order we build the levels in
         if(currScene == "RPG_scene"){
             currentLevel = 1;
