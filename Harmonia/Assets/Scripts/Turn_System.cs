@@ -183,7 +183,7 @@ public class Turn_System : MonoBehaviour
 
         // enemy take damage
         bool isDead = enemyhealth.isDead();
-        isDead = true;
+        //isDead = true;
         // update HUDs
         if (isDead)
         {
