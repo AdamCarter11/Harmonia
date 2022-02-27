@@ -3005,7 +3005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f43b0b2976cc3f4289ba1df9d1414fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song: {fileID: 11400000, guid: 84267ade3837fc24cbbbe6c66712cbd6, type: 2}
+  song: {fileID: 11400000, guid: a7401d4860525a045a5e30c85fa19dbc, type: 2}
 --- !u!1 &511225451
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,7 +4089,7 @@ MonoBehaviour:
   star3: {fileID: 399126592}
   starReplacement: {fileID: -2413806693520163455, guid: af472e7fe91e9d748ab5f3e6ec792679, type: 3}
   originStar: {fileID: 21300000, guid: 923058b927197c34db0b5da41ba3d1b8, type: 3}
-  BPM_Speed: 
+  threshold: 0
   game_manager: {fileID: 1387051696}
 --- !u!4 &834344766
 Transform:
@@ -7207,7 +7207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f43b0b2976cc3f4289ba1df9d1414fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  song: {fileID: 11400000, guid: f111bb8443bef5f40ad69f09d5068cfc, type: 2}
+  song: {fileID: 11400000, guid: 618fa50c958c2ac46a9c3cd21c49a8d3, type: 2}
 --- !u!4 &1245533686 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2494724328960759742, guid: da935de4db09e3245bc0bb266d1f4bee, type: 3}

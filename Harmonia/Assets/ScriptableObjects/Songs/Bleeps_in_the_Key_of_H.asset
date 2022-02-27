@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7931fc5b3e28d044804d9f6eccab5a0, type: 3}
+  m_Name: Bleeps_in_the_Key_of_H
+  m_EditorClassIdentifier: 
+  song_name: Bleeps in the Key of H
+  BPM: 400
+  HIGH_BPM: 0
+  LOW_BPM: 0
+  genre: Genre
+  audio: {fileID: 8300000, guid: 9ad36e95c13e430479d9d27e29d3be29, type: 3}
+  notes: {fileID: 4900000, guid: 2d00e8455c84d494a88dba3b71b111f5, type: 3}
+  sequence: {fileID: 4900000, guid: 13d94fb7fdd5f284a9c0f7e2d647087a, type: 3}
+  info: 
+  buffer: 0
+  baseDamage: 0
