@@ -18,8 +18,8 @@ MonoBehaviour:
   LOW_BPM: 0
   genre: Genre
   audio: {fileID: 8300000, guid: d8d5b50e2b4ee7d448daa75edf22ace9, type: 3}
-  notes: {fileID: 4900000, guid: 2d00e8455c84d494a88dba3b71b111f5, type: 3}
-  sequence: {fileID: 4900000, guid: 13d94fb7fdd5f284a9c0f7e2d647087a, type: 3}
+  notes: {fileID: 4900000, guid: 9b21df3091a850d45a3cbfd613d5b1d8, type: 3}
+  sequence: {fileID: 4900000, guid: c6348b7d3a558a34e970c01dcd164e25, type: 3}
   info: 
-  buffer: 0
+  buffer: 0.25
   baseDamage: 300

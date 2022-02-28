@@ -79,8 +79,8 @@ public class Turn_System : MonoBehaviour
         enemyhealth.setHealth(EnemyObject.getHealth());
         playerhealth.setHealth(PlayerObject.getHealth());
 
-        state = BattleState.ENEMYTURN;
-        StartCoroutine(EnemyTurn());
+        state = BattleState.PLAYERTURN;
+        PlayerTurn();
     }
 
     void PlayerTurn()

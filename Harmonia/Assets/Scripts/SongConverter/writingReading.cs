@@ -92,38 +92,75 @@ public class writingReading : MonoBehaviour
     {
         while (whichNote <= newNotesList.Length)
         {
-            if (whichNote == 0)
+            if (whichPlayer == "player")
             {
-                dontSpawn = false;
-                prevVal = sequence[whichNote];
-                yield return new WaitForSeconds(sequence[whichNote]);
-            }
-            else if (whichNote < newNotesList.Length)
-            {
-                if (sequence[whichNote] == prevVal)
-                {
-                    dontSpawn = true;
-                }
-                else if (sequence[whichNote] - prevVal < turn_system.getThreshold())
-                {
-                    /*if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) > interval)
-                    {
-                        dontSpawn = false;
-                    }*/
-                    dontSpawn = true;
-                }
-                else
+                if (whichNote == 0)
                 {
                     dontSpawn = false;
-                    yield return new WaitForSeconds(sequence[whichNote] - prevVal);
                     prevVal = sequence[whichNote];
+                    yield return new WaitForSeconds(sequence[whichNote]);
+                }
+                else if (whichNote < newNotesList.Length)
+                {
+                    if (sequence[whichNote] == prevVal)
+                    {
+                        dontSpawn = true;
+                    }
+                    else if (sequence[whichNote] - prevVal < turn_system.getThreshold())
+                    {
+                        /*if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) > interval)
+                        {
+                            dontSpawn = false;
+                        }*/
+                        dontSpawn = true;
+                    }
+                    else
+                    {
+                        dontSpawn = false;
+                        yield return new WaitForSeconds(sequence[whichNote] - prevVal);
+                        prevVal = sequence[whichNote];
+                    }
+                }
+                else if (whichNote >= newNotesList.Length)
+                {
+                    dontSpawn = true;
                 }
             }
-            else if (whichNote >= newNotesList.Length)
+            else if (whichPlayer == "enemy")
             {
-                dontSpawn = true;
+                if (whichNote == 0)
+                {
+                    dontSpawn = false;
+                    prevVal = sequence[whichNote];
+                    yield return new WaitForSeconds(sequence[whichNote]);
+                }
+                else if (whichNote < newNotesList.Length)
+                {
+                    if (sequence[whichNote] == prevVal)
+                    {
+                        dontSpawn = true;
+                    }
+                    else if (sequence[whichNote] - prevVal < 0.15)
+                    {
+                        /*if (float.Parse(newNotesList[whichNote]) - float.Parse(newNotesList[whichNote - 1]) > interval)
+                        {
+                            dontSpawn = false;
+                        }*/
+                        dontSpawn = true;
+                    }
+                    else
+                    {
+                        dontSpawn = false;
+                        yield return new WaitForSeconds(sequence[whichNote] - prevVal);
+                        prevVal = sequence[whichNote];
+                    }
+                }
+                else if (whichNote >= newNotesList.Length)
+                {
+                    dontSpawn = true;
+                }
             }
-
+            
             if (!dontSpawn)
             {
                 if (whichPlayer == "player")
