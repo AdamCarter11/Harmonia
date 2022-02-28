@@ -86,6 +86,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AINoteHitPerfect()
+    {
+        judgeTextAnim.Play("JudgementText", -1, 0);
+        judgementText.text = "Perfect!!";
+        judgementText.color = Color.green;
+        turn_system.NoteHitPerfect();
+    }
+
     public void NoteHitGreat()
     {
         judgeTextAnim.Play("JudgementText", -1, 0);
