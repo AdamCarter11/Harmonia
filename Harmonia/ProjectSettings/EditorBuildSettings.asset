@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jalen's Scene.unity
     guid: eeb52e9dd672c4b4a89753a1953c8bcd
+  - enabled: 1
+    path: Assets/Scenes/TalkingSceneWin.unity
+    guid: 352c2f6c74d8f59468a1b890f2aaca29
+  - enabled: 1
+    path: Assets/Scenes/TalkingSceneLose.unity
+    guid: d86343c87167a1b43ac5865156eb4e49
+  - enabled: 1
+    path: Assets/Scenes/RPG_Scene2.unity
+    guid: 4609861a7a8a0204f8359da24325e9b8
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 3edbe2d8091298f4b9e81217ee12f34e
   m_configObjects: {}

@@ -19,3 +19,8 @@ MonoBehaviour:
   - Do you know who you are speaking to? I am Mozart! One of the greatest musicians
     of all time!
   - If it means you will leave me alone, then yes. Let the battle commence!
+  player_win_dialogue:
+  - I lose
+  player_lose_dialogue:
+  - I win
+  chara_so: {fileID: 11400000, guid: b5cdc1e18541aec48b7bcc0aed501046, type: 2}

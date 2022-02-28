@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     private GameObject whichToInteractWith;
 
     public Inventory inventory;
-    public SettingsManager settings;
+    //public SettingsManager settings;
 
     public AudioSource audio_s;
     public AudioClip walking;
@@ -47,13 +47,14 @@ public class Player : MonoBehaviour
             //where we want to put the interact logic (open scene, open UI, whatever)
             audio_s.clip = startBattle;
             audio_s.Play();
+            persistantManager.Instance.setDialogue("first encounter");
             SceneManager.LoadScene("TalkingScene1");
         }
     }
 
     private void FixedUpdate()
     {
-        if (!inventory.getActive() && !settings.settingsActive())
+        if (!inventory.getActive()) // && !settings.settingsActive()
         {
             rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
         }

@@ -18,3 +18,8 @@ MonoBehaviour:
   - Well in that case, how about a little music battle. Whoever wins gets to keep
     your soul.
   - Is that a yes?
+  player_win_dialogue:
+  - I win
+  player_lose_dialogue:
+  - I lose
+  chara_so: {fileID: 0}

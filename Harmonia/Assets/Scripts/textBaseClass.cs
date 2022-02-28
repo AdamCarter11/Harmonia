@@ -20,20 +20,33 @@ public class textBaseClass : TalkingScene
     public SettingsManager settings;
     private int npcIndex=0;
 
+    public ButtonScript button_script;
+
     private void Awake() {
         nameText.text = scriptableObjs[0].NPCName;
         talkingText.text = "";
     }
     private void Start() {
         settings.LoadValues();
-        StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        if (persistantManager.Instance.getDialogue() == "first encounter")
+        {
+            StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        }
+        else if (persistantManager.Instance.getDialogue() == "win")
+        {
+            StartCoroutine(WriteText(scriptableObjs[npcIndex].player_win_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        }
+        else if (persistantManager.Instance.getDialogue() == "lose")
+        {
+            StartCoroutine(WriteText(scriptableObjs[npcIndex].player_lose_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        }
         npcIndex = 1;
     }
     private void Update() {
-        if (!settings.settingsActive())
-        {
+        //if (!settings.settingsActive())
+        //{
             updateText();
-        }
+        //}
     }
 
     void updateText()
@@ -42,14 +55,41 @@ public class textBaseClass : TalkingScene
         {
             StopAllCoroutines();
             talkingText.text = "";
-            if (whichText >= scriptableObjs[npcIndex].dialogue.Length)
+            if (persistantManager.Instance.getDialogue() == "first encounter")
             {
-                panel.SetActive(false);
-                isThereStillText = false;
+                if (whichText >= scriptableObjs[npcIndex].dialogue.Length)
+                {
+                    panel.SetActive(false);
+                    isThereStillText = false;
+                }
+                else
+                {
+                    StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                }
             }
-            else
+            else if (persistantManager.Instance.getDialogue() == "win")
             {
-                StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                if (whichText >= scriptableObjs[npcIndex].player_win_dialogue.Length)
+                {
+                    panel.SetActive(false);
+                    isThereStillText = false;
+                }
+                else
+                {
+                    StartCoroutine(WriteText(scriptableObjs[npcIndex].player_win_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                }
+            }
+            else if (persistantManager.Instance.getDialogue() == "lose")
+            {
+                if (whichText >= scriptableObjs[npcIndex].player_lose_dialogue.Length)
+                {
+                    panel.SetActive(false);
+                    isThereStillText = false;
+                }
+                else
+                {
+                    StartCoroutine(WriteText(scriptableObjs[npcIndex].player_lose_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                }
             }
             if(npcIndex == 0){
                 npcIndex = 1;
@@ -65,7 +105,20 @@ public class textBaseClass : TalkingScene
         }
         if (!isThereStillText)
         {
-            SceneManager.LoadScene("Jalen's Scene");
+            if (persistantManager.Instance.getDialogue() == "first encounter")
+            {
+                SceneManager.LoadScene("Jalen's Scene");
+            }
+            else if (persistantManager.Instance.getDialogue() == "lose")
+            {
+                button_script.NewGame();
+                SceneManager.LoadScene(persistantManager.Instance.currScene);
+            }
+            else if (persistantManager.Instance.getDialogue() == "win")
+            {
+                persistantManager.Instance.AddChara(scriptableObjs[0].getCharaSO());
+                SceneManager.LoadScene("RPG_Scene2");
+            }
         }
     }
 }

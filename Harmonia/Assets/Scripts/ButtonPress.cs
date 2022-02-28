@@ -9,6 +9,9 @@ public class ButtonPress : MonoBehaviour
     public Sprite pressedImage;
 
     public KeyCode pressKey;
+
+    // public AudioSource keySound;
+
     void Start()
     {
         theSR = GetComponent<SpriteRenderer>();
@@ -19,6 +22,11 @@ public class ButtonPress : MonoBehaviour
     {
         if (Input.GetKeyDown(pressKey))
         {
+            // if(keySound != null){
+            //     keySound.Play();
+            // } else {
+            //     Debug.Log("ButtonPress: error : no sound object found");
+            // }
             theSR.sprite = pressedImage;
         }
 

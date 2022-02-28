@@ -2255,7 +2255,19 @@ MonoBehaviour:
   openBag: {fileID: 8300000, guid: 395b029670ac4dc4b8bef404bb9783ce, type: 3}
   closeBag: {fileID: 8300000, guid: 20da30367609c6345b5226b638628e6b, type: 3}
   characters:
-  - {fileID: 11400000, guid: b5cdc1e18541aec48b7bcc0aed501046, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  charactersParent: {fileID: 752353890}
 --- !u!4 &572755086
 Transform:
   m_ObjectHideFlags: 0
@@ -2277,7 +2289,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 572755084}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ccfbf724bbedbd409b239b24f26486e, type: 3}
   m_Name: 
@@ -3216,10 +3228,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   inventory: {fileID: 572755085}
-  settings: {fileID: 572755087}
   audio_s: {fileID: 1308600080}
   walking: {fileID: 8300000, guid: fc151d80465108045b1ecbd8f43010f5, type: 3}
   startBattle: {fileID: 8300000, guid: 6fcb7397d69379640b600d38f69f6e1b, type: 3}
+  clockFlappingNoise: {fileID: 0}
   checkRadius: 1
 --- !u!50 &966894150
 Rigidbody2D:
@@ -9686,7 +9698,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
