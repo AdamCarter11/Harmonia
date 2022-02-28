@@ -26,6 +26,12 @@ public class GameManager : MonoBehaviour
 
     public AudioSource perfectNote;
 
+    public AIButtonPress Target1;
+    public AIButtonPress Target2;
+    public AIButtonPress Target3;
+    public AIButtonPress Target4;
+    public AIButtonPress Target5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,14 +90,6 @@ public class GameManager : MonoBehaviour
         if(perfectNote != null){
             perfectNote.Play();
         }
-    }
-
-    public void AINoteHitPerfect()
-    {
-        judgeTextAnim.Play("JudgementText", -1, 0);
-        judgementText.text = "Perfect!!";
-        judgementText.color = Color.green;
-        turn_system.NoteHitPerfect();
     }
 
     public void NoteHitGreat()

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Serenade13
   m_EditorClassIdentifier: 
   song_name: Serenade13
-  BPM: 0
+  BPM: 400
   HIGH_BPM: 0
   LOW_BPM: 0
   genre: Genre
   audio: {fileID: 8300000, guid: 84ffd82ca3649fe469bb18a1fde37ad3, type: 3}
-  notes: {fileID: 0}
-  sequence: {fileID: 0}
+  notes: {fileID: 4900000, guid: 2d00e8455c84d494a88dba3b71b111f5, type: 3}
+  sequence: {fileID: 4900000, guid: 13d94fb7fdd5f284a9c0f7e2d647087a, type: 3}
   info: 
   buffer: 0
   baseDamage: 300

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AIButtonPress : MonoBehaviour
 {   
-    public static AIButtonPress instance;
     private SpriteRenderer theSR;
     public Sprite defaultImage;
     public Sprite pressedImage;
@@ -22,9 +21,14 @@ public class AIButtonPress : MonoBehaviour
         theSR.sprite = pressedImage;
     }
 
-    public IEnumerator keyDefault()
+    public void keyDefault()
     {
-        yield return new WaitForSeconds(1);
+        StartCoroutine(resetKey());   
+    }
+
+    IEnumerator resetKey()
+    {
+        yield return new WaitForSeconds(0.1f);
         theSR.sprite = defaultImage;
     }
 }

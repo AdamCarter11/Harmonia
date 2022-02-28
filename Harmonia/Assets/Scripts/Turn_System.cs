@@ -14,7 +14,7 @@ public class Turn_System : MonoBehaviour
     public GameObject SongItem2;
     public GameObject SongItem3;
     public GameObject SongItem4;
-    private GameObject SongToPlay;
+    private SongItem SongToPlay;
     public Text InfoText;
     public writingReading reader;
 
@@ -63,6 +63,8 @@ public class Turn_System : MonoBehaviour
     // stats
     public GameManager game_manager;
 
+    // ai autoplay
+
     void Start()
     {
         instance = this;
@@ -77,8 +79,8 @@ public class Turn_System : MonoBehaviour
         enemyhealth.setHealth(EnemyObject.getHealth());
         playerhealth.setHealth(PlayerObject.getHealth());
 
-        state = BattleState.PLAYERTURN;
-        PlayerTurn();
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(EnemyTurn());
     }
 
     void PlayerTurn()
@@ -137,24 +139,24 @@ public class Turn_System : MonoBehaviour
         Menu_UI.SetActive(false);
         if (whichSong == 1)
         {
-            SongToPlay = SongItem1;
+            SongToPlay = SongItem1.GetComponent<SongItem>();
         }
         else if (whichSong == 2)
         {
-            SongToPlay = SongItem2;
+            SongToPlay = SongItem2.GetComponent<SongItem>();
         }
         else if (whichSong == 3)
         {
-            SongToPlay = SongItem3;
+            SongToPlay = SongItem3.GetComponent<SongItem>();
         }
         else if (whichSong == 4)
         {
-            SongToPlay = SongItem4;
+            SongToPlay = SongItem4.GetComponent<SongItem>();
         }
         StartCoroutine(PlayerPerform(SongToPlay));
     }
 
-    IEnumerator PlayerPerform(GameObject song)
+    IEnumerator PlayerPerform(SongItem song)
     {
         state = BattleState.ENEMYTURN;
         PlayerPlayUI.SetActive(true);
@@ -163,14 +165,14 @@ public class Turn_System : MonoBehaviour
         game_manager.resetStats();
         amtOfNotes = song.GetComponent<SongItem>().getAmountOfNotes();
         damagePerNote = song.GetComponent<SongItem>().getDamage() / amtOfNotes;
-        print(damagePerNote);
+        //print(damagePerNote);
 
         // spawn song notes and perform
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
-        TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM());
+        TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM(), "player");
         comboThreshold = TextReader.notesLength/6;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
-        print("COMBO THRESHOLD: " + comboThreshold);
+        //print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getAudio().length);
@@ -272,8 +274,12 @@ public class Turn_System : MonoBehaviour
 
     public float getCurrentBPM()
     {
-        drift += 0.25f;
-        return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
+        if (state == BattleState.ENEMYTURN)
+        {
+            drift += 0.25f;
+            return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
+        }
+        return EnemyPlaySong.getBPM();
     }
 
     public float getThreshold()
@@ -351,6 +357,8 @@ public class Turn_System : MonoBehaviour
     {
         state = BattleState.PLAYERTURN;
         // enemy performs
+        EnemyPlayUI.SetActive(true);
+
         int song_num = Random.Range(1, 4);
         if (song_num == 1)
         {
@@ -369,10 +377,14 @@ public class Turn_System : MonoBehaviour
             EnemyPlaySong = EnemyObject.getSong4();
         }
 
+        yield return new WaitForSeconds(3f);
+        TextReader.setUp(EnemyPlaySong.getText(), EnemyPlaySong.getText2(), EnemyPlaySong.getBPM(), "enemy");
         audio_player.clip = EnemyPlaySong.getAudio();
+        yield return new WaitForSeconds(EnemyPlaySong.getBuffer());
         audio_player.Play();
         yield return new WaitForSeconds(EnemyPlaySong.getAudio().length);
         audio_player.Stop();
+        reader.endCoroutine();
         damagePlayer(EnemyPlaySong);
 
         yield return new WaitForSeconds(2f);
@@ -390,6 +402,7 @@ public class Turn_System : MonoBehaviour
         else
         {
             PlayerTurn();
+            EnemyPlayUI.SetActive(false);
         }
     }
     void damagePlayer(Song song)
