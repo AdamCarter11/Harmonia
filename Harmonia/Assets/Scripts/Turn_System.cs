@@ -279,7 +279,8 @@ public class Turn_System : MonoBehaviour
             drift += 0.25f;
             return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
         }
-        return EnemyPlaySong.getBPM();
+        drift += 0.25f;
+        return EnemyPlaySong.getBPM() + drift;
     }
 
     public float getThreshold()
@@ -391,6 +392,8 @@ public class Turn_System : MonoBehaviour
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = playerhealth.isDead();
+        resetStats();
+        game_manager.resetStats();
         
         //enemy_animator.Play("Player_Hit");
 
