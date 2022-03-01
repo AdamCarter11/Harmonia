@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
         }
 
-        if (moveDir.y > 0)
+        /*if (moveDir.y > 0)
         {
             sr.sprite = walk_forward;
         }
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         else if (moveDir.y == 0 && moveDir.x < 0)
         {
             sr.sprite = walk_left;
-        }
+        }*/
     }
 
     void GetInputs()
