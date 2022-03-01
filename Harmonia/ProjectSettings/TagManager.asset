@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - Activator
+  - GreatWindow
+  - Target1
+  - Target2
+  - Target3
+  - Target4
+  - Target5
   layers:
   - Default
   - TransparentFX

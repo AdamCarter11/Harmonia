@@ -24,4 +24,24 @@ public class Song : ScriptableObject
     {
         return baseDamage;
     }
+
+    public TextAsset getText()
+    {
+        return notes;
+    }
+
+    public TextAsset getText2()
+    {
+        return sequence;
+    }
+
+    public float getBPM()
+    {
+        return BPM;
+    }
+
+    public float getBuffer()
+    {
+        return buffer;
+    }
 }
