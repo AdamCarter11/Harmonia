@@ -4089,7 +4089,7 @@ MonoBehaviour:
   star3: {fileID: 399126592}
   starReplacement: {fileID: -2413806693520163455, guid: af472e7fe91e9d748ab5f3e6ec792679, type: 3}
   originStar: {fileID: 21300000, guid: 923058b927197c34db0b5da41ba3d1b8, type: 3}
-  BPM_Speed: 
+  threshold: 0
   game_manager: {fileID: 1387051696}
 --- !u!4 &834344766
 Transform:
@@ -9070,7 +9070,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ce4d5856bd83de541bdc29c7793fcb21, type: 3}
+  m_audioClip: {fileID: 8300000, guid: eaf62e6c251232945bf10ad3a4f57a17, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
