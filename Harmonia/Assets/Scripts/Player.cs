@@ -41,6 +41,13 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        if(PlayerPrefs.GetFloat("playerX") != 0 && PlayerPrefs.GetFloat("playerY") != 0 ){
+            transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), transform.position.z);
+            print("save worked");
+        }
+        else{
+            print("save failed");
+        }
     }
 
     void Update()
@@ -86,6 +93,13 @@ public class Player : MonoBehaviour
         {
             sr.sprite = walk_left;
         }
+    }
+
+    private void OnDestroy() {
+        //checks when scene changes, used to save players position
+        PlayerPrefs.SetFloat("playerX", transform.position.x);
+        PlayerPrefs.SetFloat("playerY", transform.position.y);
+        print(PlayerPrefs.GetFloat("playerY"));
     }
 
     void GetInputs()
