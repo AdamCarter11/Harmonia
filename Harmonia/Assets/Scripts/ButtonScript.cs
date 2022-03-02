@@ -36,7 +36,7 @@ public class ButtonScript : MonoBehaviour
             SceneManager.LoadScene("TalkingScene1");
         }
         if(loadLevel == 3){
-            SceneManager.LoadScene("Jalen's Scene");
+            SceneManager.LoadScene("CombatScene");
         }
         */
     }

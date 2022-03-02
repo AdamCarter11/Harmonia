@@ -28,7 +28,7 @@ public class persistantManager : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && currScene != "CombatScene")
         {
             /*
             settingsOpen = !settingsOpen;
@@ -50,7 +50,7 @@ public class persistantManager : MonoBehaviour
         if(currScene == "TalkingScene1"){
             currentLevel = 2;
         }
-        if(currScene == "Jalen's Scene"){
+        if(currScene == "CombatScene"){
             currentLevel = 3;
         }
         if (currScene == "TalkingSceneWin")

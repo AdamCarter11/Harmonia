@@ -107,7 +107,7 @@ public class textBaseClass : TalkingScene
         {
             if (persistantManager.Instance.getDialogue() == "first encounter")
             {
-                SceneManager.LoadScene("Jalen's Scene");
+                SceneManager.LoadScene("CombatScene");
             }
             else if (persistantManager.Instance.getDialogue() == "lose")
             {
