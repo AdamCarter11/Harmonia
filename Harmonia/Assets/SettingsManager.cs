@@ -32,6 +32,14 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
+        Screen.fullScreen = true;   //this may automatically set full screen?
+        /*
+        // if the code above doesn't work, try this code:
+        var resolution = Screen.resolutions[Screen.resolutions.Length-1];
+        Screen.SetResolution(resolution.width, resolution.height, true);
+        */
+        
+
         LoadValues();
     }
 
