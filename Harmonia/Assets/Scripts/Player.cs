@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer sr;
     private Vector2 moveDir;
     private GameObject whichToInteractWith;
+    private Animator anim;
+    private string direction;
 
     public Inventory inventory;
     //public SettingsManager settings;
@@ -41,13 +43,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        if(PlayerPrefs.GetFloat("playerX") != 0 && PlayerPrefs.GetFloat("playerY") != 0 ){
-            transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), transform.position.z);
-            print("save worked");
-        }
-        else{
-            print("save failed");
-        }
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -79,19 +75,42 @@ public class Player : MonoBehaviour
 
         if (moveDir.y > 0)
         {
-            sr.sprite = walk_forward;
+            anim.Play("Player_WalkBack");
+            direction = "Back";
         }
         else if (moveDir.y < 0)
         {
-            sr.sprite = walk_backward;
+            anim.Play("Player_WalkForward");
+            direction = "Forward";
         }
         else if (moveDir.y == 0 && moveDir.x > 0)
         {
-            sr.sprite = walk_right;
+            anim.Play("Player_WalkRight");
+            direction = "Right";
         }
         else if (moveDir.y == 0 && moveDir.x < 0)
         {
-            sr.sprite = walk_left;
+            anim.Play("Player_WalkLeft");
+            direction = "Left";
+        }
+        else
+        {
+            if (direction == "Forward")
+            {
+                anim.Play("Player_IdleBack");
+            }
+            else if (direction == "Back")
+            {
+                anim.Play("Player_IdleForward");
+            }
+            else if (direction == "Right")
+            {
+                anim.Play("Player_IdleRight");
+            }
+            else if (direction == "Left")
+            {
+                anim.Play("Player_IdleLeft");
+            }
         }
     }
 
