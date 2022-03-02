@@ -80,6 +80,8 @@ public class Turn_System : MonoBehaviour
         playerhealth.setHealth(PlayerObject.getHealth());
 
         state = BattleState.PLAYERTURN;
+        resetStats();
+        game_manager.resetStats();
         PlayerTurn();
     }
 
@@ -89,7 +91,7 @@ public class Turn_System : MonoBehaviour
         SongItem2.GetComponentInChildren<Text>().text = SongItem2.GetComponent<SongItem>().getName();
         SongItem3.GetComponentInChildren<Text>().text = SongItem3.GetComponent<SongItem>().getName();
         SongItem4.GetComponentInChildren<Text>().text = SongItem4.GetComponent<SongItem>().getName();
-        print("Player Turn");
+        //print("Player Turn");
         // enable player to make choices for turn
         Menu_UI.SetActive(true);
     }
@@ -161,8 +163,7 @@ public class Turn_System : MonoBehaviour
         state = BattleState.ENEMYTURN;
         PlayerPlayUI.SetActive(true);
         // damage calculations
-        resetStats();
-        game_manager.resetStats();
+        
         amtOfNotes = song.GetComponent<SongItem>().getAmountOfNotes();
         damagePerNote = song.GetComponent<SongItem>().getDamage() / amtOfNotes;
         //print(damagePerNote);
@@ -180,6 +181,8 @@ public class Turn_System : MonoBehaviour
         // final performance bonus
         float final_accuracy = hitNotesAmt / currentNotesAmt;
         finalPerformanceBonus(final_accuracy);
+        resetStats();
+        game_manager.resetStats();
         yield return new WaitForSeconds(2f);
         
 
@@ -208,9 +211,6 @@ public class Turn_System : MonoBehaviour
         else if(star_combo >= comboThreshold){
             starCount = 1;
         }
-        else if (star_combo == 0 && starCount == 0){
-            starCount = 0;
-        }
 
         //I'm splitting it up like this in case we need to access the variable in other scripts
         if(starCount == 0){
@@ -237,19 +237,19 @@ public class Turn_System : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.V) && starCount > 0){
             starCount--;
             star_combo -= comboThreshold;
-            print("activated star ONE combo ability");
+            //print("activated star ONE combo ability");
             threshold = 0.1f;
         }
         if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
             starCount-= 2;
             star_combo -= comboThreshold * 2;
-            print("activated star TWO combo ability");
+            //print("activated star TWO combo ability");
             threshold = 0.2f;
         }
         if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
             starCount = 0;
             star_combo -= comboThreshold * 3;
-            print("activated star THREE combo ability");
+            //print("activated star THREE combo ability");
             //star modifiers, may need to change how they get reset and stuff
             playerStarDamageModifier = 2;
             enemyStarDamageModifier = 1.5f;
@@ -279,7 +279,8 @@ public class Turn_System : MonoBehaviour
             drift += 0.25f;
             return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
         }
-        return EnemyPlaySong.getBPM();
+        drift += 0.25f;
+        return EnemyPlaySong.getBPM() + drift;
     }
 
     public float getThreshold()
@@ -391,6 +392,8 @@ public class Turn_System : MonoBehaviour
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = playerhealth.isDead();
+        resetStats();
+        game_manager.resetStats();
         
         //enemy_animator.Play("Player_Hit");
 

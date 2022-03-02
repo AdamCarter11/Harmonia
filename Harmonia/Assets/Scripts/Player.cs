@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private LayerMask npcLayer;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private Vector2 moveDir;
     private GameObject whichToInteractWith;
 
@@ -29,11 +30,17 @@ public class Player : MonoBehaviour
     public AudioClip startBattle;
     public AudioClip clockFlappingNoise;
 
+    public Sprite walk_forward;
+    public Sprite walk_backward;
+    public Sprite walk_right;
+    public Sprite walk_left;
+
     public float checkRadius;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -61,6 +68,23 @@ public class Player : MonoBehaviour
         else
         {
             rb.velocity = new Vector2(0, 0);
+        }
+
+        if (moveDir.y > 0)
+        {
+            sr.sprite = walk_forward;
+        }
+        else if (moveDir.y < 0)
+        {
+            sr.sprite = walk_backward;
+        }
+        else if (moveDir.y == 0 && moveDir.x > 0)
+        {
+            sr.sprite = walk_right;
+        }
+        else if (moveDir.y == 0 && moveDir.x < 0)
+        {
+            sr.sprite = walk_left;
         }
     }
 
