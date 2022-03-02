@@ -39,8 +39,13 @@ public class SettingsManager : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, true);
         */
         
-
-        LoadValues();
+        if(PlayerPrefs.GetFloat("TextValue") == 0){
+            LoadNewDefaults();
+        }
+        else{
+            LoadValues();
+        }
+        
     }
 
     // Update is called once per frame
@@ -101,7 +106,20 @@ public class SettingsManager : MonoBehaviour
         print(textValue);
         textSlider.value = textValue;
     }
+    public void LoadNewDefaults(){
+        float volumeValue = .25f;
+        volumeSlider.value = volumeValue;
+        Volume.volume = volumeValue * .25f;
 
+        float effectsValue = .25f;
+        effectsSlider.value = effectsValue;
+        SFX.volume = effectsValue * .25f;
+
+        float textValue = .25f;
+        print(textValue);
+        textSlider.value = textValue;
+    }
+    
     public float getTextSpeed()
     {
         if (textSlider.value != 0)
