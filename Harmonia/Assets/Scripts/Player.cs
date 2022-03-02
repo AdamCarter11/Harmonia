@@ -44,6 +44,13 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        if(PlayerPrefs.GetFloat("playerX") != 0 && PlayerPrefs.GetFloat("playerX") != 0){
+            transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), transform.position.z);
+            print("save worked");
+        }
+        else{
+            print("save failed");
+        }
     }
 
     void Update()
