@@ -117,6 +117,8 @@ public class textBaseClass : TalkingScene
             else if (persistantManager.Instance.getDialogue() == "win")
             {
                 persistantManager.Instance.AddChara(scriptableObjs[0].getCharaSO());
+                PlayerPrefs.SetFloat("playerX", 0);
+                PlayerPrefs.SetFloat("playerY", 0);
                 SceneManager.LoadScene("RPG_Scene2");
             }
         }
