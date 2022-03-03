@@ -238,13 +238,13 @@ public class Turn_System : MonoBehaviour
             starCount--;
             star_combo -= comboThreshold;
             //print("activated star ONE combo ability");
-            threshold = 0.1f;
+            threshold = 0.2f;
         }
         if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
             starCount-= 2;
             star_combo -= comboThreshold * 2;
             //print("activated star TWO combo ability");
-            threshold = 0.2f;
+            threshold = 0.1f;
         }
         if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
             starCount = 0;
