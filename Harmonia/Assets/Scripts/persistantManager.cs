@@ -28,7 +28,10 @@ public class persistantManager : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape) && currScene != "CombatScene")
+
+        string checkScene = SceneManager.GetActiveScene().name;
+
+        if (Input.GetKeyDown(KeyCode.Tab) && currScene != "CombatScene" && checkScene != "Settings")
         {
             /*
             settingsOpen = !settingsOpen;
@@ -36,7 +39,10 @@ public class persistantManager : MonoBehaviour
             */
             SceneManager.LoadScene("Settings");
         }
-        string checkScene = SceneManager.GetActiveScene().name;
+        else if(Input.GetKeyDown(KeyCode.Tab) && checkScene == "Settings"){
+            SceneManager.LoadScene(currScene);
+        }
+
         if(checkScene != "Settings" && checkScene != "Menu"){
             currScene = SceneManager.GetActiveScene().name;
         }

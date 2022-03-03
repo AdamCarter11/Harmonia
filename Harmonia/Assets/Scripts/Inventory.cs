@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             characters = persistantManager.Instance.getCharacters();
             UpdateUI();
