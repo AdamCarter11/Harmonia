@@ -30,7 +30,6 @@ public class persistantManager : MonoBehaviour
     private void Update() {
 
         string checkScene = SceneManager.GetActiveScene().name;
-
         if (Input.GetKeyDown(KeyCode.Tab) && currScene != "CombatScene" && checkScene != "Settings")
         {
             /*

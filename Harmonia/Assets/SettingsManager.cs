@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class SettingsManager : MonoBehaviour
 {
-    //public static SettingsManager Instance;       //if we want to make the settings save across scenes
 
 
     public GameObject settingsUI;
@@ -45,7 +44,6 @@ public class SettingsManager : MonoBehaviour
         else{
             LoadValues();
         }
-        
     }
 
     // Update is called once per frame
@@ -100,7 +98,7 @@ public class SettingsManager : MonoBehaviour
 
         float effectsValue = PlayerPrefs.GetFloat("EffectsValue");
         effectsSlider.value = effectsValue;
-        SFX.volume = effectsValue * .25f;
+        SFX.volume = effectsValue * .15f;
 
         float textValue = PlayerPrefs.GetFloat("TextValue");
         print(textValue);
