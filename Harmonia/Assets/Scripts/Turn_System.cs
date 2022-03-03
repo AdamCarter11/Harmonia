@@ -172,7 +172,7 @@ public class Turn_System : MonoBehaviour
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM(), "player");
-        comboThreshold = TextReader.notesLength/6;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
+        comboThreshold = TextReader.notesLength/12;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
         //print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
