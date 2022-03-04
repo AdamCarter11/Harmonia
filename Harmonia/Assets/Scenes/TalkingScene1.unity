@@ -2256,7 +2256,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press E To skip
+  m_Text: Press E To continue
 --- !u!222 &1338543712
 CanvasRenderer:
   m_ObjectHideFlags: 0

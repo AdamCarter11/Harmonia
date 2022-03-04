@@ -215,23 +215,36 @@ public class Turn_System : MonoBehaviour
         //I'm splitting it up like this in case we need to access the variable in other scripts
         if(starCount == 0){
             star1.sprite = originStar;
+            star1.color = Color.white;
             star2.sprite = originStar;
+            star2.color = Color.white;
             star3.sprite = originStar;
+            star3.color = Color.white;
         }
         if(starCount == 1){
             star1.sprite = starReplacement;
+            star1.color = Color.blue;
             star2.sprite = originStar;
+            star2.color = Color.white;
             star3.sprite = originStar;
+            star3.color = Color.white;
         }
         if(starCount == 2){
             star1.sprite = starReplacement;
+            star1.color = Color.blue;
             star2.sprite = starReplacement;
+            star2.color = Color.green;
             star3.sprite = originStar;
+            star3.color = Color.white;
+            
         }
         if(starCount == 3){
             star1.sprite = starReplacement;
+            star1.color = Color.blue;
             star2.sprite = starReplacement;
+            star2.color = Color.green;
             star3.sprite = starReplacement;
+            star3.color = Color.yellow;
         }
 
         if(Input.GetKeyDown(KeyCode.V) && starCount > 0){

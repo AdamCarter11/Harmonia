@@ -62,6 +62,11 @@ public class ButtonScript : MonoBehaviour
         SceneManager.LoadScene(persistantManager.Instance.currScene);
     }
     public void ExitGame(){
-        Application.Quit();
+        if(Application.platform == RuntimePlatform.WebGLPlayer){
+            Screen.fullScreen = false;
+        }
+        else{
+            Application.Quit();
+        } 
     }
 }
