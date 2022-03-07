@@ -52,6 +52,7 @@ public class Turn_System : MonoBehaviour
     private float hitNotesAmt;
     private float highestCombo;
     Song EnemyPlaySong;
+    private float enemy_damage;
 
     //star abilities stuff
     private int starCount = 0;
@@ -225,8 +226,8 @@ public class Turn_System : MonoBehaviour
         // final performance bonus
         float final_accuracy = hitNotesAmt / currentNotesAmt;
         finalPerformanceBonus(final_accuracy);
-        resetStats();
-        game_manager.resetStats();
+        /*resetStats();
+        game_manager.resetStats();*/
         yield return new WaitForSeconds(2f);
         
 
@@ -393,11 +394,11 @@ public class Turn_System : MonoBehaviour
     {
         if (combo < 50)
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15) * combo));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15f) * combo));
         }
         else
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15) * 50));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 12.5f) * 50));
         }
 
         if (combo > highestCombo)
@@ -436,6 +437,8 @@ public class Turn_System : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3f);
+        EnemyPlaySong.set_length(TextReader.getAmountNotesToPlayAI(EnemyPlaySong));
+        enemy_damage = EnemyPlaySong.getDamage() / EnemyPlaySong.get_length();
         TextReader.setUp(EnemyPlaySong.getText(), EnemyPlaySong.getText2(), EnemyPlaySong.getBPM(), "enemy");
         audio_player.clip = EnemyPlaySong.getAudio();
         yield return new WaitForSeconds(EnemyPlaySong.getBuffer());
@@ -443,7 +446,6 @@ public class Turn_System : MonoBehaviour
         yield return new WaitForSeconds(EnemyPlaySong.getAudio().length);
         audio_player.Stop();
         reader.endCoroutine();
-        damagePlayer(EnemyPlaySong);
 
         yield return new WaitForSeconds(2f);
         // player take damage
@@ -465,10 +467,12 @@ public class Turn_System : MonoBehaviour
             EnemyPlayUI.SetActive(false);
         }
     }
-    void damagePlayer(Song song)
+
+    public void NoteHitAI()
     {
-        playerhealth.takeDamage(song.getDamage() * enemyStarDamageModifier);
+        playerhealth.takeDamage(enemy_damage * enemyStarDamageModifier);
     }
+
     void EndBattle()
     {
         if (state == BattleState.WON)

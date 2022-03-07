@@ -121,7 +121,12 @@ public class GameManager : MonoBehaviour
         accText.text = accuracy.ToString("F2") + " %";
         turn_system.NoteMiss();
     }
-    
+
+    public void NoteHitAI()
+    {
+        turn_system.NoteHitAI();
+    }
+
     public void randomComment(float duration, string[] comments)
     {
         panel.SetActive(true);

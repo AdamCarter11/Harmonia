@@ -23,6 +23,7 @@ public class AIHitNotes : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.Target1.keyPress();
             GameManager.instance.Target1.keyDefault();
+            GameManager.instance.NoteHitAI();
             Destroy(this.gameObject);
         }
         else if (other.tag == "Target2")
@@ -30,6 +31,7 @@ public class AIHitNotes : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.Target2.keyPress();
             GameManager.instance.Target2.keyDefault();
+            GameManager.instance.NoteHitAI();
             Destroy(this.gameObject);
         }
         else if (other.tag == "Target3")
@@ -37,6 +39,7 @@ public class AIHitNotes : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.Target3.keyPress();
             GameManager.instance.Target3.keyDefault();
+            GameManager.instance.NoteHitAI();
             Destroy(this.gameObject);
         }
         else if (other.tag == "Target4")
@@ -44,6 +47,7 @@ public class AIHitNotes : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.Target4.keyPress();
             GameManager.instance.Target4.keyDefault();
+            GameManager.instance.NoteHitAI();
             Destroy(this.gameObject);
         }
         else if (other.tag == "Target5")
@@ -51,6 +55,7 @@ public class AIHitNotes : MonoBehaviour
             gameObject.SetActive(false);
             GameManager.instance.Target5.keyPress();
             GameManager.instance.Target5.keyDefault();
+            GameManager.instance.NoteHitAI();
             Destroy(this.gameObject);
         }
     }

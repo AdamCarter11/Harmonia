@@ -324,6 +324,46 @@ public class writingReading : MonoBehaviour
         }
         return amt;
     }
+    public float getAmountNotesToPlayAI(Song song)
+    {
+        float amt = 0;
+        int note = 0;
+        string[] newNoteList = ReadFromFile(song.getText());
+        float[] seq = ReadFromFile2(song.getText2());
+        float prev = seq[0];
 
-    
+        while (note <= newNoteList.Length)
+        {
+            if (note == 0)
+            {
+                dontSpawn = false;
+                amt++;
+                prev = seq[note];
+            }
+            else if (note < newNoteList.Length)
+            {
+                if (seq[note] == prev)
+                {
+                    dontSpawn = true;
+                }
+                else if (seq[note] - prev < 0.15)
+                {
+                    dontSpawn = true;
+                }
+                else
+                {
+                    dontSpawn = false;
+                    amt++;
+                    prev = seq[note];
+                }
+            }
+            else if (note >= newNoteList.Length)
+            {
+                dontSpawn = true;
+            }
+            note++;
+        }
+        return amt;
+    }
+
 }

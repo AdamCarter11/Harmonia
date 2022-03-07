@@ -4911,7 +4911,7 @@ MonoBehaviour:
   player_animator: {fileID: 1012493774}
   enemy_animator: {fileID: 1735870516}
   PlayerObject: {fileID: 11400000, guid: 5780216ed88f1cb4081fdde706645658, type: 2}
-  EnemyObject: {fileID: 11400000, guid: b5cdc1e18541aec48b7bcc0aed501046, type: 2}
+  EnemyObject: {fileID: 11400000, guid: 58e6168b10872d24aa7a7089f64bccca, type: 2}
   enemyhealth: {fileID: 1040004825}
   playerhealth: {fileID: 167792693}
   star1: {fileID: 873839313}
@@ -8641,8 +8641,8 @@ MonoBehaviour:
   settingsUI: {fileID: 1585392494}
   Volume: {fileID: 638531509}
   SFX: {fileID: 1076200351}
-  audio_players: {fileID: 0}
-  sfx_player: {fileID: 0}
+  audio_players: {fileID: 638531508}
+  sfx_player: {fileID: 1076200350}
   volumeSlider: {fileID: 1165261981}
   effectsSlider: {fileID: 337411559}
   textSlider: {fileID: 1743444794}

@@ -125,6 +125,10 @@ public class Tips : MonoBehaviour
         else
         {
             NoTips.SetActive(true);
+            Tip1.SetActive(false);
+            Tip2.SetActive(false);
+            Tip3.SetActive(false);
+            Tip4.SetActive(false);
             NextTip.SetActive(false);
             PrevTip.SetActive(false);
         }

@@ -14,6 +14,7 @@ public class Song : ScriptableObject
     public string info;
     public float buffer;
     public float baseDamage;
+    public float notes_length;
 
     public AudioClip getAudio()
     {
@@ -43,5 +44,15 @@ public class Song : ScriptableObject
     public float getBuffer()
     {
         return buffer;
+    }
+
+    public void set_length(float amt)
+    {
+        notes_length = amt;
+    }
+
+    public float get_length()
+    {
+        return notes_length;
     }
 }
