@@ -9,7 +9,7 @@ public class ButtonPress : MonoBehaviour
     public Sprite pressedImage;
 
     public KeyCode pressKey;
-
+    private bool canBePressed;
     // public AudioSource keySound;
 
     void Start()
@@ -28,11 +28,25 @@ public class ButtonPress : MonoBehaviour
             //     Debug.Log("ButtonPress: error : no sound object found");
             // }
             theSR.sprite = pressedImage;
+            if (!canBePressed)
+            {
+                GameManager.instance.NoteMiss();
+            }
         }
 
         if (Input.GetKeyUp(pressKey))
         {
             theSR.sprite = defaultImage;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        canBePressed = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        canBePressed = false;
     }
 }
