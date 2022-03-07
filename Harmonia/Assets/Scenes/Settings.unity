@@ -385,6 +385,8 @@ MonoBehaviour:
   settingsUI: {fileID: 1643671963}
   Volume: {fileID: 406098044}
   SFX: {fileID: 1121666687}
+  audio_players: {fileID: 0}
+  sfx_player: {fileID: 0}
   volumeSlider: {fileID: 1761134169}
   effectsSlider: {fileID: 501451484}
   textSlider: {fileID: 657469031}
@@ -1141,11 +1143,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 72d435fb94433fc409e33af8a3b16e39, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2118,7 +2120,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6fcb7397d69379640b600d38f69f6e1b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

@@ -52,6 +52,24 @@ public class SettingsManager : MonoBehaviour
         music_players = GetComponentsInChildren<AudioSource>();
         sfx_players = GetComponentsInChildren<AudioSource>();
         updateAudioLevels();
+
+        if (PlayerPrefs.GetInt("Settings") == 1)
+        {
+            Volume.Play();
+            play_sfx();
+        }
+    }
+
+    void play_sfx()
+    {
+        StartCoroutine(sfx_loop());
+    }
+
+    IEnumerator sfx_loop()
+    {
+        yield return new WaitForSeconds(3f);
+        SFX.Play();
+        StartCoroutine(sfx_loop());
     }
 
     void updateAudioLevels()
@@ -69,7 +87,7 @@ public class SettingsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void SettingsMenu(){

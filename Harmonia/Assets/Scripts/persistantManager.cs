@@ -36,9 +36,11 @@ public class persistantManager : MonoBehaviour
             settingsOpen = !settingsOpen;
             settingsUI.SetActive(settingsOpen);
             */
+            PlayerPrefs.SetInt("Settings", 1);
             SceneManager.LoadScene("Settings");
         }
         else if(Input.GetKeyDown(KeyCode.Tab) && checkScene == "Settings"){
+            PlayerPrefs.SetInt("Settings", 0);
             SceneManager.LoadScene(currScene);
         }
 

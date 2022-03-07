@@ -47,6 +47,7 @@ public class ButtonScript : MonoBehaviour
         panelToOpen.gameObject.SetActive(false);
     }
     public void OpenSettings(){
+        PlayerPrefs.SetInt("Settings", 1);
         SceneManager.LoadScene("Settings");
     }
     public void SaveGame(){
@@ -59,6 +60,7 @@ public class ButtonScript : MonoBehaviour
         persistantManager.Instance.currScene = "Menu";
     }
     public void CloseSettings(){
+        PlayerPrefs.SetInt("Settings", 0);
         SceneManager.LoadScene(persistantManager.Instance.currScene);
     }
     public void ExitGame(){
