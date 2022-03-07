@@ -21,5 +21,5 @@ MonoBehaviour:
   notes: {fileID: 4900000, guid: 29d85e0b47d9fee4aaba510a756963db, type: 3}
   sequence: {fileID: 4900000, guid: d8cbc93dcaa037f4ba2c597ad14b56b3, type: 3}
   info: 
-  buffer: 0
+  buffer: 1.2
   baseDamage: 300

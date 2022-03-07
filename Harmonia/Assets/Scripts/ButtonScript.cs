@@ -36,7 +36,7 @@ public class ButtonScript : MonoBehaviour
             SceneManager.LoadScene("TalkingScene1");
         }
         if(loadLevel == 3){
-            SceneManager.LoadScene("Jalen's Scene");
+            SceneManager.LoadScene("CombatScene");
         }
         */
     }
@@ -47,6 +47,7 @@ public class ButtonScript : MonoBehaviour
         panelToOpen.gameObject.SetActive(false);
     }
     public void OpenSettings(){
+        PlayerPrefs.SetInt("Settings", 1);
         SceneManager.LoadScene("Settings");
     }
     public void SaveGame(){
@@ -59,9 +60,15 @@ public class ButtonScript : MonoBehaviour
         persistantManager.Instance.currScene = "Menu";
     }
     public void CloseSettings(){
+        PlayerPrefs.SetInt("Settings", 0);
         SceneManager.LoadScene(persistantManager.Instance.currScene);
     }
     public void ExitGame(){
-        Application.Quit();
+        if(Application.platform == RuntimePlatform.WebGLPlayer){
+            Screen.fullScreen = false;
+        }
+        else{
+            Application.Quit();
+        } 
     }
 }

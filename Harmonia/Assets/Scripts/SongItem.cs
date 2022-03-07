@@ -11,6 +11,11 @@ public class SongItem : MonoBehaviour
         song = incoming_song;
     }
 
+    public SongItem Get()
+    {
+        return this;
+    }
+
     public float getBPM()
     {
         return song.BPM;

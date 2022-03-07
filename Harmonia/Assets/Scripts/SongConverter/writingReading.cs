@@ -52,7 +52,6 @@ public class writingReading : MonoBehaviour
         whichNote = 0;
         newNotesList = ReadFromFile(text);
         notesLength = newNotesList.Length;
-        //print(notesLength);
         sequence = ReadFromFile2(seq);
         BPM = val;
         max = getMax(newNotesList);
@@ -274,8 +273,57 @@ public class writingReading : MonoBehaviour
         return seq;
     }
 
+    public float getComboThreshold(TextAsset text)
+    {
+        newNotesList = ReadFromFile(text);
+        notesLength = newNotesList.Length;
+        return notesLength;
+    }
+
     public void endCoroutine()
     {
         StopAllCoroutines();
     }
+
+    public float getAmountNotesToPlay(SongItem song)
+    {
+        float amt = 0;
+        int note = 0;
+        string[] newNoteList = ReadFromFile(song.getText());
+        float[] seq = ReadFromFile2(song.getText2());
+        float prev = seq[0];
+
+        while (note <= newNoteList.Length)
+        {
+            if (note == 0)
+            {
+                dontSpawn = false;
+                amt++;
+            }
+            else if (note < newNoteList.Length)
+            {
+                if (seq[note] == prev)
+                {
+                    dontSpawn = true;
+                }
+                else if (seq[note] - prev < turn_system.getThreshold())
+                {
+                    dontSpawn = true;
+                }
+                else
+                {
+                    dontSpawn = false;
+                    amt++;
+                }
+            }
+            else if (note >= newNoteList.Length)
+            {
+                dontSpawn = true;
+            }
+            note++;
+        }
+        return amt;
+    }
+
+    
 }

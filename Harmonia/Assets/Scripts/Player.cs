@@ -18,8 +18,11 @@ public class Player : MonoBehaviour
     private LayerMask npcLayer;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private Vector2 moveDir;
     private GameObject whichToInteractWith;
+    private Animator anim;
+    private string direction;
 
     public Inventory inventory;
     //public SettingsManager settings;
@@ -29,11 +32,25 @@ public class Player : MonoBehaviour
     public AudioClip startBattle;
     public AudioClip clockFlappingNoise;
 
+    public Sprite walk_forward;
+    public Sprite walk_backward;
+    public Sprite walk_right;
+    public Sprite walk_left;
+
     public float checkRadius;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        if(PlayerPrefs.GetFloat("playerX") != 0 && PlayerPrefs.GetFloat("playerX") != 0){
+            transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), transform.position.z);
+            print("save worked");
+        }
+        else{
+            print("save failed");
+        }
     }
 
     void Update()
@@ -62,6 +79,53 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
+
+        if (moveDir.y > 0)
+        {
+            anim.Play("Player_WalkBack");
+            direction = "Back";
+        }
+        else if (moveDir.y < 0)
+        {
+            anim.Play("Player_WalkForward");
+            direction = "Forward";
+        }
+        else if (moveDir.y == 0 && moveDir.x > 0)
+        {
+            anim.Play("Player_WalkRight");
+            direction = "Right";
+        }
+        else if (moveDir.y == 0 && moveDir.x < 0)
+        {
+            anim.Play("Player_WalkLeft");
+            direction = "Left";
+        }
+        else
+        {
+            if (direction == "Forward")
+            {
+                anim.Play("Player_IdleBack");
+            }
+            else if (direction == "Back")
+            {
+                anim.Play("Player_IdleForward");
+            }
+            else if (direction == "Right")
+            {
+                anim.Play("Player_IdleRight");
+            }
+            else if (direction == "Left")
+            {
+                anim.Play("Player_IdleLeft");
+            }
+        }
+    }
+
+    private void OnDestroy() {
+        //checks when scene changes, used to save players position
+        PlayerPrefs.SetFloat("playerX", transform.position.x);
+        PlayerPrefs.SetFloat("playerY", transform.position.y);
+        print(PlayerPrefs.GetFloat("playerY"));
     }
 
     void GetInputs()

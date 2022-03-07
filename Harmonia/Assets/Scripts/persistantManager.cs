@@ -11,7 +11,7 @@ public class persistantManager : MonoBehaviour
     [HideInInspector] public string currScene;
     [HideInInspector] public string whichDialogue;
     [HideInInspector] public List<CharacterSO> characters;
-
+    //[HideInInspector] public float playerX, playerY;
 
     private void Awake() {
        if(Instance != null){
@@ -28,15 +28,22 @@ public class persistantManager : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        string checkScene = SceneManager.GetActiveScene().name;
+        if (Input.GetKeyDown(KeyCode.Tab) && currScene != "CombatScene" && checkScene != "Settings")
         {
             /*
             settingsOpen = !settingsOpen;
             settingsUI.SetActive(settingsOpen);
             */
+            PlayerPrefs.SetInt("Settings", 1);
             SceneManager.LoadScene("Settings");
         }
-        string checkScene = SceneManager.GetActiveScene().name;
+        else if(Input.GetKeyDown(KeyCode.Tab) && checkScene == "Settings"){
+            PlayerPrefs.SetInt("Settings", 0);
+            SceneManager.LoadScene(currScene);
+        }
+
         if(checkScene != "Settings" && checkScene != "Menu"){
             currScene = SceneManager.GetActiveScene().name;
         }
@@ -50,7 +57,7 @@ public class persistantManager : MonoBehaviour
         if(currScene == "TalkingScene1"){
             currentLevel = 2;
         }
-        if(currScene == "Jalen's Scene"){
+        if(currScene == "CombatScene"){
             currentLevel = 3;
         }
         if (currScene == "TalkingSceneWin")

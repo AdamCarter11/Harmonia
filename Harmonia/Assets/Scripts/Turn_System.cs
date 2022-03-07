@@ -21,6 +21,11 @@ public class Turn_System : MonoBehaviour
     private int whichSong;
 
     public AudioSource audio_player;
+    public GameObject audio_players;
+    private AudioSource[] music_players;
+    public GameObject sfx_player;
+    private AudioSource[] sfx_players;
+
 
     public writingReading TextReader;
 
@@ -69,7 +74,22 @@ public class Turn_System : MonoBehaviour
     {
         instance = this;
         state = BattleState.START;
+        music_players = GetComponentsInChildren<AudioSource>();
+        sfx_players = GetComponentsInChildren<AudioSource>();
+        updateAudioLevels();
         StartCoroutine(SetupBattle());
+    }
+
+    void updateAudioLevels()
+    {
+        for (int i = 0; i < music_players.Length; i++)
+        {
+            music_players[i].volume = PlayerPrefs.GetFloat("VolumeValue");
+        }
+        for (int i = 0; i < sfx_players.Length; i++)
+        {
+            sfx_players[i].volume = PlayerPrefs.GetFloat("EffectsValue");
+        }
     }
 
     IEnumerator SetupBattle()
@@ -80,6 +100,8 @@ public class Turn_System : MonoBehaviour
         playerhealth.setHealth(PlayerObject.getHealth());
 
         state = BattleState.PLAYERTURN;
+        resetStats();
+        game_manager.resetStats();
         PlayerTurn();
     }
 
@@ -89,7 +111,7 @@ public class Turn_System : MonoBehaviour
         SongItem2.GetComponentInChildren<Text>().text = SongItem2.GetComponent<SongItem>().getName();
         SongItem3.GetComponentInChildren<Text>().text = SongItem3.GetComponent<SongItem>().getName();
         SongItem4.GetComponentInChildren<Text>().text = SongItem4.GetComponent<SongItem>().getName();
-        print("Player Turn");
+        //print("Player Turn");
         // enable player to make choices for turn
         Menu_UI.SetActive(true);
     }
@@ -100,29 +122,29 @@ public class Turn_System : MonoBehaviour
         audio_player.Stop();
         if (song == 1)
         {
-            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem1.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem1.GetComponent<SongItem>().Get()) / 12);
             audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 2)
         {
-            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem2.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem2.GetComponent<SongItem>().Get()) / 12);
             audio_player.clip = SongItem2.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 3)
         {
-            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem3.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem3.GetComponent<SongItem>().Get()) / 12);
             audio_player.clip = SongItem3.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 4)
         {
-            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem4.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem4.GetComponent<SongItem>().Get()) / 12);
             audio_player.clip = SongItem4.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
@@ -161,9 +183,8 @@ public class Turn_System : MonoBehaviour
         state = BattleState.ENEMYTURN;
         PlayerPlayUI.SetActive(true);
         // damage calculations
-        resetStats();
-        game_manager.resetStats();
-        amtOfNotes = song.GetComponent<SongItem>().getAmountOfNotes();
+
+        amtOfNotes = TextReader.getAmountNotesToPlay(song);
         damagePerNote = song.GetComponent<SongItem>().getDamage() / amtOfNotes;
         //print(damagePerNote);
 
@@ -171,7 +192,7 @@ public class Turn_System : MonoBehaviour
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM(), "player");
-        comboThreshold = TextReader.notesLength/6;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
+        comboThreshold = (int) amtOfNotes / 12;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
         //print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
@@ -180,6 +201,8 @@ public class Turn_System : MonoBehaviour
         // final performance bonus
         float final_accuracy = hitNotesAmt / currentNotesAmt;
         finalPerformanceBonus(final_accuracy);
+        resetStats();
+        game_manager.resetStats();
         yield return new WaitForSeconds(2f);
         
 
@@ -208,48 +231,58 @@ public class Turn_System : MonoBehaviour
         else if(star_combo >= comboThreshold){
             starCount = 1;
         }
-        else if (star_combo == 0 && starCount == 0){
-            starCount = 0;
-        }
 
         //I'm splitting it up like this in case we need to access the variable in other scripts
         if(starCount == 0){
             star1.sprite = originStar;
+            star1.color = Color.white;
             star2.sprite = originStar;
+            star2.color = Color.white;
             star3.sprite = originStar;
+            star3.color = Color.white;
         }
         if(starCount == 1){
             star1.sprite = starReplacement;
+            star1.color = Color.blue;
             star2.sprite = originStar;
+            star2.color = Color.white;
             star3.sprite = originStar;
+            star3.color = Color.white;
         }
         if(starCount == 2){
             star1.sprite = starReplacement;
+            star1.color = Color.blue;
             star2.sprite = starReplacement;
+            star2.color = Color.green;
             star3.sprite = originStar;
+            star3.color = Color.white;
+            
         }
         if(starCount == 3){
             star1.sprite = starReplacement;
+            star1.color = Color.blue;
             star2.sprite = starReplacement;
+            star2.color = Color.green;
             star3.sprite = starReplacement;
+            star3.color = Color.yellow;
         }
 
         if(Input.GetKeyDown(KeyCode.V) && starCount > 0){
             starCount--;
             star_combo -= comboThreshold;
-            print("activated star ONE combo ability");
-            threshold = 0.1f;
+            //print("activated star ONE combo ability");
+            threshold = 0.2f;
         }
         if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
             starCount-= 2;
             star_combo -= comboThreshold * 2;
-            print("activated star TWO combo ability");
-            threshold = 0.2f;
+            //print("activated star TWO combo ability");
+            threshold = 0.1f;
         }
         if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
             starCount = 0;
             star_combo -= comboThreshold * 3;
-            print("activated star THREE combo ability");
+            //print("activated star THREE combo ability");
             //star modifiers, may need to change how they get reset and stuff
             playerStarDamageModifier = 2;
             enemyStarDamageModifier = 1.5f;
@@ -279,7 +312,8 @@ public class Turn_System : MonoBehaviour
             drift += 0.25f;
             return SongToPlay.GetComponent<SongItem>().getBPM() + drift;
         }
-        return EnemyPlaySong.getBPM();
+        drift += 0.25f;
+        return EnemyPlaySong.getBPM() + drift;
     }
 
     public float getThreshold()
@@ -391,6 +425,8 @@ public class Turn_System : MonoBehaviour
         // player take damage
         //  bool isDead = enemyChara.TakeDamage(damage);
         bool isDead = playerhealth.isDead();
+        resetStats();
+        game_manager.resetStats();
         
         //enemy_animator.Play("Player_Hit");
 
