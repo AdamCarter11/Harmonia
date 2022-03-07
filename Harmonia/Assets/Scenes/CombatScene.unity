@@ -504,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &44867526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8237,6 +8237,8 @@ MonoBehaviour:
   settingsUI: {fileID: 1585392494}
   Volume: {fileID: 638531509}
   SFX: {fileID: 1076200351}
+  audio_players: {fileID: 0}
+  sfx_player: {fileID: 0}
   volumeSlider: {fileID: 1165261981}
   effectsSlider: {fileID: 337411559}
   textSlider: {fileID: 1743444794}
