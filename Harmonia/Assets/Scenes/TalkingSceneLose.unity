@@ -1828,6 +1828,8 @@ MonoBehaviour:
   settingsUI: {fileID: 1959751519}
   Volume: {fileID: 2099832990}
   SFX: {fileID: 929331335}
+  audio_players: {fileID: 2099832989}
+  sfx_player: {fileID: 929331334}
   volumeSlider: {fileID: 2058924046}
   effectsSlider: {fileID: 164526617}
   textSlider: {fileID: 2068608685}

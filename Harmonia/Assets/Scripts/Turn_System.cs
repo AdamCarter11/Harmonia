@@ -21,6 +21,11 @@ public class Turn_System : MonoBehaviour
     private int whichSong;
 
     public AudioSource audio_player;
+    public GameObject audio_players;
+    private AudioSource[] music_players;
+    public GameObject sfx_player;
+    private AudioSource[] sfx_players;
+
 
     public writingReading TextReader;
 
@@ -69,7 +74,22 @@ public class Turn_System : MonoBehaviour
     {
         instance = this;
         state = BattleState.START;
+        music_players = GetComponentsInChildren<AudioSource>();
+        sfx_players = GetComponentsInChildren<AudioSource>();
+        updateAudioLevels();
         StartCoroutine(SetupBattle());
+    }
+
+    void updateAudioLevels()
+    {
+        for (int i = 0; i < music_players.Length; i++)
+        {
+            music_players[i].volume = PlayerPrefs.GetFloat("VolumeValue");
+        }
+        for (int i = 0; i < sfx_players.Length; i++)
+        {
+            sfx_players[i].volume = PlayerPrefs.GetFloat("EffectsValue");
+        }
     }
 
     IEnumerator SetupBattle()

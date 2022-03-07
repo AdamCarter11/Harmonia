@@ -12,6 +12,10 @@ public class SettingsManager : MonoBehaviour
 
     public AudioSource Volume;
     public AudioSource SFX;
+    public GameObject audio_players;
+    private AudioSource[] music_players;
+    public GameObject sfx_player;
+    private AudioSource[] sfx_players;
 
     public Slider volumeSlider;
     public Slider effectsSlider;
@@ -44,13 +48,28 @@ public class SettingsManager : MonoBehaviour
         else{
             LoadValues();
         }
+
+        music_players = GetComponentsInChildren<AudioSource>();
+        sfx_players = GetComponentsInChildren<AudioSource>();
+        updateAudioLevels();
+    }
+
+    void updateAudioLevels()
+    {
+        for (int i = 0; i < music_players.Length; i++)
+        {
+            music_players[i].volume = PlayerPrefs.GetFloat("VolumeValue");
+        }
+        for (int i = 0; i < sfx_players.Length; i++)
+        {
+            sfx_players[i].volume = PlayerPrefs.GetFloat("EffectsValue");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-        
+
     }
 
     public void SettingsMenu(){
@@ -72,14 +91,14 @@ public class SettingsManager : MonoBehaviour
     public void VolumeSlider(float volume)
     {
         float volumeValue = volume;
-        PlayerPrefs.SetFloat("VolumeValue", volumeValue);
+        PlayerPrefs.SetFloat("VolumeValue", volumeValue * .25f);
         LoadValues();
     }
   
     public void EffectsSlider(float volume)
     {
         float effectsValue = volume;
-        PlayerPrefs.SetFloat("EffectsValue", effectsValue);
+        PlayerPrefs.SetFloat("EffectsValue", effectsValue * .15f);
         LoadValues();
     }
 
@@ -93,12 +112,12 @@ public class SettingsManager : MonoBehaviour
     public void LoadValues()
     {
         float volumeValue = PlayerPrefs.GetFloat("VolumeValue");
-        volumeSlider.value = volumeValue;
-        Volume.volume = volumeValue * .25f;
+        volumeSlider.value = volumeValue / .25f;
+        Volume.volume = volumeValue;
 
         float effectsValue = PlayerPrefs.GetFloat("EffectsValue");
-        effectsSlider.value = effectsValue;
-        SFX.volume = effectsValue * .15f;
+        effectsSlider.value = effectsValue / .15f;
+        SFX.volume = effectsValue;
 
         float textValue = PlayerPrefs.GetFloat("TextValue");
         print(textValue);
@@ -114,7 +133,6 @@ public class SettingsManager : MonoBehaviour
         SFX.volume = effectsValue * .25f;
 
         float textValue = .25f;
-        print(textValue);
         textSlider.value = textValue;
     }
     

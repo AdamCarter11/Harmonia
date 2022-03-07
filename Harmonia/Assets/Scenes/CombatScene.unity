@@ -4540,6 +4540,8 @@ MonoBehaviour:
   InfoText: {fileID: 320696635}
   reader: {fileID: 1176113328}
   audio_player: {fileID: 638531509}
+  audio_players: {fileID: 638531508}
+  sfx_player: {fileID: 1076200350}
   TextReader: {fileID: 1176113328}
   Menu_UI: {fileID: 1097649024}
   PlayerPlayUI: {fileID: 44867525}
