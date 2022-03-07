@@ -152,6 +152,7 @@ public class SettingsManager : MonoBehaviour
 
         float textValue = .25f;
         textSlider.value = textValue;
+        LoadValues();
     }
     
     public float getTextSpeed()
