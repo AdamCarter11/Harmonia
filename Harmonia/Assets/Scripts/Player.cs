@@ -37,6 +37,11 @@ public class Player : MonoBehaviour
     public Sprite walk_right;
     public Sprite walk_left;
 
+    public GameObject Tutorial_tips;
+    public GameObject Tips1;
+    public GameObject Tips2;
+    public bool tutorial;
+
     public float checkRadius;
 
     void Start()
@@ -50,6 +55,16 @@ public class Player : MonoBehaviour
         }
         else{
             print("save failed");
+        }
+        if (PlayerPrefs.GetInt("tips_amt") == 0)
+        {
+            Tutorial_tips.SetActive(true);
+            Tips1.SetActive(true);
+            tutorial = true;
+        }
+        else
+        {
+            tutorial = false;
         }
     }
 
@@ -71,7 +86,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!inventory.getActive()) // && !settings.settingsActive()
+        if (!inventory.getActive() && !tutorial) // && !settings.settingsActive()
         {
             rb.velocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
         }
@@ -207,4 +222,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void nextTip()
+    {
+        if (PlayerPrefs.GetInt("tips_amt") == 0)
+        {
+            PlayerPrefs.SetInt("tips_amt", 1);
+            Tips1.SetActive(false);
+            Tips2.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("tips_amt") == 1)
+        {
+            PlayerPrefs.SetInt("tips_amt", 2);
+            Tips2.SetActive(false);
+            Tutorial_tips.SetActive(false);
+            tutorial = false;
+        }
+    }
 }

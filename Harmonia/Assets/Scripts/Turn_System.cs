@@ -68,7 +68,10 @@ public class Turn_System : MonoBehaviour
     // stats
     public GameManager game_manager;
 
-    // ai autoplay
+    // tips
+    public GameObject Tutorial_tips;
+    public GameObject Tips3;
+    public GameObject Tips4;
 
     void Start()
     {
@@ -77,7 +80,28 @@ public class Turn_System : MonoBehaviour
         music_players = GetComponentsInChildren<AudioSource>();
         sfx_players = GetComponentsInChildren<AudioSource>();
         updateAudioLevels();
+        if (PlayerPrefs.GetInt("tips_amt") == 2)
+        {
+            Tutorial_tips.SetActive(true);
+            Tips3.SetActive(true);
+        }
         StartCoroutine(SetupBattle());
+    }
+
+    public void nextTip()
+    {
+        if (PlayerPrefs.GetInt("tips_amt") == 2)
+        {
+            PlayerPrefs.SetInt("tips_amt", 3);
+            Tips3.SetActive(false);
+            Tips4.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("tips_amt") == 3)
+        {
+            PlayerPrefs.SetInt("tips_amt", 4);
+            Tips4.SetActive(false);
+            Tutorial_tips.SetActive(false);
+        }
     }
 
     void updateAudioLevels()

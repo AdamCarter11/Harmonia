@@ -24,7 +24,6 @@ public class persistantManager : MonoBehaviour
 
     private void Start() {
         currScene = PlayerPrefs.GetString("current scene");
-        print(currScene);
     }
 
     private void Update() {
