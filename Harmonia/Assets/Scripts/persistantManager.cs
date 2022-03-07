@@ -43,7 +43,7 @@ public class persistantManager : MonoBehaviour
             SceneManager.LoadScene(currScene);
         }
 
-        if(checkScene != "Settings" && checkScene != "Menu"){
+        if (checkScene != "Settings" && checkScene != "Menu"){
             currScene = SceneManager.GetActiveScene().name;
         }
         if(currScene == ""){

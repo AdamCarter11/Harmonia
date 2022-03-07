@@ -74,6 +74,11 @@ public class Turn_System : MonoBehaviour
     public GameObject Tips3;
     public GameObject Tips4;
 
+    // settings
+    private bool canOpenSettings;
+    private bool settingsOpen;
+    public GameObject Settings_Manager;
+
     void Start()
     {
         instance = this;
@@ -139,6 +144,8 @@ public class Turn_System : MonoBehaviour
         //print("Player Turn");
         // enable player to make choices for turn
         Menu_UI.SetActive(true);
+        canOpenSettings = true;
+        settingsOpen = false;
     }
 
     public void playPreview(int song)
@@ -178,6 +185,8 @@ public class Turn_System : MonoBehaviour
     // when an option is picked
     public void OnChoicePicked()
     {
+        canOpenSettings = false;
+        settingsOpen = false;
         if (state != BattleState.PLAYERTURN)
         {
             return;
@@ -311,6 +320,21 @@ public class Turn_System : MonoBehaviour
             //star modifiers, may need to change how they get reset and stuff
             playerStarDamageModifier = 2;
             enemyStarDamageModifier = 1.5f;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab) && canOpenSettings)
+        {
+            if (settingsOpen)
+            {
+                settingsOpen = false;
+                Settings_Manager.SetActive(false);
+            }
+            else
+            {
+                settingsOpen = true;
+                Settings_Manager.SetActive(true);
+            }
+            
         }
     }
 
