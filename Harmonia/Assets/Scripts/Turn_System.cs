@@ -102,29 +102,29 @@ public class Turn_System : MonoBehaviour
         audio_player.Stop();
         if (song == 1)
         {
-            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem1.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getComboThreshold(SongItem1.GetComponent<SongItem>().getText()) / 12);
             audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 2)
         {
-            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem2.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getComboThreshold(SongItem2.GetComponent<SongItem>().getText()) / 12);
             audio_player.clip = SongItem2.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 3)
         {
-            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem3.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getComboThreshold(SongItem3.GetComponent<SongItem>().getText()) / 12);
             audio_player.clip = SongItem3.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 4)
         {
-            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nGenre: "
-            + SongItem4.GetComponent<SongItem>().getGenre() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Info";
+            InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
+                + Mathf.Round(TextReader.getComboThreshold(SongItem4.GetComponent<SongItem>().getText()) / 12);
             audio_player.clip = SongItem4.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }

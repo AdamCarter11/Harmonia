@@ -504,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &44867526
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2593,6 +2593,7 @@ GameObject:
   - component: {fileID: 393396087}
   - component: {fileID: 393396089}
   - component: {fileID: 393396088}
+  - component: {fileID: 393396090}
   m_Layer: 0
   m_Name: GreatWindow2
   m_TagString: GreatWindow
@@ -2661,6 +2662,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5969516, y: 3.5}
   m_EdgeRadius: 0
+--- !u!114 &393396090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393396086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f595354fcaad734083747c3fb59dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressKey: 102
 --- !u!1 &399126590
 GameObject:
   m_ObjectHideFlags: 0
@@ -6585,6 +6599,7 @@ GameObject:
   - component: {fileID: 1090907406}
   - component: {fileID: 1090907408}
   - component: {fileID: 1090907407}
+  - component: {fileID: 1090907409}
   m_Layer: 0
   m_Name: GreatWindow5
   m_TagString: GreatWindow
@@ -6653,6 +6668,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5969516, y: 3.5}
   m_EdgeRadius: 0
+--- !u!114 &1090907409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090907405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f595354fcaad734083747c3fb59dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressKey: 107
 --- !u!1 &1097649024
 GameObject:
   m_ObjectHideFlags: 0
@@ -9187,6 +9215,7 @@ GameObject:
   - component: {fileID: 1636052434}
   - component: {fileID: 1636052436}
   - component: {fileID: 1636052435}
+  - component: {fileID: 1636052437}
   m_Layer: 0
   m_Name: GreatWindow4
   m_TagString: GreatWindow
@@ -9255,6 +9284,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5969516, y: 3.5}
   m_EdgeRadius: 0
+--- !u!114 &1636052437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636052433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f595354fcaad734083747c3fb59dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressKey: 106
 --- !u!1 &1650225092
 GameObject:
   m_ObjectHideFlags: 0
@@ -10331,6 +10373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1861427168}
+  - component: {fileID: 1861427171}
   - component: {fileID: 1861427170}
   - component: {fileID: 1861427169}
   m_Layer: 0
@@ -10401,6 +10444,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5969516, y: 3.5}
   m_EdgeRadius: 0
+--- !u!114 &1861427171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861427167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f595354fcaad734083747c3fb59dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressKey: 100
 --- !u!1 &1874256123
 GameObject:
   m_ObjectHideFlags: 0
@@ -11872,6 +11928,7 @@ GameObject:
   - component: {fileID: 2124911324}
   - component: {fileID: 2124911326}
   - component: {fileID: 2124911325}
+  - component: {fileID: 2124911327}
   m_Layer: 0
   m_Name: GreatWindow3
   m_TagString: GreatWindow
@@ -11940,6 +11997,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5969516, y: 3.5}
   m_EdgeRadius: 0
+--- !u!114 &2124911327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124911323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f595354fcaad734083747c3fb59dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressKey: 32
 --- !u!1001 &50122827771153548
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -274,6 +274,13 @@ public class writingReading : MonoBehaviour
         return seq;
     }
 
+    public float getComboThreshold(TextAsset text)
+    {
+        newNotesList = ReadFromFile(text);
+        notesLength = newNotesList.Length;
+        return notesLength;
+    }
+
     public void endCoroutine()
     {
         StopAllCoroutines();
