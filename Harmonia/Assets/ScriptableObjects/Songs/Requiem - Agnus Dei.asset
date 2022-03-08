@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   song_name: 'Requiem: Agnus Dei'
   BPM: 600
+  HIGH_BPM: 0
+  LOW_BPM: 0
   genre: Classical
   audio: {fileID: 8300000, guid: 99ab0c64cd1aca643bccdf442511f87d, type: 3}
   notes: {fileID: 0}
   sequence: {fileID: 0}
-  info: info
+  info: Composed by Player
   buffer: 0
   baseDamage: 300

@@ -20,6 +20,6 @@ MonoBehaviour:
   audio: {fileID: 8300000, guid: ab259e0d2da7cf8449ef7abee14d4e93, type: 3}
   notes: {fileID: 4900000, guid: cf7e532f64ea65545aa4237c10e51c39, type: 3}
   sequence: {fileID: 4900000, guid: 87ba0a9e3bcf78f449a0fe2d4211da8d, type: 3}
-  info: info
+  info: Composed by Player
   buffer: 3.1
   baseDamage: 300

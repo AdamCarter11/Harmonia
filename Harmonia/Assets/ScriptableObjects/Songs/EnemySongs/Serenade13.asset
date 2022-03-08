@@ -16,10 +16,10 @@ MonoBehaviour:
   BPM: 400
   HIGH_BPM: 0
   LOW_BPM: 0
-  genre: Genre
+  genre: Classical
   audio: {fileID: 8300000, guid: 84ffd82ca3649fe469bb18a1fde37ad3, type: 3}
   notes: {fileID: 4900000, guid: 8635feace2c626e45b73e4262b1020d9, type: 3}
   sequence: {fileID: 4900000, guid: 5f03dbfa82cb0ae4d83210885c1bd691, type: 3}
-  info: 
+  info: Composed by Mozart
   buffer: 1.1
   baseDamage: 300

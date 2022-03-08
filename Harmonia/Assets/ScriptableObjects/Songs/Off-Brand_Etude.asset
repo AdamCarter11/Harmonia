@@ -16,10 +16,10 @@ MonoBehaviour:
   BPM: 400
   HIGH_BPM: 600
   LOW_BPM: 300
-  genre: Genre
+  genre: Classical
   audio: {fileID: 8300000, guid: e27cbef6a4e8131499d8fe7a82295cec, type: 3}
   notes: {fileID: 4900000, guid: 29d85e0b47d9fee4aaba510a756963db, type: 3}
   sequence: {fileID: 4900000, guid: d8cbc93dcaa037f4ba2c597ad14b56b3, type: 3}
-  info: 
-  buffer: 1.2
+  info: Composed by Player
+  buffer: 1.295
   baseDamage: 300
