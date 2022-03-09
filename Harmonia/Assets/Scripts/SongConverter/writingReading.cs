@@ -267,7 +267,6 @@ public class writingReading : MonoBehaviour
         float[] seq = new float[seq1.Length];
         for (int i = 0; i < seq1.Length; i++)
         {
-            Debug.Log(float.Parse(seq1[i]));
             seq[i] = float.Parse(seq1[i]);
         }
         return seq;

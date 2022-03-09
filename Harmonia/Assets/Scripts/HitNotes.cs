@@ -26,7 +26,6 @@ public class HitNotes : MonoBehaviour
                 obtained = true;
                 gameObject.SetActive(false);
                 notePlayed = true;
-                Debug.Log("noteplayed = true");
                 Destroy(this.gameObject);
             }
             else if (canBePressed && great)
