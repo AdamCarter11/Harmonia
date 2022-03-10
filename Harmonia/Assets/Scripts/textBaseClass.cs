@@ -13,7 +13,7 @@ public class textBaseClass : TalkingScene
     public NPCScriptableObject[] scriptableObjs;
     [SerializeField]
     private float timeDelay;
-
+    string checkScene;
     private int whichText = 0;
     private bool isThereStillText = true;
 
@@ -28,15 +28,16 @@ public class textBaseClass : TalkingScene
     }
     private void Start() {
         settings.LoadValues();
-        if (persistantManager.Instance.getDialogue() == "first encounter")
+        checkScene = SceneManager.GetActiveScene().name;
+        if (checkScene == "TalkingScene1")
         {
             StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
         }
-        else if (persistantManager.Instance.getDialogue() == "win")
+        else if (checkScene == "TalkingSceneWin")
         {
             StartCoroutine(WriteText(scriptableObjs[npcIndex].player_win_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
         }
-        else if (persistantManager.Instance.getDialogue() == "lose")
+        else if (checkScene == "TalkingSceneLose")
         {
             StartCoroutine(WriteText(scriptableObjs[npcIndex].player_lose_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
         }
@@ -59,7 +60,7 @@ public class textBaseClass : TalkingScene
         {
             StopAllCoroutines();
             talkingText.text = "";
-            if (persistantManager.Instance.getDialogue() == "first encounter")
+            if (checkScene == "TalkingScene1")
             {
                 if (whichText >= scriptableObjs[npcIndex].dialogue.Length)
                 {
@@ -71,7 +72,7 @@ public class textBaseClass : TalkingScene
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
             }
-            else if (persistantManager.Instance.getDialogue() == "win")
+            else if (checkScene == "TalkingSceneWin")
             {
                 if (whichText >= scriptableObjs[npcIndex].player_win_dialogue.Length)
                 {
@@ -83,7 +84,7 @@ public class textBaseClass : TalkingScene
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].player_win_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
             }
-            else if (persistantManager.Instance.getDialogue() == "lose")
+            else if (checkScene == "TalkingSceneLose")
             {
                 if (whichText >= scriptableObjs[npcIndex].player_lose_dialogue.Length)
                 {
@@ -121,16 +122,16 @@ public class textBaseClass : TalkingScene
         }
         if (!isThereStillText)
         {
-            if (persistantManager.Instance.getDialogue() == "first encounter")
+            if (checkScene == "TalkingScene1")
             {
                 SceneManager.LoadScene("CombatScene");
             }
-            else if (persistantManager.Instance.getDialogue() == "lose")
+            else if (checkScene == "TalkingSceneLose")
             {
                 button_script.NewGame();
                 SceneManager.LoadScene(persistantManager.Instance.currScene);
             }
-            else if (persistantManager.Instance.getDialogue() == "win")
+            else if (checkScene == "TalkingSceneWin")
             {
                 persistantManager.Instance.AddChara(scriptableObjs[0].getCharaSO());
                 PlayerPrefs.SetFloat("playerX", 0);
