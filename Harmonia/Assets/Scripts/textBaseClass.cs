@@ -40,6 +40,10 @@ public class textBaseClass : TalkingScene
         {
             StartCoroutine(WriteText(scriptableObjs[npcIndex].player_lose_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
         }
+        else if (persistantManager.Instance.getDialogue() == "intro")
+        {
+            StartCoroutine(WriteText(scriptableObjs[npcIndex].intro_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
+        }
         npcIndex = 1;
     }
     private void Update() {
@@ -91,6 +95,18 @@ public class textBaseClass : TalkingScene
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].player_lose_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
             }
+            else if (persistantManager.Instance.getDialogue() == "intro")
+            {
+                if (whichText >= scriptableObjs[npcIndex].intro_dialogue.Length)
+                {
+                    panel.SetActive(false);
+                    isThereStillText = false;
+                }
+                else
+                {
+                    StartCoroutine(WriteText(scriptableObjs[npcIndex].intro_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
+                }
+            }
             if(npcIndex == 0){
                 npcIndex = 1;
                 nameText.text = scriptableObjs[0].NPCName;
@@ -120,6 +136,13 @@ public class textBaseClass : TalkingScene
                 PlayerPrefs.SetFloat("playerX", 0);
                 PlayerPrefs.SetFloat("playerY", 0);
                 SceneManager.LoadScene("RPG_Scene2");
+            }
+            else if (persistantManager.Instance.getDialogue() == "intro")
+            {
+                persistantManager.Instance.AddChara(scriptableObjs[1].getCharaSO());
+                PlayerPrefs.SetFloat("playerX", 0);
+                PlayerPrefs.SetFloat("playerY", 0);
+                SceneManager.LoadScene("RPG_Scene");
             }
         }
     }

@@ -19,11 +19,13 @@ public class ButtonScript : MonoBehaviour
     }
     public void StartGame(){
         print(persistantManager.Instance.currScene);
-        if(persistantManager.Instance.currScene != "Menu" && persistantManager.Instance.currScene != ""){
+        persistantManager.Instance.setDialogue("intro");
+        if(persistantManager.Instance.currScene != "Menu" && persistantManager.Instance.currScene != "" && persistantManager.Instance.currScene != "Intro"){
             SceneManager.LoadScene(persistantManager.Instance.currScene);
         }
         else{
-            SceneManager.LoadScene("RPG_scene");
+            //SceneManager.LoadScene("RPG_scene");
+            SceneManager.LoadScene("Intro");
         }
 
         //  once we switch to the setting scene (this is how we load based on save)

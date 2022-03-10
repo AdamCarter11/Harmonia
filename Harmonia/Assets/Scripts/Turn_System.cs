@@ -381,6 +381,15 @@ public class Turn_System : MonoBehaviour
             prevStarCount = starCount;
             print(starCount);
         }
+
+        if(Input.GetKeyDown(KeyCode.Tab) && canOpenSettings && !settingsOpen){
+            Settings_Manager.SetActive(true);
+            settingsOpen = true;
+        }
+        else if(Input.GetKeyDown(KeyCode.Tab) && settingsOpen){
+            Settings_Manager.SetActive(false);
+            settingsOpen = false;
+        }
     }
 
     void PlayParticles()

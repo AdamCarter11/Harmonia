@@ -9,13 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 40b3a3563c046044484722c90359ef85
   - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: ad31a29f90b498b43ba418f65d2741b3
+  - enabled: 1
     path: Assets/Scenes/RPG_Scene.unity
     guid: 952387d2106fea340a839cf35453f11a
   - enabled: 1
     path: Assets/Scenes/TalkingScene1.unity
     guid: fff4d35f2ace20b4696ff99bea16fe61
   - enabled: 1
-    path: Assets/Scenes/CombatTest.unity
+    path: Assets/Scenes/CombatScene.unity
     guid: eeb52e9dd672c4b4a89753a1953c8bcd
   - enabled: 1
     path: Assets/Scenes/TalkingSceneWin.unity
