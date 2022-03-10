@@ -26,7 +26,6 @@ public class Turn_System : MonoBehaviour
     public GameObject sfx_player;
     private AudioSource[] sfx_players;
 
-
     public writingReading TextReader;
 
     public static Turn_System instance;
@@ -55,11 +54,15 @@ public class Turn_System : MonoBehaviour
     private float enemy_damage;
 
     //star abilities stuff
+    private int star_threshold = 30;
     private int starCount = 0;
+    private int prevStarCount = 0;
     private int comboThreshold = 1;
     [SerializeField] private Image star1, star2, star3;
     [SerializeField] private Sprite starReplacement, originStar;
     private float playerStarDamageModifier = 1, enemyStarDamageModifier = 1;
+    [SerializeField] ParticleSystem particles = null;
+    private bool particlePlayed = false;
 
     // stars
     public float threshold;
@@ -155,28 +158,28 @@ public class Turn_System : MonoBehaviour
         if (song == 1)
         {
             InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem1.GetComponent<SongItem>().Get()) / 12);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem1.GetComponent<SongItem>().Get()) / star_threshold);
             audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 2)
         {
             InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem2.GetComponent<SongItem>().Get()) / 12);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem2.GetComponent<SongItem>().Get()) / star_threshold);
             audio_player.clip = SongItem2.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 3)
         {
             InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem3.GetComponent<SongItem>().Get()) / 12);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem3.GetComponent<SongItem>().Get()) / star_threshold);
             audio_player.clip = SongItem3.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 4)
         {
             InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem4.GetComponent<SongItem>().Get()) / 12);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem4.GetComponent<SongItem>().Get()) / star_threshold);
             audio_player.clip = SongItem4.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
@@ -226,7 +229,7 @@ public class Turn_System : MonoBehaviour
         audio_player.clip = song.GetComponent<SongItem>().getAudio();
         yield return new WaitForSeconds(3f);
         TextReader.setUp(song.GetComponent<SongItem>().getText(), song.GetComponent<SongItem>().getText2(), song.GetComponent<SongItem>().getBPM(), "player");
-        comboThreshold = (int) amtOfNotes / 12;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
+        comboThreshold = (int) amtOfNotes / star_threshold;      //CHANGE THIS 6 to make it easier or harder for combo system (higher = easier)
         //print("COMBO THRESHOLD: " + comboThreshold);
         yield return new WaitForSeconds(song.GetComponent<SongItem>().getBuffer());
         audio_player.Play();
@@ -256,18 +259,51 @@ public class Turn_System : MonoBehaviour
         }
     }
     private void Update() {
-        if(star_combo >= comboThreshold * 3){
+        if (star_combo >= comboThreshold * 3)
+        {
             starCount = 3;
+            if (particlePlayed == false)
+            {
+                PlayParticles();
+                particlePlayed = true;
+                prevStarCount = starCount;
+            }
+            if (prevStarCount != starCount)
+            {
+                particlePlayed = false;
+            }
         }
-        else if(star_combo >= comboThreshold*2){
+        else if (star_combo >= comboThreshold * 2)
+        {
             starCount = 2;
+            if (particlePlayed == false)
+            {
+                PlayParticles();
+                particlePlayed = true;
+                prevStarCount = starCount;
+            }
+            if (prevStarCount != starCount)
+            {
+                particlePlayed = false;
+            }
         }
-        else if(star_combo >= comboThreshold){
+        else if (star_combo >= comboThreshold)
+        {
             starCount = 1;
+            if (particlePlayed == false)
+            {
+                PlayParticles();
+                particlePlayed = true;
+                prevStarCount = starCount;
+            }
+            if (prevStarCount != starCount)
+            {
+                particlePlayed = false;
+            }
         }
-
         //I'm splitting it up like this in case we need to access the variable in other scripts
-        if(starCount == 0){
+        if (starCount == 0)
+        {
             star1.sprite = originStar;
             star1.color = Color.white;
             star2.sprite = originStar;
@@ -275,7 +311,8 @@ public class Turn_System : MonoBehaviour
             star3.sprite = originStar;
             star3.color = Color.white;
         }
-        if(starCount == 1){
+        if (starCount == 1)
+        {
             star1.sprite = starReplacement;
             star1.color = Color.blue;
             star2.sprite = originStar;
@@ -283,16 +320,18 @@ public class Turn_System : MonoBehaviour
             star3.sprite = originStar;
             star3.color = Color.white;
         }
-        if(starCount == 2){
+        if (starCount == 2)
+        {
             star1.sprite = starReplacement;
             star1.color = Color.blue;
             star2.sprite = starReplacement;
             star2.color = Color.green;
             star3.sprite = originStar;
             star3.color = Color.white;
-            
+
         }
-        if(starCount == 3){
+        if (starCount == 3)
+        {
             star1.sprite = starReplacement;
             star1.color = Color.blue;
             star2.sprite = starReplacement;
@@ -301,41 +340,52 @@ public class Turn_System : MonoBehaviour
             star3.color = Color.yellow;
         }
 
-        if(Input.GetKeyDown(KeyCode.V) && starCount > 0){
+        if (Input.GetKeyDown(KeyCode.V) && starCount > 0)
+        {
+            print(starCount);
             starCount--;
-            star_combo -= comboThreshold;
+            if (star_combo == comboThreshold)
+                star_combo = 0;
+            else if (star_combo > comboThreshold && star_combo <= comboThreshold * 2)
+                star_combo -= comboThreshold;
+            else if (star_combo > comboThreshold * 2)
+                star_combo = comboThreshold * 2;
+
             //print("activated star ONE combo ability");
             threshold = 0.2f;
+            prevStarCount = starCount;
+            print(starCount);
         }
-        if(Input.GetKeyDown(KeyCode.B) && starCount > 1){
-            starCount-= 2;
-            star_combo -= comboThreshold * 2;
+        if (Input.GetKeyDown(KeyCode.B) && starCount > 1)
+        {
+            print(starCount);
+            starCount -= 2;
+            if (star_combo <= comboThreshold * 3)
+                star_combo -= comboThreshold * 2;
+            else
+                star_combo = comboThreshold;
             //print("activated star TWO combo ability");
             threshold = 0.1f;
+            prevStarCount = starCount;
+            print(starCount);
         }
-        if(Input.GetKeyDown(KeyCode.N) && starCount > 2){
+        if (Input.GetKeyDown(KeyCode.N) && starCount > 2)
+        {
+            print(starCount);
             starCount = 0;
-            star_combo -= comboThreshold * 3;
+            star_combo = 0;
             //print("activated star THREE combo ability");
             //star modifiers, may need to change how they get reset and stuff
             playerStarDamageModifier = 2;
             enemyStarDamageModifier = 1.5f;
+            prevStarCount = starCount;
+            print(starCount);
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Tab) && canOpenSettings)
-        {
-            if (settingsOpen)
-            {
-                settingsOpen = false;
-                Settings_Manager.SetActive(false);
-            }
-            else
-            {
-                settingsOpen = true;
-                Settings_Manager.SetActive(true);
-            }
-            
-        }
+    void PlayParticles()
+    {
+        particles.Play();
     }
 
     void finalPerformanceBonus(float accuracy)
