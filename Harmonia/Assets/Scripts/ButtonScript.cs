@@ -20,6 +20,7 @@ public class ButtonScript : MonoBehaviour
     public void StartGame(){
         print(persistantManager.Instance.currScene);
         persistantManager.Instance.setDialogue("intro");
+
         if(persistantManager.Instance.currScene != "Menu" && persistantManager.Instance.currScene != "" && persistantManager.Instance.currScene != "Intro"){
             SceneManager.LoadScene(persistantManager.Instance.currScene);
         }
@@ -51,6 +52,7 @@ public class ButtonScript : MonoBehaviour
     public void OpenSettings(){
         PlayerPrefs.SetInt("Settings", 1);
         SceneManager.LoadScene("Settings");
+        persistantManager.Instance.menuOpened = true;
     }
     public void SaveGame(){
         PlayerPrefs.SetInt("level", persistantManager.Instance.currentLevel);
@@ -63,7 +65,14 @@ public class ButtonScript : MonoBehaviour
     }
     public void CloseSettings(){
         PlayerPrefs.SetInt("Settings", 0);
-        SceneManager.LoadScene(persistantManager.Instance.currScene);
+        //SceneManager.LoadScene(persistantManager.Instance.currScene);
+        if(persistantManager.Instance.menuOpened){
+            persistantManager.Instance.menuOpened = false;
+            SceneManager.LoadScene("Menu");
+        }
+        else{
+            SceneManager.LoadScene(persistantManager.Instance.currScene);
+        }
     }
     public void ExitGame(){
         if(Application.platform == RuntimePlatform.WebGLPlayer){

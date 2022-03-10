@@ -11,6 +11,8 @@ public class persistantManager : MonoBehaviour
     [HideInInspector] public string currScene;
     [HideInInspector] public string whichDialogue;
     [HideInInspector] public List<CharacterSO> characters;
+    [HideInInspector] public bool menuOpened;
+    
     //[HideInInspector] public float playerX, playerY;
 
     private void Awake() {
