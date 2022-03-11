@@ -1155,13 +1155,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
-  tips_amt: 0
   volumeVal: 0
   effectsVal: 0
   textVal: 0
   currScene: 
   whichDialogue: 
   characters: []
+  menuOpened: 0
 --- !u!4 &356732046
 Transform:
   m_ObjectHideFlags: 0
@@ -2432,6 +2432,7 @@ GameObject:
   - component: {fileID: 1224898130}
   - component: {fileID: 1224898129}
   - component: {fileID: 1224898128}
+  - component: {fileID: 1224898131}
   m_Layer: 5
   m_Name: StartButton
   m_TagString: Untagged
@@ -2553,6 +2554,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224898126}
   m_CullTransparentMesh: 1
+--- !u!114 &1224898131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224898126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b133b7f073b05743a91d247bab5d223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txt: {fileID: 1413026491}
 --- !u!1 &1253026551
 GameObject:
   m_ObjectHideFlags: 0
