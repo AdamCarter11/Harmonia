@@ -62,6 +62,7 @@ public class textBaseClass : TalkingScene
         {
             StopAllCoroutines();
             talkingText.text = "";
+            
             if (checkScene == "TalkingScene1")
             {
                 if (whichText >= scriptableObjs[npcIndex].dialogue.Length)
@@ -69,7 +70,21 @@ public class textBaseClass : TalkingScene
                     panel.SetActive(false);
                     isThereStillText = false;
                 }
-                else
+                else if (scriptableObjs[npcIndex].dialogue[whichText] == "ok")
+                {
+                    if (npcIndex == 0)
+                    {
+                        npcIndex = 1;
+                        nameText.text = scriptableObjs[0].NPCName;
+                    }
+                    else
+                    {
+                        npcIndex = 0;
+                        nameText.text = scriptableObjs[1].NPCName;
+                        whichText++;
+                    }
+                }
+                if (isThereStillText == true)
                 {
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
@@ -81,7 +96,21 @@ public class textBaseClass : TalkingScene
                     panel.SetActive(false);
                     isThereStillText = false;
                 }
-                else
+                else if (scriptableObjs[npcIndex].player_win_dialogue[whichText] == "ok")
+                {
+                    if (npcIndex == 0)
+                    {
+                        npcIndex = 1;
+                        nameText.text = scriptableObjs[0].NPCName;
+                    }
+                    else
+                    {
+                        npcIndex = 0;
+                        nameText.text = scriptableObjs[1].NPCName;
+                        whichText++;
+                    }
+                }
+                if (isThereStillText == true)
                 {
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].player_win_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
@@ -93,7 +122,21 @@ public class textBaseClass : TalkingScene
                     panel.SetActive(false);
                     isThereStillText = false;
                 }
-                else
+                else if (scriptableObjs[npcIndex].player_lose_dialogue[whichText] == "ok")
+                {
+                    if (npcIndex == 0)
+                    {
+                        npcIndex = 1;
+                        nameText.text = scriptableObjs[0].NPCName;
+                    }
+                    else
+                    {
+                        npcIndex = 0;
+                        nameText.text = scriptableObjs[1].NPCName;
+                        whichText++;
+                    }
+                }
+                if (isThereStillText == true)
                 {
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].player_lose_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
@@ -105,7 +148,29 @@ public class textBaseClass : TalkingScene
                     panel.SetActive(false);
                     isThereStillText = false;
                 }
-                else
+                else if (scriptableObjs[npcIndex].intro_dialogue[whichText] == "ok")
+                {
+                    if (npcIndex == 0)
+                    {
+                        npcIndex = 1;
+                        nameText.text = scriptableObjs[0].NPCName;
+                        if (persistantManager.Instance.getDialogue() == "intro")
+                        {
+                            ps.Play();
+                        }
+                    }
+                    else
+                    {
+                        npcIndex = 0;
+                        nameText.text = scriptableObjs[1].NPCName;
+                        whichText++;
+                        if (persistantManager.Instance.getDialogue() == "intro")
+                        {
+                            ps.Stop();
+                        }
+                    }
+                }
+                if (isThereStillText == true)
                 {
                     StartCoroutine(WriteText(scriptableObjs[npcIndex].intro_dialogue[whichText], talkingText, timeDelay / settings.getTextSpeed()));
                 }
@@ -127,8 +192,6 @@ public class textBaseClass : TalkingScene
                     ps.Stop();
                 }
             }
-            //whichText++;
-
         }
         if (!isThereStillText)
         {
@@ -138,20 +201,22 @@ public class textBaseClass : TalkingScene
             }
             else if (checkScene == "TalkingSceneLose")
             {
-                button_script.NewGame();
-                SceneManager.LoadScene(persistantManager.Instance.currScene);
+                //button_script.NewGame();
+                PlayerPrefs.SetInt("Battle Won", 0);
+                SceneManager.LoadScene("GameOver");
             }
             else if (checkScene == "TalkingSceneWin")
             {
-                persistantManager.Instance.AddChara(scriptableObjs[0].getCharaSO());
+                //persistantManager.Instance.AddChara(scriptableObjs[0].getCharaSO());
                 PlayerPrefs.SetFloat("playerX", 0);
                 PlayerPrefs.SetFloat("playerY", 0);
                 PlayerPrefs.SetInt("Game Beaten", 1);
+                PlayerPrefs.SetInt("Battle Won", 1);
                 SceneManager.LoadScene("RPG_Scene2");
             }
             else if (persistantManager.Instance.getDialogue() == "intro")
             {
-                persistantManager.Instance.AddChara(scriptableObjs[1].getCharaSO());
+                //persistantManager.Instance.AddChara(scriptableObjs[1].getCharaSO());
                 PlayerPrefs.SetFloat("playerX", 0);
                 PlayerPrefs.SetFloat("playerY", 0);
                 SceneManager.LoadScene("RPG_Scene");

@@ -20,7 +20,9 @@ MonoBehaviour:
     of all time!
   - If it means you will leave me alone, then yes. Let the battle commence!
   player_win_dialogue:
-  - I lose
+  - I cannot believe I have lost to an amatuer like you.
+  - ok
   player_lose_dialogue:
-  - I win
+  - Begone Spirit and never come back!
+  intro_dialogue: []
   chara_so: {fileID: 11400000, guid: b5cdc1e18541aec48b7bcc0aed501046, type: 2}

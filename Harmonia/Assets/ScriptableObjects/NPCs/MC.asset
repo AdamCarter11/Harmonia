@@ -12,24 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6237696d5929a034babeddb69333c6e2, type: 3}
   m_Name: MC
   m_EditorClassIdentifier: 
-  NPCName: Player
+  NPCName: Harmonia
   dialogue:
   - "\rHello sir! May I have your soul?"
   - Well in that case, how about a little music battle. Whoever wins gets to keep
     your soul.
   - Is that a yes?
   player_win_dialogue:
-  - I win
+  - One Soul down and one Soul closer to freeing the souls of musicians across time.
+  - We are just at the start of a long and difficult journey.
   player_lose_dialogue:
-  - I lose
+  - ...
   intro_dialogue:
   - "Huh\u2026 What\u2019s happening?"
   - "I\u2019m feeling ok\u2026 but can you please tell me what\u2019s going on?"
+  - ok
+  - ok
+  - ok
   - "Why\u2019s that?"
-  - "But why can\u2019t you do it?"
-  - ...
+  - ok
+  - ok
+  - ok
+  - ok
+  - ok
+  - ok
   - Alright then, how do I get started?
-  - ...
-  - ...
+  - ok
+  - ok
+  - ok
+  - ok
+  - ok
+  - ok
+  - ok
   - "Well, here we go\u2026"
   chara_so: {fileID: 11400000, guid: 5780216ed88f1cb4081fdde706645658, type: 2}

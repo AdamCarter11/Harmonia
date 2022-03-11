@@ -267,7 +267,7 @@ public class writingReading : MonoBehaviour
         float[] seq = new float[seq1.Length];
         for (int i = 0; i < seq1.Length; i++)
         {
-            Debug.Log(float.Parse(seq1[i]));
+            //Debug.Log(float.Parse(seq1[i]));
             seq[i] = float.Parse(seq1[i]);
         }
         return seq;
@@ -285,7 +285,7 @@ public class writingReading : MonoBehaviour
         StopAllCoroutines();
     }
 
-    public float getAmountNotesToPlay(SongItem song)
+    public float getAmountNotesToPlay(SongItem song, float thres)
     {
         float amt = 0;
         int note = 0;
@@ -306,7 +306,7 @@ public class writingReading : MonoBehaviour
                 {
                     dontSpawn = true;
                 }
-                else if (seq[note] - prev < turn_system.getThreshold())
+                else if (seq[note] - prev < thres)
                 {
                     dontSpawn = true;
                 }
@@ -346,7 +346,7 @@ public class writingReading : MonoBehaviour
                 {
                     dontSpawn = true;
                 }
-                else if (seq[note] - prev < 0.15)
+                else if (seq[note] - prev < 0.2)
                 {
                     dontSpawn = true;
                 }

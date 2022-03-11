@@ -17,8 +17,12 @@ public class NPCScript : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         startingColor = sr.color;
-        music_s.clip = mozartBGM;
-        music_s.Play();
+        if (PlayerPrefs.GetInt("Battle Won") != 1)
+        {
+            music_s.clip = mozartBGM;
+            music_s.Play();
+        }
+            
         //playerObject = GameObject.Find("Player");
         //GetComponent<CircleCollider2D>().radius = playerObject.GetComponent<Player>().checkRadius + 2.5f;
         //print(GetComponent<CircleCollider2D>().radius);
@@ -35,13 +39,16 @@ public class NPCScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             sr.color = Color.green;
-            if (clearThroat != null)
+            if (PlayerPrefs.GetInt("Battle Won") != 1)
             {
-                sfx_s.Stop();
-                sfx_s.clip = clearThroat;
-                sfx_s.Play();
-            }
-            music_s.Pause();
+                if (clearThroat != null)
+                {
+                    sfx_s.Stop();
+                    sfx_s.clip = clearThroat;
+                    sfx_s.Play();
+                }
+                music_s.Pause();
+            } 
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -49,7 +56,11 @@ public class NPCScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             sr.color = startingColor;
-            music_s.UnPause();
+            if (PlayerPrefs.GetInt("Battle Won") != 1)
+            {
+                music_s.UnPause();
+            }
+                
         }
 
     }

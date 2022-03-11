@@ -54,7 +54,7 @@ public class Turn_System : MonoBehaviour
     private float enemy_damage;
 
     //star abilities stuff
-    private int star_threshold = 30;
+    private int star_threshold = 32;
     private int starCount = 0;
     private int prevStarCount = 0;
     private int comboThreshold = 1;
@@ -69,7 +69,7 @@ public class Turn_System : MonoBehaviour
     
 
     // stars
-    public float threshold;
+    private float threshold = 0.35f;
     private float star_combo;
     private float drift;
 
@@ -85,6 +85,7 @@ public class Turn_System : MonoBehaviour
     private bool canOpenSettings;
     private bool settingsOpen;
     public GameObject Settings_Manager;
+    private bool tipsOpen = false;
 
     void Start()
     {
@@ -93,11 +94,16 @@ public class Turn_System : MonoBehaviour
         music_players = GetComponentsInChildren<AudioSource>();
         sfx_players = GetComponentsInChildren<AudioSource>();
         updateAudioLevels();
-        if (PlayerPrefs.GetInt("tips_amt") == 2)
+        if (PlayerPrefs.GetInt("Game Beaten") != 1)
         {
-            Tutorial_tips.SetActive(true);
-            Tips3.SetActive(true);
-        }  
+            if (PlayerPrefs.GetInt("tips_amt") == 2)
+            {
+                Tutorial_tips.SetActive(true);
+                Tips3.SetActive(true);
+                tipsOpen = true;
+            }
+        }
+        threshold = 32;
         StartCoroutine(SetupBattle());
     }
 
@@ -114,6 +120,7 @@ public class Turn_System : MonoBehaviour
             PlayerPrefs.SetInt("tips_amt", 4);
             Tips4.SetActive(false);
             Tutorial_tips.SetActive(false);
+            tipsOpen = false;
         }
     }
 
@@ -153,7 +160,10 @@ public class Turn_System : MonoBehaviour
         Menu_UI.SetActive(true);
         canOpenSettings = true;
         settingsOpen = false;
-        PlayParticles();
+        if (!tipsOpen)
+        {
+            PlayParticles();
+        }
     }
 
     public void playPreview(int song)
@@ -163,28 +173,28 @@ public class Turn_System : MonoBehaviour
         if (song == 1)
         {
             InfoText.text = SongItem1.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem1.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem1.GetComponent<SongItem>().Get()) / star_threshold);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem1.GetComponent<SongItem>().Get(), threshold) / star_threshold);
             audio_player.clip = SongItem1.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 2)
         {
             InfoText.text = SongItem2.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem2.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem2.GetComponent<SongItem>().Get()) / star_threshold);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem2.GetComponent<SongItem>().Get(), threshold) / star_threshold);
             audio_player.clip = SongItem2.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 3)
         {
             InfoText.text = SongItem3.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem3.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem3.GetComponent<SongItem>().Get()) / star_threshold);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem3.GetComponent<SongItem>().Get(), threshold) / star_threshold);
             audio_player.clip = SongItem3.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
         else if (song == 4)
         {
             InfoText.text = SongItem4.GetComponent<SongItem>().getName() + "\nLength: " + Mathf.Round(SongItem4.GetComponent<SongItem>().getAudio().length) + "s\n" + "Combo Threshold: "
-                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem4.GetComponent<SongItem>().Get()) / star_threshold);
+                + Mathf.Round(TextReader.getAmountNotesToPlay(SongItem4.GetComponent<SongItem>().Get(), threshold) / star_threshold);
             audio_player.clip = SongItem4.GetComponent<SongItem>().getAudio();
             audio_player.Play();
         }
@@ -226,7 +236,7 @@ public class Turn_System : MonoBehaviour
         PlayerPlayUI.SetActive(true);
         // damage calculations
 
-        amtOfNotes = TextReader.getAmountNotesToPlay(song);
+        amtOfNotes = TextReader.getAmountNotesToPlay(song, threshold);
         damagePerNote = song.GetComponent<SongItem>().getDamage() / amtOfNotes;
         //print(damagePerNote);
 
@@ -366,7 +376,7 @@ public class Turn_System : MonoBehaviour
                 star_combo = comboThreshold * 2;
 
             //print("activated star ONE combo ability");
-            threshold = 0.2f;
+            threshold += 0.5f;
             prevStarCount = starCount;
             print(starCount);
         }
@@ -379,7 +389,7 @@ public class Turn_System : MonoBehaviour
             else
                 star_combo = comboThreshold;
             //print("activated star TWO combo ability");
-            threshold = 0.1f;
+            threshold -= 0.5f;
             prevStarCount = starCount;
             print(starCount);
         }
@@ -455,7 +465,7 @@ public class Turn_System : MonoBehaviour
         drift = 0;
         playerStarDamageModifier = 1;
         enemyStarDamageModifier = 1;
-        threshold = 0.15f;
+        threshold = 0.35f;
 }
 
     public void NoteHitPerfect()
@@ -491,11 +501,11 @@ public class Turn_System : MonoBehaviour
     {
         if (combo < 50)
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 15f) * combo));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 7f) * combo));
         }
         else
         {
-            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 12.5f) * 50));
+            enemyhealth.takeDamage((damagePerNote * damageModifier * playerStarDamageModifier) + ((damagePerNote / 6f) * 50));
         }
 
         if (combo > highestCombo)

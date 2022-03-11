@@ -24,14 +24,14 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         slots = charactersParent.GetComponentsInChildren<InventorySlot>();
-        characters = persistantManager.Instance.getCharacters();
+        //characters = persistantManager.Instance.getCharacters();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            characters = persistantManager.Instance.getCharacters();
+            //characters = persistantManager.Instance.getCharacters();
             UpdateUI();
             inventoryActive = !inventoryActive;
             info.disableUI();
@@ -58,7 +58,7 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i < characters.Count)
+            if (characters[i] != null)
             {
                 slots[i].AddCharacter(characters[i]);
             }

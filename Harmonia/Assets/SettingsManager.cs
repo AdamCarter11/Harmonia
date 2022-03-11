@@ -138,7 +138,7 @@ public class SettingsManager : MonoBehaviour
         SFX.volume = effectsValue;
 
         float textValue = PlayerPrefs.GetFloat("TextValue");
-        print(textValue);
+        //print(textValue);
         textSlider.value = textValue;
     }
     public void LoadNewDefaults(){

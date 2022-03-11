@@ -20,26 +20,29 @@ MonoBehaviour:
   - "Oh! You\u2019re awake!"
   - "You know I wasn\u2019t sure it was going to work\u2026 but look at you! How
     are you feeling?"
-  - "First let me introduce myself. I am the Spirit of Music, guardian of all musical
-    creations. For all of human history, I have enchanted individuals with the ability
-    to create the most beautiful music of their time. I have watched it evolve from
-    simple melodies to complex symphonies, and through all that, there has been peace\u2026
-    until now. "
-  - 'Well, I used to have a partner, the Soul of Music. Together we worked to maintain
-    musical harmony against the forces of dissonance, but in our recent battle, they
-    became corrupted. '
-  - "Staring into their eyes\u2026 it was like they didn\u2019t even recognize me.
-    Before I could stop them, they broke the boundary between this realm and Earth.
-    This created a chain of chaos, trapping musicians in the realm of dissonance
-    and replacing them with corrupted clones. So this is why I created you! "
+  - First let me introduce myself. I am the Spirit of Music, guardian of all musical
+    creations.
+  - 'For all of human history, I have enchanted individuals with the ability to create
+    the most beautiful music of their time. '
+  - I have watched it evolve from simple melodies to complex symphonies
+  - "and through all that, there has been peace\u2026 until now."
+  - 'Well, I used to have a partner, the Soul of Music. '
+  - Together we worked to maintain musical harmony against the forces of dissonance,
+  - but in our recent battle, they became corrupted.
+  - "Staring into their eyes\u2026 it was like they didn\u2019t even recognize me."
+  - 'Before I could stop them, they broke the boundary between this realm and Earth. '
+  - 'This created a chain of chaos, trapping musicians in the realm of dissonance '
+  - and replacing them with corrupted clones. So this is why I created you!
   - "I\u2019ve given you the ability to retrieve their souls from the realm of dissonance,
-    giving you all of the talents they possess. In order to do that, however, you
-    must defeat their corrupted clones in a music battle. "
+    giving you all of the talents they possess."
+  - In order to do that, however, you must defeat their corrupted clones in a music
+    battle.
   - Once you have collected enough souls, you will be able to battle the Soul of
-    Music. If you defeat them, you will free not just them but all musicians across
-    time.
+    Music.
+  - If you defeat them, you will free not just them but all musicians across time.
   - "Unfortunately, I am restricted from directly interacting with anything from
-    Earth\u2026 I can only influence it from my realm. But don\u2019t worry, I will
-    be able to guide you whenever you need it."
+    Earth\u2026 "
+  - 'I can only influence it from my realm. '
+  - "But don\u2019t worry, I will be able to guide you whenever you need it."
   - Here, let me take you to your first destination. Good Luck!
   chara_so: {fileID: 0}

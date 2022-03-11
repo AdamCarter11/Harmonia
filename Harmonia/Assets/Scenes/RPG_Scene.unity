@@ -2330,7 +2330,7 @@ MonoBehaviour:
   openBag: {fileID: 8300000, guid: 395b029670ac4dc4b8bef404bb9783ce, type: 3}
   closeBag: {fileID: 8300000, guid: 20da30367609c6345b5226b638628e6b, type: 3}
   characters:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 5780216ed88f1cb4081fdde706645658, type: 2}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

@@ -18,7 +18,7 @@ public class ButtonScript : MonoBehaviour
         
     }
     public void StartGame(){
-        print(persistantManager.Instance.currScene);
+        //print(persistantManager.Instance.currScene);
         persistantManager.Instance.setDialogue("intro");
 
         if(persistantManager.Instance.currScene != "Menu" && persistantManager.Instance.currScene != "" && persistantManager.Instance.currScene != "Intro"){
@@ -60,7 +60,12 @@ public class ButtonScript : MonoBehaviour
         PlayerPrefs.SetString("current scene", persistantManager.Instance.currScene);
     }
     public void NewGame(){
+        int beat = PlayerPrefs.GetInt("Game Beaten");
         PlayerPrefs.DeleteAll();
+        if (beat == 1)
+        {
+            PlayerPrefs.SetInt("Game Beaten", 1);
+        }
         persistantManager.Instance.currScene = "Menu";
     }
     public void CloseSettings(){

@@ -51,20 +51,23 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         if(PlayerPrefs.GetFloat("playerX") != 0 && PlayerPrefs.GetFloat("playerX") != 0){
             transform.position = new Vector3(PlayerPrefs.GetFloat("playerX"), PlayerPrefs.GetFloat("playerY"), transform.position.z);
-            print("save worked");
+            //print("save worked");
         }
         else{
-            print("save failed");
+            //print("save failed");
         }
-        if (PlayerPrefs.GetInt("tips_amt") == 0)
+        if (PlayerPrefs.GetInt("Game Beaten") != 1)
         {
-            Tutorial_tips.SetActive(true);
-            Tips1.SetActive(true);
-            tutorial = true;
-        }
-        else
-        {
-            tutorial = false;
+            if (PlayerPrefs.GetInt("tips_amt") == 0)
+            {
+                Tutorial_tips.SetActive(true);
+                Tips1.SetActive(true);
+                tutorial = true;
+            }
+            else
+            {
+                tutorial = false;
+            }
         }
     }
 
@@ -73,14 +76,24 @@ public class Player : MonoBehaviour
         GetInputs();
         walkingSound();
         CheckCollision();
-        if (whichToInteractWith != null && Input.GetKeyDown(KeyCode.E))
+        if ((PlayerPrefs.GetInt("Game Beaten") == 1))
         {
-            print("Interacted with: " + whichToInteractWith.name);
-            //where we want to put the interact logic (open scene, open UI, whatever)
-            audio_s.clip = startBattle;
-            audio_s.Play();
-            persistantManager.Instance.setDialogue("first encounter");
-            SceneManager.LoadScene("TalkingScene1");
+            if (whichToInteractWith != null && Input.GetKeyDown(KeyCode.E))
+            {
+                SceneManager.LoadScene("GameOver");
+            }
+        }
+        else
+        {
+            if (whichToInteractWith != null && Input.GetKeyDown(KeyCode.E))
+            {
+                //print("Interacted with: " + whichToInteractWith.name);
+                //where we want to put the interact logic (open scene, open UI, whatever)
+                audio_s.clip = startBattle;
+                audio_s.Play();
+                persistantManager.Instance.setDialogue("first encounter");
+                SceneManager.LoadScene("TalkingScene1");
+            }
         }
     }
 
@@ -140,7 +153,7 @@ public class Player : MonoBehaviour
         //checks when scene changes, used to save players position
         PlayerPrefs.SetFloat("playerX", transform.position.x);
         PlayerPrefs.SetFloat("playerY", transform.position.y);
-        print(PlayerPrefs.GetFloat("playerY"));
+        //print(PlayerPrefs.GetFloat("playerY"));
     }
 
     void GetInputs()

@@ -22,4 +22,6 @@ MonoBehaviour:
   Song2: {fileID: 11400000, guid: 99a7e969617b82941a9d3a36f9095b46, type: 2}
   Song3: {fileID: 11400000, guid: 256d108575a13aa459abd50c4980b6b7, type: 2}
   Song4: {fileID: 11400000, guid: 5c8e7919891dda448809683509b4e97b, type: 2}
-  description: description
+  description: Wolfgang Amadeus Mozart, born January 27, 1756 is one of the most
+    influential Classical artists of all time, and inspired many different artists
+    and pieces, however only lived until 35 before passing away.
