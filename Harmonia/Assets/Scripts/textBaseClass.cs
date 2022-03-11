@@ -21,6 +21,7 @@ public class textBaseClass : TalkingScene
     private int npcIndex=0;
 
     public ButtonScript button_script;
+    [SerializeField] ParticleSystem ps = null;
 
     private void Awake() {
         nameText.text = scriptableObjs[0].NPCName;
@@ -43,6 +44,7 @@ public class textBaseClass : TalkingScene
         }
         else if (persistantManager.Instance.getDialogue() == "intro")
         {
+            ps.Play();
             StartCoroutine(WriteText(scriptableObjs[npcIndex].intro_dialogue[0], talkingText, timeDelay / settings.getTextSpeed()));
         }
         npcIndex = 1;
@@ -111,11 +113,19 @@ public class textBaseClass : TalkingScene
             if(npcIndex == 0){
                 npcIndex = 1;
                 nameText.text = scriptableObjs[0].NPCName;
+                if (persistantManager.Instance.getDialogue() == "intro")
+                {
+                    ps.Play();
+                }
             }
             else{
                 npcIndex = 0;
                 nameText.text = scriptableObjs[1].NPCName;
                 whichText++;
+                if (persistantManager.Instance.getDialogue() == "intro")
+                {
+                    ps.Stop();
+                }
             }
             //whichText++;
 

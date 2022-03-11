@@ -149,6 +149,7 @@ public class Turn_System : MonoBehaviour
         Menu_UI.SetActive(true);
         canOpenSettings = true;
         settingsOpen = false;
+        PlayParticles();
     }
 
     public void playPreview(int song)
@@ -261,7 +262,10 @@ public class Turn_System : MonoBehaviour
     private void Update() {
         if (star_combo >= comboThreshold * 3)
         {
-            starCount = 3;
+            if (starCount < 3)
+            {
+                starCount = 3;
+            }
             if (particlePlayed == false)
             {
                 PlayParticles();
@@ -275,7 +279,10 @@ public class Turn_System : MonoBehaviour
         }
         else if (star_combo >= comboThreshold * 2)
         {
-            starCount = 2;
+            if (starCount < 2)
+            {
+                starCount = 2;
+            }
             if (particlePlayed == false)
             {
                 PlayParticles();
@@ -289,7 +296,10 @@ public class Turn_System : MonoBehaviour
         }
         else if (star_combo >= comboThreshold)
         {
-            starCount = 1;
+            if (starCount < 1)
+            {
+                starCount = 1;
+            }
             if (particlePlayed == false)
             {
                 PlayParticles();
