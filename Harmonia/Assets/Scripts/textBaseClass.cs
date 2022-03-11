@@ -146,6 +146,7 @@ public class textBaseClass : TalkingScene
                 persistantManager.Instance.AddChara(scriptableObjs[0].getCharaSO());
                 PlayerPrefs.SetFloat("playerX", 0);
                 PlayerPrefs.SetFloat("playerY", 0);
+                PlayerPrefs.SetInt("Game Beaten", 1);
                 SceneManager.LoadScene("RPG_Scene2");
             }
             else if (persistantManager.Instance.getDialogue() == "intro")

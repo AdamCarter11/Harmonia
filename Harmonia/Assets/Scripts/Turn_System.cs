@@ -62,7 +62,11 @@ public class Turn_System : MonoBehaviour
     [SerializeField] private Sprite starReplacement, originStar;
     private float playerStarDamageModifier = 1, enemyStarDamageModifier = 1;
     [SerializeField] ParticleSystem particles = null;
+    [SerializeField] ParticleSystem particlesBlue = null;
+    [SerializeField] ParticleSystem particlesGreen = null;
+    [SerializeField] ParticleSystem particlesYellow = null;
     private bool particlePlayed = false;
+    
 
     // stars
     public float threshold;
@@ -93,7 +97,7 @@ public class Turn_System : MonoBehaviour
         {
             Tutorial_tips.SetActive(true);
             Tips3.SetActive(true);
-        }
+        }  
         StartCoroutine(SetupBattle());
     }
 
@@ -268,7 +272,7 @@ public class Turn_System : MonoBehaviour
             }
             if (particlePlayed == false)
             {
-                PlayParticles();
+                particlesYellow.Play();
                 particlePlayed = true;
                 prevStarCount = starCount;
             }
@@ -285,7 +289,7 @@ public class Turn_System : MonoBehaviour
             }
             if (particlePlayed == false)
             {
-                PlayParticles();
+                particlesGreen.Play();
                 particlePlayed = true;
                 prevStarCount = starCount;
             }
@@ -302,7 +306,7 @@ public class Turn_System : MonoBehaviour
             }
             if (particlePlayed == false)
             {
-                PlayParticles();
+                particlesBlue.Play();
                 particlePlayed = true;
                 prevStarCount = starCount;
             }
